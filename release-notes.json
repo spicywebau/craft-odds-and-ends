@@ -1,0 +1,12 @@
+[
+	{
+		"version" : "1.0.0",
+		"date"    : "27-8-2015",
+		"notes"   : [
+			{
+				"type"    : "added",
+				"message" : "Initial release."
+			}
+		]
+	}
+]

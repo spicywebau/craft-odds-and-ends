@@ -1,0 +1,25 @@
+{% import "_includes/forms" as forms %}
+
+{{ targetLocaleField }}
+
+{% if allowLimit %}
+	{{ forms.textField({
+		label: "Limit"|t,
+		instructions: "Limit the number of selectable {type}."|t({ type: type|lower }),
+		id: 'limit',
+		name: 'limit',
+		value: settings.limit,
+		size: 2,
+		errors: settings.getErrors('limit')
+	}) }}
+{% endif %}
+
+{{ forms.textField({
+	label: "Selection Label"|t,
+	instructions: "Enter the text you want to appear on the {type} selection input."|t({ type: type|lower }),
+	id: 'selectionLabel',
+	name: 'selectionLabel',
+	value: settings.selectionLabel,
+	size: 25,
+	errors: settings.getErrors('selectionLabel')
+}) }}

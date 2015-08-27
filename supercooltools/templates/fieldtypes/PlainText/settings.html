@@ -1,0 +1,11 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.textField({
+	label: "Size"|t,
+	instructions: "The size of the input."|t,
+	id: 'size',
+	name: 'size',
+	value: settings.size,
+	size: 3,
+	errors: settings.getErrors('size')
+}) }}
