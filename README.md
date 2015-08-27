@@ -32,3 +32,10 @@ Usage:
 ```
 <a href="{{ actionUrl('superCoolTools/downloadFile', { id : file.id }) }}">Download</a>
 ```
+
+
+# Roadmap
+
+- Custom Dashboard - a starting point for the user that we set up for each site with links to each section, our support portal and other bits and bobs
+- More disabled fields - ask if you want one thats not there already
+- Release notes widget / dashboard integration
