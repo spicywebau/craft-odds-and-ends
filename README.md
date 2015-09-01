@@ -1,4 +1,4 @@
-Super cool tools for your Craft website.
+Tools for your Craft website.
 
 ---
 
