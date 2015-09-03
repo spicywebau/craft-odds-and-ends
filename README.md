@@ -1,4 +1,4 @@
-Super cool tools for your Craft website.
+Tools for your Craft website.
 
 ---
 
@@ -30,5 +30,12 @@ The `id` parameter is required and must be a valid Asset id.
 
 Usage:
 ```
-<a href="{{ actionUrl('superCoolTools/downloadFile', { id : file.id }) }}">Download</a>
+<a href="{{ actionUrl('supercoolTools/downloadFile', { id : file.id }) }}">Download</a>
 ```
+
+
+# Roadmap
+
+- Custom Dashboard - a starting point for the user that we set up for each site with links to each section, our support portal and other bits and bobs
+- More disabled and searchable fields - ask if you want one thats not there already
+- Release notes widget / dashboard integration
