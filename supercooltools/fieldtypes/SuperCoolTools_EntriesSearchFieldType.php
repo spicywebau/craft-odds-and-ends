@@ -2,16 +2,16 @@
 namespace Craft;
 
 /**
- * Class SuperCoolTools_EntriesSearchFieldType
+ * Class SupercoolTools_EntriesSearchFieldType
  *
- * @package   SuperCoolTools
+ * @package   SupercoolTools
  * @author    Josh Angell <josh@supercooldesign.co.uk>
  * @copyright Copyright (c) 2015, Supercool Ltd
  * @see       http://plugins.supercooldesign.co.uk
  * @since     1.0
  */
 
-class SuperCoolTools_EntriesSearchFieldType extends BaseElementFieldType
+class SupercoolTools_EntriesSearchFieldType extends BaseElementFieldType
 {
 
 	// Properties
@@ -48,7 +48,7 @@ class SuperCoolTools_EntriesSearchFieldType extends BaseElementFieldType
 	public function getInputHtml($name, $criteria)
 	{
 		$variables = $this->getInputTemplateVariables($name, $criteria);
-		return craft()->templates->render('superCoolTools/fieldtypes/EntriesSearch/input', $variables);
+		return craft()->templates->render('supercoolTools/fieldtypes/EntriesSearch/input', $variables);
 	}
 
 	// Protected Methods

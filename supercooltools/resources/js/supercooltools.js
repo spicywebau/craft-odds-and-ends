@@ -8,16 +8,16 @@
 (function($){
 
 
-if (typeof SuperCoolTools == 'undefined')
+if (typeof SupercoolTools == 'undefined')
 {
-	SuperCoolTools = {}
+	SupercoolTools = {}
 }
 
 
 /**
  * Entries with search input - forked from `Craft.TagSelectInput`
  */
-SuperCoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
+SupercoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
 {
 	searchTimeout: null,
 	searchMenu: null,
@@ -164,7 +164,7 @@ SuperCoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
 				excludeIds: excludeIds
 			};
 
-			Craft.postActionRequest('superCoolTools/searchForEntries', data, $.proxy(function(response, textStatus)
+			Craft.postActionRequest('supercoolTools/searchForEntries', data, $.proxy(function(response, textStatus)
 			{
 				this.$spinner.addClass('hidden');
 

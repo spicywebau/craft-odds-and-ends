@@ -2,16 +2,16 @@
 namespace Craft;
 
 /**
- * Class SuperCoolTools_DisabledCategoriesFieldType
+ * Class SupercoolTools_DisabledCategoriesFieldType
  *
- * @package   SuperCoolTools
+ * @package   SupercoolTools
  * @author    Josh Angell <josh@supercooldesign.co.uk>
  * @copyright Copyright (c) 2015, Supercool Ltd
  * @see       http://plugins.supercooldesign.co.uk
  * @since     1.0
  */
 
-class SuperCoolTools_DisabledCategoriesFieldType extends CategoriesFieldType
+class SupercoolTools_DisabledCategoriesFieldType extends CategoriesFieldType
 {
 	// Properties
 	// =========================================================================
@@ -22,7 +22,7 @@ class SuperCoolTools_DisabledCategoriesFieldType extends CategoriesFieldType
 	 *
 	 * @var string
 	 */
-	protected $inputTemplate = 'superCoolTools/fieldtypes/Categories/input';
+	protected $inputTemplate = 'supercoolTools/fieldtypes/Categories/input';
 
 
 	// Public Methods

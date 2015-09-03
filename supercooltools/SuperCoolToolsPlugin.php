@@ -2,21 +2,21 @@
 namespace Craft;
 
 /**
- * Super Cool Tools by Supercool
+ * Supercool Tools by Supercool
  *
- * @package   SuperCoolTools
+ * @package   SupercoolTools
  * @author    Josh Angell <josh@supercooldesign.co.uk>
  * @copyright Copyright (c) 2015, Supercool Ltd
  * @see       http://plugins.supercooldesign.co.uk
  * @since     1.0
  */
 
-class SuperCoolToolsPlugin extends BasePlugin
+class SupercoolToolsPlugin extends BasePlugin
 {
 
 	public function getName()
 	{
-		return Craft::t('Super Cool Tools');
+		return Craft::t('Supercool Tools');
 	}
 
 	public function getVersion()
@@ -38,8 +38,8 @@ class SuperCoolToolsPlugin extends BasePlugin
 	{
 		if ( craft()->request->isCpRequest() && craft()->userSession->isLoggedIn() )
 		{
-			craft()->templates->includeCssResource('superCoolTools/css/supercooltools.css');
-			craft()->templates->includeJsResource('superCoolTools/js/supercooltools.js');
+			craft()->templates->includeCssResource('supercooltools/css/supercooltools.css');
+			craft()->templates->includeJsResource('supercooltools/js/supercooltools.js');
 		}
 	}
 

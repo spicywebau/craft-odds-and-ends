@@ -2,16 +2,16 @@
 namespace Craft;
 
 /**
- * Class SuperCoolTools_DisabledPlainTextFieldType
+ * Class SupercoolTools_DisabledPlainTextFieldType
  *
- * @package   SuperCoolTools
+ * @package   SupercoolTools
  * @author    Josh Angell <josh@supercooldesign.co.uk>
  * @copyright Copyright (c) 2015, Supercool Ltd
  * @see       http://plugins.supercooldesign.co.uk
  * @since     1.0
  */
 
-class SuperCoolTools_DisabledPlainTextFieldType extends BaseFieldType
+class SupercoolTools_DisabledPlainTextFieldType extends BaseFieldType
 {
 	// Public Methods
 	// =========================================================================
@@ -33,7 +33,7 @@ class SuperCoolTools_DisabledPlainTextFieldType extends BaseFieldType
 	 */
 	public function getSettingsHtml()
 	{
-		return craft()->templates->render('superCoolTools/fieldtypes/PlainText/settings', array(
+		return craft()->templates->render('supercoolTools/fieldtypes/PlainText/settings', array(
 			'settings' => $this->getSettings()
 		));
 	}
