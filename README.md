@@ -19,6 +19,7 @@ The following field types are currently supported:
 - Lightswitch
 - Number
 - PlainText
+- Dropdown
 
 
 ## Miscellaneous
@@ -36,6 +37,7 @@ Usage:
 
 # Roadmap
 
+- Lock/Unlock field types - like on the password fields
 - Custom Dashboard - a starting point for the user that we set up for each site with links to each section, our support portal and other bits and bobs
 - More disabled and searchable fields - ask if you want one thats not there already
 - Release notes widget / dashboard integration

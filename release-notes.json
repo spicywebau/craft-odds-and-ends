@@ -1,5 +1,19 @@
 [
 	{
+		"version" : "1.1.0",
+		"date"    : "10-9-2015",
+		"notes"   : [
+			{
+				"type"    : "added",
+				"message" : "Disabled dropdown field type."
+			},
+			{
+				"type"    : "fixed",
+				"message" : "Fixed some re-naming issues."
+			}
+		]
+	},
+	{
 		"version" : "1.0.0",
 		"date"    : "27-8-2015",
 		"notes"   : [
