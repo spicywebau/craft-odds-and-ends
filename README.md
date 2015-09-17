@@ -45,12 +45,12 @@ Usage:
 
 # Changelog
 
-## 1.1.1
+### 1.1.1
 - Fixed the title search on EntriesSearch fields not being totally inclusive.
 
-## 1.1.0
+### 1.1.0
 - Disabled dropdown field type.
 - Fixed some re-naming issues.
 
-## 1.0.0
+### 1.0.0
 - Initial release.
