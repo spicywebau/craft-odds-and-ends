@@ -97,7 +97,7 @@ class SupercoolToolsController extends BaseController
 
 		$criteria = craft()->elements->getCriteria(ElementType::Entry);
 		$criteria->section = $sections;
-		$criteria->title   = DbHelper::escapeParam($search).'*';
+		$criteria->title   = '*'.DbHelper::escapeParam($search).'*';
 		$criteria->id      = $notIds;
 		$criteria->status  = null;
 		$criteria->limit   = 20;
