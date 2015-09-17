@@ -41,3 +41,16 @@ Usage:
 - Custom Dashboard - a starting point for the user that we set up for each site with links to each section, our support portal and other bits and bobs
 - More disabled and searchable fields - ask if you want one thats not there already
 - Release notes widget / dashboard integration
+
+
+# Changelog
+
+## 1.1.1
+- Fixed the title search on EntriesSearch fields not being totally inclusive.
+
+## 1.1.0
+- Disabled dropdown field type.
+- Fixed some re-naming issues.
+
+## 1.0.0
+- Initial release.
