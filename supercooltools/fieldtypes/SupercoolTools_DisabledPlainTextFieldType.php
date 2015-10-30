@@ -8,7 +8,6 @@ namespace Craft;
  * @author    Josh Angell <josh@supercooldesign.co.uk>
  * @copyright Copyright (c) 2015, Supercool Ltd
  * @see       http://plugins.supercooldesign.co.uk
- * @since     1.0
  */
 
 class SupercoolTools_DisabledPlainTextFieldType extends BaseFieldType
