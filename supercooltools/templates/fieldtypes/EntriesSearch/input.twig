@@ -3,6 +3,7 @@
 {% endif -%}
 
 {% set elements = (elements is defined and elements ? elements : []) -%}
+{% set locale = (elements is defined and elements|length ? elements[0].locale : null) -%}
 {% set sources = (sources is defined and sources ? sources : null) -%}
 {% set criteria = (criteria is defined and criteria ? criteria : null) -%}
 {% set sourceElementId = (sourceElementId is defined and sourceElementId ? sourceElementId : null) -%}
@@ -31,7 +32,7 @@
 		id : "{{ id | namespaceInputId   | e('js') }}",
 		name : "{{ name | namespaceInputName | e('js') }}",
 		elementType: "Entry",
-		locale : "{{ elements[0].locale }}",
+		locale : "{{ locale }}",
 		sources : {{ sources|json_encode|raw }},
 		criteria : {{ criteria|json_encode|raw }},
 		sourceElementId : {{ sourceElementId ?: 'null' }},
