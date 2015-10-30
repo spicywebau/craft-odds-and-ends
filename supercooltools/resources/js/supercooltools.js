@@ -19,7 +19,6 @@ if (typeof SupercoolTools == 'undefined')
  */
 SupercoolTools.ElementSearchInput = Craft.BaseElementSelectInput.extend(
 {
-	elementType: null,
 	searchTimeout: null,
 	searchMenu: null,
 	limit: null,
@@ -150,29 +149,19 @@ SupercoolTools.ElementSearchInput = Craft.BaseElementSelectInput.extend(
 			this.$spinner.removeClass('hidden');
 
 			var excludeIds = [];
-			console.log(this.$elements);
 			this.$elements.each(function()
 			{
 				var id = $(this).data('id');
-				console.log(id);
-
 				if (id)
 				{
 					excludeIds.push(id);
 				}
 			});
 
-			// for (var i = 0; i < this.$elements.length; i++)
-			// {
-			//
-			// }
-
 			if (this.settings.sourceElementId)
 			{
 				excludeIds.push(this.settings.sourceElementId);
 			}
-
-			console.log(excludeIds);
 
 			var data = {
 				search:      this.$addElementInput.val(),
@@ -243,30 +232,100 @@ SupercoolTools.ElementSearchInput = Craft.BaseElementSelectInput.extend(
 	selectElement: function(option)
 	{
 		var $option = $(option),
-			id = $option.data('id'),
+			elementId = $option.data('id'),
 			status = $option.data('status'),
 			title = $option.text();
 
-		var $element = $('<div class="element removable" data-id="'+id+'" data-editable/>').appendTo(this.$elementsContainer),
-			$input = $('<input type="hidden" name="'+this.settings.name+'[]" value="'+id+'"/>').appendTo($element)
+			console.log(this.settings.elementType);
 
-		$('<a class="delete icon" title="'+Craft.t('Remove')+'"></a>').appendTo($element);
-		$('<div class="label"><span class="status '+status+'"></span><span class="title">'+title+'</span></div>').appendTo($element);
+		if (this.settings.elementType == 'Entry')
+		{
+			var $element = $('<div class="element removable" data-id="'+elementId+'" data-editable/>').appendTo(this.$elementsContainer),
+				$input = $('<input type="hidden" name="'+this.settings.name+'[]" value="'+elementId+'"/>').appendTo($element)
 
-		var margin = -($element.outerWidth()+10);
-		this.$addElementInput.css('margin-'+Craft.left, margin+'px');
+			$('<a class="delete icon" title="'+Craft.t('Remove')+'"></a>').appendTo($element);
+			$('<div class="label"><span class="status '+status+'"></span><span class="title">'+title+'</span></div>').appendTo($element);
 
-		var animateCss = {};
-		animateCss['margin-'+Craft.left] = 0;
-		this.$addElementInput.velocity(animateCss, 'fast');
+			var margin = -($element.outerWidth()+10);
+			this.$addElementInput.css('margin-'+Craft.left, margin+'px');
 
-		this.$elements = this.$elements.add($element);
+			var animateCss = {};
+			animateCss['margin-'+Craft.left] = 0;
+			this.$addElementInput.velocity(animateCss, 'fast');
 
-		this.addElements($element);
+			this.$elements = this.$elements.add($element);
+
+			this.addElements($element);
+		}
+		else if (this.settings.elementType == 'Category')
+		{
+			var selectedCategoryIds = this.getSelectedElementIds();
+
+			selectedCategoryIds.push(elementId);
+
+			var data = {
+				categoryIds:    selectedCategoryIds,
+				locale:         this.settings.locale,
+				id:             this.settings.id,
+				name:           this.settings.name,
+				limit:          this.settings.limit,
+				selectionLabel: this.settings.selectionLabel
+			};
+
+			Craft.postActionRequest('elements/getCategoriesInputHtml', data, $.proxy(function(response, textStatus)
+			{
+
+				if (textStatus == 'success')
+				{
+					var $newInput = $(response.html),
+							$newElementsContainer = $newInput.children('.elements');
+
+					this.$elementsContainer.replaceWith($newElementsContainer);
+					this.$elementsContainer = $newElementsContainer;
+					this.resetElements();
+
+					var $element = this.getElementById(elementId);
+					var margin = -($element.outerWidth()+10);
+					this.$addElementInput.css('margin-'+Craft.left, margin+'px');
+
+					var animateCss = {};
+					animateCss['margin-'+Craft.left] = 0;
+					this.$addElementInput.velocity(animateCss, 'fast');
+				}
+			}, this));
+		}
 
 		this.killSearchMenu();
 		this.$addElementInput.val('');
 		this.$addElementInput.focus();
+
+	},
+
+	removeElement: function($element)
+	{
+
+		if (this.settings.elementType == 'Entry')
+		{
+			this.removeElements($element);
+			this.animateElementAway($element, function() {
+				$element.remove();
+			});
+		}
+		else if (this.settings.elementType == 'Category')
+		{
+			// Find any descendants this category might have
+			var $allCategories = $element.add($element.parent().siblings('ul').find('.element'));
+
+			// Remove our record of them all at once
+			this.removeElements($allCategories);
+
+			// Animate them away one at a time
+			for (var i = 0; i < $allCategories.length; i++)
+			{
+				this._animateCategoryAway($allCategories, i);
+			}
+		}
+
 	},
 
 	killSearchMenu: function()
@@ -274,7 +333,47 @@ SupercoolTools.ElementSearchInput = Craft.BaseElementSelectInput.extend(
 		this.searchMenu.hide();
 		this.searchMenu.destroy();
 		this.searchMenu = null;
+	},
+
+	_animateCategoryAway: function($allCategories, i)
+	{
+		// Is this the last one?
+		if (i == $allCategories.length - 1)
+		{
+			var callback = $.proxy(function()
+			{
+				var $li = $allCategories.first().parent().parent(),
+					$ul = $li.parent();
+
+				if ($ul[0] == this.$elementsContainer[0] || $li.siblings().length)
+				{
+					$li.remove();
+				}
+				else
+				{
+					$ul.remove();
+				}
+			}, this);
+		}
+		else
+		{
+			callback = null;
+		}
+
+		var func = $.proxy(function() {
+			this.animateElementAway($allCategories.eq(i), callback);
+		}, this);
+
+		if (i == 0)
+		{
+			func();
+		}
+		else
+		{
+			setTimeout(func, 100 * i);
+		}
 	}
+
 });
 
 })(jQuery);

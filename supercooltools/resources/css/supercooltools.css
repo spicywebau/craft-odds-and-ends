@@ -1,6 +1,8 @@
 /**
  * Entries fieldtype with inline search
  */
+
+.supercooltools-elementsearch {  }
 .supercooltools-elementsearch .add { position: relative; z-index: 1; display: inline-block; width: 12em; }
 
 body.ltr .supercooltools-elementsearch .add .text { padding-right: 30px; }

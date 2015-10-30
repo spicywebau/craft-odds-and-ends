@@ -10,12 +10,23 @@
 
 {% from "_includes/forms" import text %}
 
-<div id="{{ id }}" class="elementselect clearafter supercooltools-elementsearch">
-	<div class="elements">
-		{% for element in elements %}
-			{% include "_elements/element" with { context: 'field' } %}
-		{% endfor %}
-	</div>
+<div id="{{ id }}" class="categoriesfield clearafter supercooltools-elementsearch">
+	<ul class="elements structure">
+		{% nav category in elements %}
+			<li id="{{ id }}-category-{{ category.id }}">
+				{% set indent = (category.level - 1) * 35 %}
+				<div class="row" style="margin-left: -{{ indent }}px; padding-left: {{ indent }}px;">
+					{%- include "_elements/element" with { element: category, context: 'field' } -%}
+				</div>
+
+				{% ifchildren %}
+					<ul>
+						{% children %}
+					</ul>
+				{% endifchildren %}
+			</li>
+		{% endnav %}
+	</ul>
 
 	<div class="texticon add icon">
 		{{ text({
@@ -30,7 +41,7 @@
 	var settings = {
 		id : "{{ id | namespaceInputId   | e('js') }}",
 		name : "{{ name | namespaceInputName | e('js') }}",
-		elementType: "Entry",
+		elementType: "Category",
 		locale : "{{ elements[0].locale }}",
 		sources : {{ sources|json_encode|raw }},
 		criteria : {{ criteria|json_encode|raw }},
