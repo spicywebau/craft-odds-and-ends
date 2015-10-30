@@ -45,6 +45,12 @@ Usage:
 
 # Changelog
 
+### 1.2.1
+- Fixed an error with checking for the locale in the search input templates.
+
+### 1.2.0
+- Added a fuzzy search field type for Categories.
+
 ### 1.1.1
 - Fixed the title search on EntriesSearch fields not being totally inclusive.
 
