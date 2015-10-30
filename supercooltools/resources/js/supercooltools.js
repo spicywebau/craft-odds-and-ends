@@ -2,7 +2,6 @@
  * @author    Josh Angell <josh@supercooldesign.co.uk>
  * @copyright Copyright (c) 2015, Supercool Ltd
  * @see       http://plugins.supercooldesign.co.uk
- * @since     1.0
  */
 
 (function($){
@@ -15,9 +14,9 @@ if (typeof SupercoolTools == 'undefined')
 
 
 /**
- * Entries with search input - forked from `Craft.TagSelectInput`
+ * Search elements like Tags - forked from `Craft.TagSelectInput`
  */
-SupercoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
+SupercoolTools.ElementSearchInput = Craft.BaseElementSelectInput.extend(
 {
 	searchTimeout: null,
 	searchMenu: null,
@@ -26,8 +25,8 @@ SupercoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
 	$container: null,
 	$elementsContainer: null,
 	$elements: null,
-	$addEntryContainer: null,
-	$addEntryInput: null,
+	$addElementContainer: null,
+	$addElementInput: null,
 	$spinner: null,
 
 	_ignoreBlur: false,
@@ -37,9 +36,11 @@ SupercoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
 	{
 		this.base($.extend({}, settings));
 
-		this.$addEntryContainer = this.$container.children('.add');
-		this.$addEntryInput = this.$addEntryContainer.children('.text');
-		this.$spinner = this.$addEntryInput.next();
+		this.$addElementContainer = this.$container.children('.add');
+		this.$addElementInput = this.$addElementContainer.children('.text');
+		this.$spinner = this.$addElementInput.next();
+
+		this.resetElements();
 
 		// No reason for this to be sortable if we're only allowing 1 selection
 		if (this.settings.limit == 1)
@@ -51,17 +52,17 @@ SupercoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
 		this.updateAddElementsBtn();
 
 		// Bind listeners
-		this.addListener(this.$addEntryInput, 'textchange', $.proxy(function()
+		this.addListener(this.$addElementInput, 'textchange', $.proxy(function()
 		{
 			if (this.searchTimeout)
 			{
 				clearTimeout(this.searchTimeout);
 			}
 
-			this.searchTimeout = setTimeout($.proxy(this, 'searchForEntries'), 500);
+			this.searchTimeout = setTimeout($.proxy(this, 'searchForElements'), 500);
 		}, this));
 
-		this.addListener(this.$addEntryInput, 'keypress', function(ev)
+		this.addListener(this.$addElementInput, 'keypress', function(ev)
 		{
 			if (ev.keyCode == Garnish.RETURN_KEY)
 			{
@@ -69,12 +70,12 @@ SupercoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
 
 				if (this.searchMenu)
 				{
-					this.selectEntry(this.searchMenu.$options[0]);
+					this.selectElement(this.searchMenu.$options[0]);
 				}
 			}
 		});
 
-		this.addListener(this.$addEntryInput, 'focus', function()
+		this.addListener(this.$addElementInput, 'focus', function()
 		{
 			if (this.searchMenu)
 			{
@@ -82,7 +83,7 @@ SupercoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
 			}
 		});
 
-		this.addListener(this.$addEntryInput, 'blur', function()
+		this.addListener(this.$addElementInput, 'blur', function()
 		{
 			if (this._ignoreBlur)
 			{
@@ -105,53 +106,56 @@ SupercoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
 	// No "add" button
 	getAddElementsBtn: $.noop,
 
+	getElements: function()
+	{
+		return this.$elementsContainer.find('.element');
+	},
+
 	// I’m hi-jacking these as they get fired when the limit is breached
 	disableAddElementsBtn: function()
 	{
-		if (this.$addEntryContainer && !this.$addEntryContainer.hasClass('disabled'))
+		if (this.$addElementContainer && !this.$addElementContainer.hasClass('disabled'))
 		{
-			this.$addEntryInput.prop('disabled', true);
-			this.$addEntryContainer
+			this.$addElementInput.prop('disabled', true);
+			this.$addElementContainer
 					.velocity('fadeOut', { duration: Craft.BaseElementSelectInput.ADD_FX_DURATION })
 					.addClass('disabled');
 		}
 	},
 	enableAddElementsBtn: function()
 	{
-		if (this.$addEntryContainer && this.$addEntryContainer.hasClass('disabled'))
+		if (this.$addElementContainer && this.$addElementContainer.hasClass('disabled'))
 		{
-			this.$addEntryInput.prop('disabled', false);
-			this.$addEntryContainer
+			this.$addElementInput.prop('disabled', false);
+			this.$addElementContainer
 					.velocity('fadeIn', { display: 'inline-block', duration: Craft.BaseElementSelectInput.REMOVE_FX_DURATION })
 					.removeClass('disabled');
-			this.$addEntryInput.trigger('focus');
+			this.$addElementInput.trigger('focus');
 		}
 	},
 
-	searchForEntries: function()
+	searchForElements: function()
 	{
 		if (this.searchMenu)
 		{
 			this.killSearchMenu();
 		}
 
-		var val = this.$addEntryInput.val();
+		var val = this.$addElementInput.val();
 
 		if (val)
 		{
 			this.$spinner.removeClass('hidden');
 
 			var excludeIds = [];
-
-			for (var i = 0; i < this.$elements.length; i++)
+			this.$elements.each(function()
 			{
-				var id = $(this.$elements[i]).data('id');
-
+				var id = $(this).data('id');
 				if (id)
 				{
 					excludeIds.push(id);
 				}
-			}
+			});
 
 			if (this.settings.sourceElementId)
 			{
@@ -159,35 +163,36 @@ SupercoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
 			}
 
 			var data = {
-				search:     this.$addEntryInput.val(),
-				sources:    this.settings.sources,
-				excludeIds: excludeIds
+				search:      this.$addElementInput.val(),
+				sources:     this.settings.sources,
+				elementType: this.settings.elementType,
+				excludeIds:  excludeIds
 			};
 
-			Craft.postActionRequest('supercoolTools/searchForEntries', data, $.proxy(function(response, textStatus)
+			Craft.postActionRequest('supercoolTools/searchForElements', data, $.proxy(function(response, textStatus)
 			{
 				this.$spinner.addClass('hidden');
 
 				if (textStatus == 'success')
 				{
-					var $menu = $('<div class="menu supercooltools-entriessearch__menu"/>').appendTo(Garnish.$bod);
+					var $menu = $('<div class="menu supercooltools-elementsearch__menu"/>').appendTo(Garnish.$bod);
 
 					// Loop each source defined in our settings and see if we got anything back from it
 					for (var i = 0; i < this.settings.sources.length; i++) {
 						var sourceKey = this.settings.sources[i];
 
-						if (response.entries.hasOwnProperty(sourceKey))
+						if (response.elements.hasOwnProperty(sourceKey))
 						{
-							// Section name
-							$('<h6>'+response.entries[sourceKey][0].sectionName+'</h6>').appendTo($menu);
+							// Source name
+							$('<h6>'+response.elements[sourceKey][0].sourceName+'</h6>').appendTo($menu);
 							var $ul = $('<ul/>').appendTo($menu);
 
-							// Entries in that section
-							for (var n = 0; n < response.entries[sourceKey].length; n++)
+							// Elements in that source
+							for (var n = 0; n < response.elements[sourceKey].length; n++)
 							{
 								var $li = $('<li/>').appendTo($ul),
-										$a = $('<a />').appendTo($li).text(response.entries[sourceKey][n].title).data('id', response.entries[sourceKey][n].id).data('status', response.entries[sourceKey][n].status);
-								$('<span class="status '+response.entries[sourceKey][n].status+'"/>').prependTo($a);
+										$a = $('<a />').appendTo($li).text(response.elements[sourceKey][n].title).data('id', response.elements[sourceKey][n].id).data('status', response.elements[sourceKey][n].status);
+								$('<span class="status '+response.elements[sourceKey][n].status+'"/>').prependTo($a);
 							}
 						}
 					}
@@ -203,8 +208,8 @@ SupercoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
 					$menu.find('a').first().addClass('hover');
 
 					this.searchMenu = new Garnish.Menu($menu, {
-						attachToElement: this.$addEntryInput,
-						onOptionSelect: $.proxy(this, 'selectEntry')
+						attachToElement: this.$addElementInput,
+						onOptionSelect: $.proxy(this, 'selectElement')
 					});
 
 					this.addListener($menu, 'mousedown', $.proxy(function()
@@ -223,33 +228,103 @@ SupercoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
 		}
 	},
 
-	selectEntry: function(option)
+	selectElement: function(option)
 	{
 		var $option = $(option),
-			id = $option.data('id'),
+			elementId = $option.data('id'),
 			status = $option.data('status'),
 			title = $option.text();
 
-		var $element = $('<div class="element removable" data-id="'+id+'" data-editable/>').appendTo(this.$elementsContainer),
-			$input = $('<input type="hidden" name="'+this.settings.name+'[]" value="'+id+'"/>').appendTo($element)
+			console.log(this.settings.elementType);
 
-		$('<a class="delete icon" title="'+Craft.t('Remove')+'"></a>').appendTo($element);
-		$('<div class="label"><span class="status '+status+'"></span><span class="title">'+title+'</span></div>').appendTo($element);
+		if (this.settings.elementType == 'Entry')
+		{
+			var $element = $('<div class="element removable" data-id="'+elementId+'" data-editable/>').appendTo(this.$elementsContainer),
+				$input = $('<input type="hidden" name="'+this.settings.name+'[]" value="'+elementId+'"/>').appendTo($element)
 
-		var margin = -($element.outerWidth()+10);
-		this.$addEntryInput.css('margin-'+Craft.left, margin+'px');
+			$('<a class="delete icon" title="'+Craft.t('Remove')+'"></a>').appendTo($element);
+			$('<div class="label"><span class="status '+status+'"></span><span class="title">'+title+'</span></div>').appendTo($element);
 
-		var animateCss = {};
-		animateCss['margin-'+Craft.left] = 0;
-		this.$addEntryInput.velocity(animateCss, 'fast');
+			var margin = -($element.outerWidth()+10);
+			this.$addElementInput.css('margin-'+Craft.left, margin+'px');
 
-		this.$elements = this.$elements.add($element);
+			var animateCss = {};
+			animateCss['margin-'+Craft.left] = 0;
+			this.$addElementInput.velocity(animateCss, 'fast');
 
-		this.addElements($element);
+			this.$elements = this.$elements.add($element);
+
+			this.addElements($element);
+		}
+		else if (this.settings.elementType == 'Category')
+		{
+			var selectedCategoryIds = this.getSelectedElementIds();
+
+			selectedCategoryIds.push(elementId);
+
+			var data = {
+				categoryIds:    selectedCategoryIds,
+				locale:         this.settings.locale,
+				id:             this.settings.id,
+				name:           this.settings.name,
+				limit:          this.settings.limit,
+				selectionLabel: this.settings.selectionLabel
+			};
+
+			Craft.postActionRequest('elements/getCategoriesInputHtml', data, $.proxy(function(response, textStatus)
+			{
+
+				if (textStatus == 'success')
+				{
+					var $newInput = $(response.html),
+							$newElementsContainer = $newInput.children('.elements');
+
+					this.$elementsContainer.replaceWith($newElementsContainer);
+					this.$elementsContainer = $newElementsContainer;
+					this.resetElements();
+
+					var $element = this.getElementById(elementId);
+					var margin = -($element.outerWidth()+10);
+					this.$addElementInput.css('margin-'+Craft.left, margin+'px');
+
+					var animateCss = {};
+					animateCss['margin-'+Craft.left] = 0;
+					this.$addElementInput.velocity(animateCss, 'fast');
+				}
+			}, this));
+		}
 
 		this.killSearchMenu();
-		this.$addEntryInput.val('');
-		this.$addEntryInput.focus();
+		this.$addElementInput.val('');
+		this.$addElementInput.focus();
+
+	},
+
+	removeElement: function($element)
+	{
+
+		if (this.settings.elementType == 'Entry')
+		{
+			this.removeElements($element);
+			this.animateElementAway($element, function() {
+				$element.remove();
+			});
+		}
+		else if (this.settings.elementType == 'Category')
+		{
+			// Find any descendants this category might have
+			var $allCategories = $element.add($element.parent().siblings('ul').find('.element'));
+
+			// Remove our record of them all at once
+			this.removeElements($allCategories);
+
+			// Animate them away one at a time
+			for (var i = 0; i < $allCategories.length; i++)
+			{
+				this._animateCategoryAway($allCategories, i);
+			}
+		}
+
 	},
 
 	killSearchMenu: function()
@@ -257,7 +332,47 @@ SupercoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
 		this.searchMenu.hide();
 		this.searchMenu.destroy();
 		this.searchMenu = null;
+	},
+
+	_animateCategoryAway: function($allCategories, i)
+	{
+		// Is this the last one?
+		if (i == $allCategories.length - 1)
+		{
+			var callback = $.proxy(function()
+			{
+				var $li = $allCategories.first().parent().parent(),
+					$ul = $li.parent();
+
+				if ($ul[0] == this.$elementsContainer[0] || $li.siblings().length)
+				{
+					$li.remove();
+				}
+				else
+				{
+					$ul.remove();
+				}
+			}, this);
+		}
+		else
+		{
+			callback = null;
+		}
+
+		var func = $.proxy(function() {
+			this.animateElementAway($allCategories.eq(i), callback);
+		}, this);
+
+		if (i == 0)
+		{
+			func();
+		}
+		else
+		{
+			setTimeout(func, 100 * i);
+		}
 	}
+
 });
 
 })(jQuery);
