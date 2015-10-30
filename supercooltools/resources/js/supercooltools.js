@@ -15,10 +15,11 @@ if (typeof SupercoolTools == 'undefined')
 
 
 /**
- * Entries with search input - forked from `Craft.TagSelectInput`
+ * Search elements like Tags - forked from `Craft.TagSelectInput`
  */
-SupercoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
+SupercoolTools.ElementSearchInput = Craft.BaseElementSelectInput.extend(
 {
+	elementType: null,
 	searchTimeout: null,
 	searchMenu: null,
 	limit: null,
@@ -26,8 +27,8 @@ SupercoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
 	$container: null,
 	$elementsContainer: null,
 	$elements: null,
-	$addEntryContainer: null,
-	$addEntryInput: null,
+	$addElementContainer: null,
+	$addElementInput: null,
 	$spinner: null,
 
 	_ignoreBlur: false,
@@ -37,9 +38,11 @@ SupercoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
 	{
 		this.base($.extend({}, settings));
 
-		this.$addEntryContainer = this.$container.children('.add');
-		this.$addEntryInput = this.$addEntryContainer.children('.text');
-		this.$spinner = this.$addEntryInput.next();
+		this.$addElementContainer = this.$container.children('.add');
+		this.$addElementInput = this.$addElementContainer.children('.text');
+		this.$spinner = this.$addElementInput.next();
+
+		this.resetElements();
 
 		// No reason for this to be sortable if we're only allowing 1 selection
 		if (this.settings.limit == 1)
@@ -51,17 +54,17 @@ SupercoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
 		this.updateAddElementsBtn();
 
 		// Bind listeners
-		this.addListener(this.$addEntryInput, 'textchange', $.proxy(function()
+		this.addListener(this.$addElementInput, 'textchange', $.proxy(function()
 		{
 			if (this.searchTimeout)
 			{
 				clearTimeout(this.searchTimeout);
 			}
 
-			this.searchTimeout = setTimeout($.proxy(this, 'searchForEntries'), 500);
+			this.searchTimeout = setTimeout($.proxy(this, 'searchForElements'), 500);
 		}, this));
 
-		this.addListener(this.$addEntryInput, 'keypress', function(ev)
+		this.addListener(this.$addElementInput, 'keypress', function(ev)
 		{
 			if (ev.keyCode == Garnish.RETURN_KEY)
 			{
@@ -69,12 +72,12 @@ SupercoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
 
 				if (this.searchMenu)
 				{
-					this.selectEntry(this.searchMenu.$options[0]);
+					this.selectElement(this.searchMenu.$options[0]);
 				}
 			}
 		});
 
-		this.addListener(this.$addEntryInput, 'focus', function()
+		this.addListener(this.$addElementInput, 'focus', function()
 		{
 			if (this.searchMenu)
 			{
@@ -82,7 +85,7 @@ SupercoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
 			}
 		});
 
-		this.addListener(this.$addEntryInput, 'blur', function()
+		this.addListener(this.$addElementInput, 'blur', function()
 		{
 			if (this._ignoreBlur)
 			{
@@ -105,89 +108,103 @@ SupercoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
 	// No "add" button
 	getAddElementsBtn: $.noop,
 
+	getElements: function()
+	{
+		return this.$elementsContainer.find('.element');
+	},
+
 	// I’m hi-jacking these as they get fired when the limit is breached
 	disableAddElementsBtn: function()
 	{
-		if (this.$addEntryContainer && !this.$addEntryContainer.hasClass('disabled'))
+		if (this.$addElementContainer && !this.$addElementContainer.hasClass('disabled'))
 		{
-			this.$addEntryInput.prop('disabled', true);
-			this.$addEntryContainer
+			this.$addElementInput.prop('disabled', true);
+			this.$addElementContainer
 					.velocity('fadeOut', { duration: Craft.BaseElementSelectInput.ADD_FX_DURATION })
 					.addClass('disabled');
 		}
 	},
 	enableAddElementsBtn: function()
 	{
-		if (this.$addEntryContainer && this.$addEntryContainer.hasClass('disabled'))
+		if (this.$addElementContainer && this.$addElementContainer.hasClass('disabled'))
 		{
-			this.$addEntryInput.prop('disabled', false);
-			this.$addEntryContainer
+			this.$addElementInput.prop('disabled', false);
+			this.$addElementContainer
 					.velocity('fadeIn', { display: 'inline-block', duration: Craft.BaseElementSelectInput.REMOVE_FX_DURATION })
 					.removeClass('disabled');
-			this.$addEntryInput.trigger('focus');
+			this.$addElementInput.trigger('focus');
 		}
 	},
 
-	searchForEntries: function()
+	searchForElements: function()
 	{
 		if (this.searchMenu)
 		{
 			this.killSearchMenu();
 		}
 
-		var val = this.$addEntryInput.val();
+		var val = this.$addElementInput.val();
 
 		if (val)
 		{
 			this.$spinner.removeClass('hidden');
 
 			var excludeIds = [];
-
-			for (var i = 0; i < this.$elements.length; i++)
+			console.log(this.$elements);
+			this.$elements.each(function()
 			{
-				var id = $(this.$elements[i]).data('id');
+				var id = $(this).data('id');
+				console.log(id);
 
 				if (id)
 				{
 					excludeIds.push(id);
 				}
-			}
+			});
+
+			// for (var i = 0; i < this.$elements.length; i++)
+			// {
+			//
+			// }
 
 			if (this.settings.sourceElementId)
 			{
 				excludeIds.push(this.settings.sourceElementId);
 			}
 
+			console.log(excludeIds);
+
 			var data = {
-				search:     this.$addEntryInput.val(),
-				sources:    this.settings.sources,
-				excludeIds: excludeIds
+				search:      this.$addElementInput.val(),
+				sources:     this.settings.sources,
+				elementType: this.settings.elementType,
+				excludeIds:  excludeIds
 			};
 
-			Craft.postActionRequest('supercoolTools/searchForEntries', data, $.proxy(function(response, textStatus)
+			Craft.postActionRequest('supercoolTools/searchForElements', data, $.proxy(function(response, textStatus)
 			{
 				this.$spinner.addClass('hidden');
 
 				if (textStatus == 'success')
 				{
-					var $menu = $('<div class="menu supercooltools-entriessearch__menu"/>').appendTo(Garnish.$bod);
+					var $menu = $('<div class="menu supercooltools-elementsearch__menu"/>').appendTo(Garnish.$bod);
 
 					// Loop each source defined in our settings and see if we got anything back from it
 					for (var i = 0; i < this.settings.sources.length; i++) {
 						var sourceKey = this.settings.sources[i];
 
-						if (response.entries.hasOwnProperty(sourceKey))
+						if (response.elements.hasOwnProperty(sourceKey))
 						{
-							// Section name
-							$('<h6>'+response.entries[sourceKey][0].sectionName+'</h6>').appendTo($menu);
+							// Source name
+							$('<h6>'+response.elements[sourceKey][0].sourceName+'</h6>').appendTo($menu);
 							var $ul = $('<ul/>').appendTo($menu);
 
-							// Entries in that section
-							for (var n = 0; n < response.entries[sourceKey].length; n++)
+							// Elements in that source
+							for (var n = 0; n < response.elements[sourceKey].length; n++)
 							{
 								var $li = $('<li/>').appendTo($ul),
-										$a = $('<a />').appendTo($li).text(response.entries[sourceKey][n].title).data('id', response.entries[sourceKey][n].id).data('status', response.entries[sourceKey][n].status);
-								$('<span class="status '+response.entries[sourceKey][n].status+'"/>').prependTo($a);
+										$a = $('<a />').appendTo($li).text(response.elements[sourceKey][n].title).data('id', response.elements[sourceKey][n].id).data('status', response.elements[sourceKey][n].status);
+								$('<span class="status '+response.elements[sourceKey][n].status+'"/>').prependTo($a);
 							}
 						}
 					}
@@ -203,8 +220,8 @@ SupercoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
 					$menu.find('a').first().addClass('hover');
 
 					this.searchMenu = new Garnish.Menu($menu, {
-						attachToElement: this.$addEntryInput,
-						onOptionSelect: $.proxy(this, 'selectEntry')
+						attachToElement: this.$addElementInput,
+						onOptionSelect: $.proxy(this, 'selectElement')
 					});
 
 					this.addListener($menu, 'mousedown', $.proxy(function()
@@ -223,7 +240,7 @@ SupercoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
 		}
 	},
 
-	selectEntry: function(option)
+	selectElement: function(option)
 	{
 		var $option = $(option),
 			id = $option.data('id'),
@@ -237,19 +254,19 @@ SupercoolTools.EntriesSearchInput = Craft.BaseElementSelectInput.extend(
 		$('<div class="label"><span class="status '+status+'"></span><span class="title">'+title+'</span></div>').appendTo($element);
 
 		var margin = -($element.outerWidth()+10);
-		this.$addEntryInput.css('margin-'+Craft.left, margin+'px');
+		this.$addElementInput.css('margin-'+Craft.left, margin+'px');
 
 		var animateCss = {};
 		animateCss['margin-'+Craft.left] = 0;
-		this.$addEntryInput.velocity(animateCss, 'fast');
+		this.$addElementInput.velocity(animateCss, 'fast');
 
 		this.$elements = this.$elements.add($element);
 
 		this.addElements($element);
 
 		this.killSearchMenu();
-		this.$addEntryInput.val('');
-		this.$addEntryInput.focus();
+		this.$addElementInput.val('');
+		this.$addElementInput.focus();
 	},
 
 	killSearchMenu: function()

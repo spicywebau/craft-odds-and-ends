@@ -44,9 +44,9 @@ class SupercoolToolsController extends BaseController
 	}
 
 	/**
-	 * Fork of tags/searchForTags adjusted to cope with Entries
+	 * Fork of tags/searchForTags adjusted to cope with any element
 	 */
-	public function actionSearchForEntries()
+	public function actionSearchForElements()
 	{
 		$this->requirePostRequest();
 		$this->requireAjaxRequest();
@@ -54,40 +54,58 @@ class SupercoolToolsController extends BaseController
 		$search = craft()->request->getPost('search');
 		$excludeIds = craft()->request->getPost('excludeIds', array());
 
-
-		// Fangle the sources out of the field settings
+		// Get the post data
+		$elementType = craft()->request->getPost('elementType');
 		$sources = craft()->request->getPost('sources');
-		$sections = array();
 
-		if (is_array($sources))
+		// Deal with Entries
+		if ($elementType == ElementType::Entry)
 		{
+			// Start the criteria
+			$criteria = craft()->elements->getCriteria(ElementType::Entry);
 
-			foreach ($sources as $source)
+			// Fangle the sections out of the sources
+			$sections = array();
+			if (is_array($sources))
 			{
-				switch ($source)
-				{
-					case 'singles':
-					{
-						$sections = array_merge($sections, craft()->sections->getSectionsByType(SectionType::Single));
-						break;
-					}
-					default:
-					{
-						if (preg_match('/^section:(\d+)$/', $source, $matches))
-						{
-							$section = craft()->sections->getSectionById($matches[1]);
 
-							if ($section)
+				foreach ($sources as $source)
+				{
+					switch ($source)
+					{
+						case 'singles':
+						{
+							$sections = array_merge($sections, craft()->sections->getSectionsByType(SectionType::Single));
+							break;
+						}
+						default:
+						{
+							if (preg_match('/^section:(\d+)$/', $source, $matches))
 							{
-								$sections = array_merge($sections, array($section));
+								$section = craft()->sections->getSectionById($matches[1]);
+
+								if ($section)
+								{
+									$sections = array_merge($sections, array($section));
+								}
 							}
 						}
 					}
 				}
+
 			}
 
+			$criteria->section = $sections;
+
+		}
+		// Deal with Categories
+		else if ($elementType == ElementType::Category)
+		{
+			// Start the criteria
+			$criteria = craft()->elements->getCriteria(ElementType::Category);
 		}
 
+		// Add and exclude ids
 		$notIds = array('and');
 
 		foreach ($excludeIds as $id)
@@ -95,13 +113,12 @@ class SupercoolToolsController extends BaseController
 			$notIds[] = 'not '.$id;
 		}
 
-		$criteria = craft()->elements->getCriteria(ElementType::Entry);
-		$criteria->section = $sections;
+		// Set the rest of the criteria
 		$criteria->title   = '*'.DbHelper::escapeParam($search).'*';
 		$criteria->id      = $notIds;
 		$criteria->status  = null;
 		$criteria->limit   = 20;
-		$entries = $criteria->find();
+		$elements = $criteria->find();
 
 		$return = array();
 		$exactMatches = array();
@@ -109,29 +126,42 @@ class SupercoolToolsController extends BaseController
 
 		$normalizedSearch = StringHelper::normalizeKeywords($search);
 
-		foreach ($entries as $entry)
+		foreach ($elements as $element)
 		{
-			if (!is_array($sources))
+			if ($elementType == ElementType::Entry)
 			{
-				$sectionKey = "*";
+				if (!is_array($sources))
+				{
+					$sourceKey = "*";
+				}
+				else if ($element->section->type == SectionType::Single)
+				{
+					$sourceKey = "singles";
+				}
+				else
+				{
+					$sourceKey = "section:".$element->section->id;
+				}
+
+				$return[$sourceKey][] = array(
+					'id'          => $element->id,
+					'title'       => $element->getContent()->title,
+					'status'      => $element->status,
+					'sourceName'  => $element->section->name
+				);
 			}
-			else if ($entry->section->type == SectionType::Single)
+			else if ($elementType == ElementType::Category)
 			{
-				$sectionKey = "singles";
-			}
-			else
-			{
-				$sectionKey = "section:".$entry->section->id;
+				$sourceKey = "group:".$element->group->id;
+				$return[$sourceKey][] = array(
+					'id'          => $element->id,
+					'title'       => $element->getContent()->title,
+					'status'      => $element->status,
+					'sourceName'  => $element->group->name
+				);
 			}
 
-			$return[$sectionKey][] = array(
-				'id'          => $entry->id,
-				'title'       => $entry->getContent()->title,
-				'status'      => $entry->status,
-				'sectionName' => $entry->section->name
-			);
-
-			$normalizedTitle = StringHelper::normalizeKeywords($entry->getContent()->title);
+			$normalizedTitle = StringHelper::normalizeKeywords($element->getContent()->title);
 
 			if ($normalizedTitle == $normalizedSearch)
 			{
@@ -148,7 +178,7 @@ class SupercoolToolsController extends BaseController
 		// array_multisort($exactMatches, SORT_DESC, $return);
 
 		$this->returnJson(array(
-			'entries'    => $return,
+			'elements'   => $return,
 			'exactMatch' => $exactMatch
 		));
 	}
