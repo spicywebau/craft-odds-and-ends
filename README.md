@@ -52,6 +52,9 @@ Here is an example you could use with cron:
 
 # Changelog
 
+### 1.3.0
+- Added a controller action to clear caches
+
 ### 1.2.1
 - Fixed an error with checking for the locale in the search input templates.
 
