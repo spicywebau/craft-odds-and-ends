@@ -1,5 +1,15 @@
 [
 	{
+		"version" : "1.3.0",
+		"date"    : "10-12-2015",
+		"notes"   : [
+			{
+				"type"    : "added",
+				"message" : "Added a controller action that clears the template caches."
+			}
+		]
+	},
+	{
 		"version" : "1.2.1",
 		"date"    : "30-10-2015",
 		"notes"   : [
