@@ -34,6 +34,13 @@ Usage:
 <a href="{{ actionUrl('supercoolTools/downloadFile', { id : file.id }) }}">Download</a>
 ```
 
+### Clear Cache
+A controller action that will delete the all the template caches.
+
+Here is an example you could use with cron:
+```
+/usr/bin/curl --silent -H "X-Requested-With:XMLHttpRequest" http://example.com/actions/supercoolTools/clearCache
+```
 
 # Roadmap
 

@@ -13,7 +13,7 @@ namespace Craft;
 class SupercoolToolsController extends BaseController
 {
 
-	protected $allowAnonymous = array('actionDownloadFile');
+	protected $allowAnonymous = array('actionDownloadFile','actionClearCache');
 
 	/**
 	 * Downloads a file
@@ -39,6 +39,39 @@ class SupercoolToolsController extends BaseController
 			craft()->end();
 
 		}
+
+	}
+
+	/**
+	 * Clear the cache
+	 */
+	public function actionClearCache()
+	{
+
+		// Delete all the template caches!
+		craft()->templateCache->deleteAllCaches();
+
+		// Run any pending tasks
+		if (!craft()->tasks->isTaskRunning())
+		{
+			// Is there a pending task?
+			$task = craft()->tasks->getNextPendingTask();
+
+			if ($task)
+			{
+				// Attempt to close the connection if this is an Ajax request
+				if (craft()->request->isAjaxRequest())
+				{
+					craft()->request->close();
+				}
+
+				// Start running tasks
+				craft()->tasks->runPendingTasks();
+			}
+		}
+
+		// Exit
+		craft()->end();
 
 	}
 
