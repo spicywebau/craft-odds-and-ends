@@ -16,11 +16,26 @@ class SupercoolToolsController extends BaseController
 	protected $allowAnonymous = array('actionDownloadFile','actionClearCache');
 
 	/**
-	 * Downloads a file
+	 * Downloads a file and cleans up old temporary assets
 	 */
 	public function actionDownloadFile()
 	{
 
+		// Clean up temp assets files that are more than a day old
+		$fileResults = array();
+
+		$files = IOHelper::getFiles(craft()->path->getTempPath(), true);
+
+		foreach ($files as $file)
+		{
+			$lastModifiedTime = IOHelper::getLastTimeModified($file, true);
+			if (substr(IOHelper::getFileName($file, false, true), 0, 6) === "assets" && DateTimeHelper::currentTimeStamp() - $lastModifiedTime->getTimestamp() >= 86400)
+			{
+				IOHelper::deleteFile($file);
+			}
+		}
+
+		// Sort out the file we want to download
 		$id = craft()->request->getParam('id');
 
 		$criteria = craft()->elements->getCriteria(ElementType::Asset);
