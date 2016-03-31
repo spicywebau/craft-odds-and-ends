@@ -49,8 +49,14 @@ Here is an example you could use with cron:
 
 # Changelog
 
+### 1.4.0
+- Added a disabled Entries field type.
+
+### 1.3.1
+- Fixes a bug where all file downloads were generating a temporary file that never got deleted until someone cleared the temporary files from the settings page in the cp. Now any assets file in the temp folder that is over 24 hours old will be removed on the next `supercoolTools/downloadFile` request.
+
 ### 1.3.0
-- Added a controller action to clear caches
+- Added a controller action to clear caches.
 
 ### 1.2.1
 - Fixed an error with checking for the locale in the search input templates.
