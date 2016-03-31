@@ -1,7 +1,3 @@
-Tools for your Craft website.
-
----
-
 ## Field types
 
 ### Ancestors
@@ -15,6 +11,7 @@ The same as regular fields, but disabled. Useful for situations where you want t
 
 The following field types are currently supported:
 
+- Entries
 - Categories
 - Lightswitch
 - Number
