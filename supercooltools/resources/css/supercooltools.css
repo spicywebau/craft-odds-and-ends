@@ -21,3 +21,11 @@ body.ltr .supercooltools-elementsearch__menu ul li a .status { float: left; }
 body.rtl .supercooltools-elementsearch__menu ul li a .status { float: right; }
 body.ltr .supercooltools-elementsearch__menu ul li a .status { margin: 3px 0 0 -18px ; }
 body.rtl .supercooltools-elementsearch__menu ul li a .status { margin: 3px -18px 0 0 ; }
+
+/**
+ * Hide delete icons in disabled fields
+ */
+.supercooltools-disabledcategories .delete,
+.supercooltools-disabledelements .delete {
+  display: none;
+}

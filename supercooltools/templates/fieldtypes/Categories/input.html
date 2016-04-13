@@ -1,12 +1,12 @@
 <input type="hidden" name="{{ name }}" value="">
 
-<div id="{{ id }}" class="categoriesfield disabled">
+<div id="{{ id }}" class="categoriesfield disabled supercooltools-disabledcategories">
 	<ul class="elements structure">
 		{% nav category in elements %}
 			<li id="{{ id }}-category-{{ category.id }}">
 				{% set indent = (category.level - 1) * 35 %}
 				<div class="row" style="margin-left: -{{ indent }}px; padding-left: {{ indent }}px;">
-					{%- include "_elements/element" with { element: category, context: 'table' } -%}
+					{%- include "_elements/element" with { element: category, context: 'field' } -%}
 				</div>
 
 				{% ifchildren %}

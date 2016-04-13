@@ -1,5 +1,15 @@
 [
 	{
+		"version" : "1.4.1",
+		"date"    : "13-04-2016",
+		"notes"   : [
+			{
+				"type"    : "fixed",
+				"message" : "Fixed disabled element fields not showing up in Live Preview and theoretically emptying their contents on save."
+			}
+		]
+	},
+	{
 		"version" : "1.4.0",
 		"date"    : "31-03-2016",
 		"notes"   : [
