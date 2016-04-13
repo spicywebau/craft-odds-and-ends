@@ -49,6 +49,9 @@ Here is an example you could use with cron:
 
 # Changelog
 
+### 1.4.1
+- Fixed disabled element fields not showing up in Live Preview and theoretically emptying their contents on save.
+
 ### 1.4.0
 - Added a disabled Entries field type.
 
