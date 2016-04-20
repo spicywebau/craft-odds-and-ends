@@ -1,5 +1,8 @@
 ## Field types
 
+### Categories (multiple groups)
+A Categories input that lets you select multiple Category groups.
+
 ### Ancestors
 An Entries input that only shows the ancestors of the current Entry.
 
@@ -48,6 +51,9 @@ Here is an example you could use with cron:
 
 
 # Changelog
+
+### 1.4.2
+- Added a new field type ‘Categories (multiple groups)’ that lets you select multiple groups in a Categories field.
 
 ### 1.4.1
 - Fixed disabled element fields not showing up in Live Preview and theoretically emptying their contents on save.
