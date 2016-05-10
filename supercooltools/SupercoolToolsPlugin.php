@@ -15,7 +15,7 @@ class SupercoolToolsPlugin extends BasePlugin
 
 	public function getName()
 	{
-		return Craft::t('Supercool Tools');
+		return Craft::t('Tools');
 	}
 
 	public function getVersion()
@@ -33,13 +33,27 @@ class SupercoolToolsPlugin extends BasePlugin
 		return 'http://plugins.supercooldesign.co.uk';
 	}
 
+	public function hasCpSection()
+	{
+		return true;
+	}
+
 	public function init()
 	{
+		Craft::import('plugins.supercoolTools.tools.SupercoolTools_ClearCachesTool');
+
 		if ( craft()->request->isCpRequest() && craft()->userSession->isLoggedIn() )
 		{
 			craft()->templates->includeCssResource('supercooltools/css/supercooltools.css');
 			craft()->templates->includeJsResource('supercooltools/js/supercooltools.js');
 		}
+	}
+
+	public function registerCpRoutes()
+	{
+		return array(
+			'supercooltools' => array('action' => 'supercoolTools/toolsIndex'),
+		);
 	}
 
 }
