@@ -1,5 +1,17 @@
 [
 	{
+		"version": "1.5.0",
+		"downloadUrl": "https://github.com/supercool/Tools/archive/1.5.0.zip",
+		"date": "2016-05-10T10:00:00-00:00",
+		"notes": [
+			"[Added] Added the `openInstructionLinksInNewWindow` config variable which when set to true will open all instruction links in new a window.",
+			"[Added] Added a freshdesk widget that opens in a new window.",
+			"[Added] Added a “Roll Your Own” widget that lets you assign a template to load from your site templates folder. Go nuts.",
+			"[Added] Added a cp section with some simplified tools in it (Clear Tasks, Clear Template Caches and Re-build Search Indexes).",
+			"[Improved] Sorted out the changelog to be compatible with the `getReleaseFeedUrl()` method."
+		]
+	},
+	{
 		"version": "1.4.2",
 		"downloadUrl": "https://github.com/supercool/Tools/archive/1.4.2.zip",
 		"date": "2016-04-20T10:00:00-00:00",
