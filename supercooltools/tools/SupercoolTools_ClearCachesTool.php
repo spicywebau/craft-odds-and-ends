@@ -2,7 +2,7 @@
 namespace Craft;
 
 /**
- * Class SupercoolToolsController
+ * Class SupercoolTools_ClearCachesTool
  *
  * @package   SupercoolTools
  * @author    Josh Angell <josh@supercooldesign.co.uk>
