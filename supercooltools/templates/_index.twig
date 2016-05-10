@@ -1,0 +1,17 @@
+{% extends "_layouts/cp" %}
+
+{% set title = "Tools"|t %}
+
+{% includecssresource 'css/settings.css' %}
+{% includejsresource 'js/settings.js' %}
+
+{% block content %}
+	<h2>{{ "Tools"|t }}</h2>
+
+	<ul class="icons">
+		{% for tool in tools %}
+			<li><a id="tool-{{ tool.getClassHandle() }}" data-icon="{{ tool.getIconValue() }}">{{ tool.getName() }}</a></li>
+			{% includejs 'new Craft.Tool("'~tool.getClassHandle()~'", '~tool.getOptionsHtml()|json_encode~', "'~tool.getButtonLabel()~'");' %}
+		{% endfor %}
+	</ul>
+{% endblock %}

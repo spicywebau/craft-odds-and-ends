@@ -22,6 +22,39 @@ The following field types are currently supported:
 - Dropdown
 
 
+## Widgets
+
+### Roll Your Own
+A simple widget that lets you assign a template to load from your site templates folder. Go nuts.
+
+
+## CP Tools
+
+The “Tools” section, accessible from the main menu, has a few simplified tools in it, much like the tools you can find on the Settings page. At present there are three:
+
+- Clear Tasks - empties the Tasks table, which is useful if you get a stuck Task
+- Clear Caches - clears only the template caches
+- Rebuild Search Indexes - behaves the same as the Settings page one
+
+
+## Config variables
+
+
+### `openInstructionLinksInNewWindow`
+
+Default: `true`
+
+Set this to true to force all instruction links to open in new a window/tab.
+
+
+### `freshdeskHandle`
+
+Default: `null`
+
+Set this to your Freshdesk subdomain handle (e.g. http://mycompanyhandle.freshdesk.com would be ‘mycompanyhandle’).
+Once set this will add a “Support” link to the main nav that will pop open a modal with the widget in it. If you want to open the modal from some other arbitrary html then give it a class of `supercooltools-trigger-freshdesk`.
+
+
 ## Miscellaneous
 
 ### Download File
@@ -45,12 +78,19 @@ Here is an example you could use with cron:
 # Roadmap
 
 - Lock/Unlock field types - like on the password fields
-- Custom Dashboard - a starting point for the user that we set up for each site with links to each section, our support portal and other bits and bobs
 - More disabled and searchable fields - ask if you want one thats not there already
 - Release notes widget / dashboard integration
 
 
 # Changelog
+
+
+### 1.5.0
+- Added the `openInstructionLinksInNewWindow` config variable which when set to true will open all instruction links in new a window.",
+- Added a freshdesk widget that opens in a new window.",
+- Added a “Roll Your Own” widget that lets you assign a template to load from your site templates folder. Go nuts.",
+- Added a cp section with some simplified tools in it (Clear Tasks, Clear Template Caches and Re-build Search Indexes).",
+- Sorted out the changelog to be compatible with the `getReleaseFeedUrl()` method."
 
 ### 1.4.2
 - Added a new field type ‘Categories (multiple groups)’ that lets you select multiple groups in a Categories field.

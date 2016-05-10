@@ -6,7 +6,7 @@ namespace Craft;
  *
  * @package   SupercoolTools
  * @author    Josh Angell <josh@supercooldesign.co.uk>
- * @copyright Copyright (c) 2015, Supercool Ltd
+ * @copyright Copyright (c) 2016, Supercool Ltd
  * @see       http://plugins.supercooldesign.co.uk
  */
 

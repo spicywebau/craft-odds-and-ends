@@ -6,7 +6,7 @@ namespace Craft;
  *
  * @package   SupercoolTools
  * @author    Josh Angell <josh@supercooldesign.co.uk>
- * @copyright Copyright (c) 2015, Supercool Ltd
+ * @copyright Copyright (c) 2016, Supercool Ltd
  * @see       http://plugins.supercooldesign.co.uk
  */
 
@@ -14,6 +14,24 @@ class SupercoolToolsController extends BaseController
 {
 
 	protected $allowAnonymous = array('actionDownloadFile','actionClearCache');
+
+
+	/**
+	 * Shows the Tools index template
+	 */
+	public function actionToolsIndex()
+	{
+		// Get only the tools we want
+		$tools = array(
+			'SupercoolTools_ClearCaches' => craft()->components->getComponentByTypeAndClass(ComponentType::Tool, 'SupercoolTools_ClearCaches'),
+			'SupercoolTools_ClearTasks' => craft()->components->getComponentByTypeAndClass(ComponentType::Tool, 'SupercoolTools_ClearTasks'),
+			'SearchIndex' => craft()->components->getComponentByTypeAndClass(ComponentType::Tool, 'SearchIndex')
+		);
+
+		$variables['tools'] = ToolVariable::populateVariables($tools);
+
+		$this->renderTemplate('supercooltools/_index', $variables);
+	}
 
 	/**
 	 * Downloads a file and cleans up old temporary assets
