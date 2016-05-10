@@ -24,6 +24,7 @@ class SupercoolToolsController extends BaseController
 		// Get only the tools we want
 		$tools = array(
 			'SupercoolTools_ClearCaches' => craft()->components->getComponentByTypeAndClass(ComponentType::Tool, 'SupercoolTools_ClearCaches'),
+			'SupercoolTools_ClearTasks' => craft()->components->getComponentByTypeAndClass(ComponentType::Tool, 'SupercoolTools_ClearTasks'),
 			'SearchIndex' => craft()->components->getComponentByTypeAndClass(ComponentType::Tool, 'SearchIndex')
 		);
 

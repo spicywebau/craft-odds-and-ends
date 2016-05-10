@@ -40,7 +40,7 @@ class SupercoolToolsPlugin extends BasePlugin
 
 	public function init()
 	{
-		Craft::import('plugins.supercoolTools.tools.SupercoolTools_ClearCachesTool');
+		Craft::import('plugins.supercoolTools.tools.*');
 
 		if ( craft()->request->isCpRequest() && craft()->userSession->isLoggedIn() )
 		{
