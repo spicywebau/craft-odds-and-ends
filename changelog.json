@@ -7,7 +7,7 @@
 			"[Added] Added the `openInstructionLinksInNewWindow` config variable which when set to true will open all instruction links in new a window.",
 			"[Added] Added a freshdesk widget that opens in a new window.",
 			"[Added] Added a “Roll Your Own” widget that lets you assign a template to load from your site templates folder. Go nuts.",
-			"[Added] Added a cp section with some simplified tools in it (Clear Tasks, Clear Template Caches and Re-build Search Indexes).",
+			"[Added] Added a cp section with some simplified tools in it (Clear Tasks, Clear Caches and Rebuild Search Indexes).",
 			"[Improved] Sorted out the changelog to be compatible with the `getReleaseFeedUrl()` method."
 		]
 	},

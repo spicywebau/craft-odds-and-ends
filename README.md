@@ -34,7 +34,7 @@ The “Tools” section, accessible from the main menu, has a few simplified too
 
 - Clear Tasks - empties the Tasks table, which is useful if you get a stuck Task
 - Clear Caches - clears only the template caches
-- Re-build Search Indexes - behaves the same as the Settings page one
+- Rebuild Search Indexes - behaves the same as the Settings page one
 
 
 ## Config variables
