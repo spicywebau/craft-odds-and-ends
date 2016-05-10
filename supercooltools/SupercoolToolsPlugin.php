@@ -20,7 +20,12 @@ class SupercoolToolsPlugin extends BasePlugin
 
 	public function getVersion()
 	{
-		return '1.4.2';
+		return '1.5.0';
+	}
+
+	public function getSchemaVersion()
+	{
+		return '1.5.0';
 	}
 
 	public function getDeveloper()
@@ -31,6 +36,11 @@ class SupercoolToolsPlugin extends BasePlugin
 	public function getDeveloperUrl()
 	{
 		return 'http://plugins.supercooldesign.co.uk';
+	}
+
+	public function getReleaseFeedUrl()
+	{
+		return 'https://raw.githubusercontent.com/supercool/Tools/master/changelog.json';
 	}
 
 	public function hasCpSection()
