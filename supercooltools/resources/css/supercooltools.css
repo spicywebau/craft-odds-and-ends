@@ -1,8 +1,6 @@
 /**
  * Entries fieldtype with inline search
  */
-
-.supercooltools-elementsearch {  }
 .supercooltools-elementsearch .add { position: relative; z-index: 1; display: inline-block; width: 12em; }
 
 body.ltr .supercooltools-elementsearch .add .text { padding-right: 30px; }
@@ -12,8 +10,6 @@ body.rtl .supercooltools-elementsearch .add .text { padding-left: 30px; }
 body.ltr .supercooltools-elementsearch .add .spinner { right: 5px; }
 body.rtl .supercooltools-elementsearch .add .spinner { left: 5px; }
 
-
-
 body.ltr .supercooltools-elementsearch__menu ul li a { padding-left: 32px; }
 body.rtl .supercooltools-elementsearch__menu ul li a { padding-right: 32px; }
 
@@ -22,6 +18,7 @@ body.rtl .supercooltools-elementsearch__menu ul li a .status { float: right; }
 body.ltr .supercooltools-elementsearch__menu ul li a .status { margin: 3px 0 0 -18px ; }
 body.rtl .supercooltools-elementsearch__menu ul li a .status { margin: 3px -18px 0 0 ; }
 
+
 /**
  * Hide delete icons in disabled fields
  */
@@ -29,3 +26,16 @@ body.rtl .supercooltools-elementsearch__menu ul li a .status { margin: 3px -18px
 .supercooltools-disabledelements .delete {
   display: none;
 }
+
+
+/**
+ * Freshdesk bits
+ */
+#supercooltools-freshdesk .spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -10px;
+  margin-left: -10px;
+}
+#supercooltools-freshdesk iframe { position: relative; }

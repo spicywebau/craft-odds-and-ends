@@ -46,6 +46,24 @@ class SupercoolToolsPlugin extends BasePlugin
 		{
 			craft()->templates->includeCssResource('supercooltools/css/supercooltools.css');
 			craft()->templates->includeJsResource('supercooltools/js/supercooltools.js');
+
+			if (craft()->config->get('openInstructionLinksInNewWindow', 'SupercoolTools')) {
+				craft()->templates->includeJs('new SupercoolTools.TargetBlankInstructionLinks();');
+			}
+
+			$freshdeskHandle = craft()->config->get('freshdeskHandle', 'SupercoolTools');
+			if (!is_null($freshdeskHandle)) {
+				craft()->templates->includeJs('new SupercoolTools.Freshdesk("'.$freshdeskHandle.'");');
+			}
+
+		}
+	}
+
+	public function modifyCpNav(&$nav)
+	{
+		if (!is_null(craft()->config->get('freshdeskHandle', 'SupercoolTools')))
+		{
+			$nav['supercooltools-freshdesk'] = array('label' => 'Support', 'url' => '#help', 'icon' => 'help');
 		}
 	}
 

@@ -14,6 +14,71 @@ if (typeof SupercoolTools == 'undefined')
 
 
 /**
+ * Make all links in instructions open in a new window - useful for fields
+ * where only markdown is supported
+ */
+SupercoolTools.TargetBlankInstructionLinks = Garnish.Base.extend(
+{
+	init: function()
+	{
+		this.addListener(Garnish.$win, 'load resize', 'apply');
+	},
+
+	apply: function()
+	{
+		Garnish.$bod.find('.instructions a').each(function()
+		{
+			$(this).attr('target', '_blank');
+		});
+	}
+});
+
+
+/**
+ * Opens a modal with the Freshdesk widget in it
+ */
+SupercoolTools.Freshdesk = Garnish.Base.extend(
+{
+
+	modal: null,
+	handle: null,
+
+	init: function(handle)
+	{
+		this.handle = handle;
+		this.addListener($('.supercooltools-trigger-freshdesk, #nav-supercooltools-freshdesk a'), 'click', 'showModal');
+	},
+
+	showModal: function(ev)
+	{
+
+		ev.preventDefault();
+
+		if (!this.modal)
+		{
+
+			var $modal = $('<div id="supercooltools-freshdesk" class="modal"></div>').appendTo(Garnish.$bod),
+					$body  = $('<div class="body"></div>').appendTo($modal),
+					$iframe = $('<iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="//'+this.handle+'.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&screenshot=no&searchArea=no" scrolling="no" height="500px" width="100%" frameborder="0"></iframe>').appendTo($body),
+					$cancelBtn = $('<div class="btn right" data-icon="error"></div><div class="spinner big"></div>').prependTo($body);
+
+			this.modal = new Garnish.Modal($modal);
+
+			this.addListener($cancelBtn, 'click', function() {
+				this.modal.hide();
+			});
+
+		}
+		else
+		{
+			this.modal.show();
+		}
+	}
+
+});
+
+
+/**
  * Search elements like Tags - forked from `Craft.TagSelectInput`
  */
 SupercoolTools.ElementSearchInput = Craft.BaseElementSelectInput.extend(
