@@ -85,6 +85,9 @@ Here is an example you could use with cron:
 # Changelog
 
 
+### 1.5.1
+- Switched the Freshdesk icon from ‘help’ to ‘mail’.
+
 ### 1.5.0
 - Added the `openInstructionLinksInNewWindow` config variable which when set to true will open all instruction links in new a window.",
 - Added a freshdesk widget that opens in a new window.",

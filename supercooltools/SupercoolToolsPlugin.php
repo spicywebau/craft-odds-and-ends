@@ -20,7 +20,7 @@ class SupercoolToolsPlugin extends BasePlugin
 
 	public function getVersion()
 	{
-		return '1.5.0';
+		return '1.5.1';
 	}
 
 	public function getSchemaVersion()
@@ -76,7 +76,7 @@ class SupercoolToolsPlugin extends BasePlugin
 
 		if (!is_null(craft()->config->get('freshdeskHandle', 'SupercoolTools')))
 		{
-			$nav['supercooltools-freshdesk'] = array('label' => 'Support', 'url' => '#help', 'icon' => 'help');
+			$nav['supercooltools-freshdesk'] = array('label' => 'Support', 'url' => '#help', 'icon' => 'mail');
 		}
 	}
 
