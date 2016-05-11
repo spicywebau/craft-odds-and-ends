@@ -1,5 +1,13 @@
 [
 	{
+		"version": "1.5.1",
+		"downloadUrl": "https://github.com/supercool/Tools/archive/1.5.1.zip",
+		"date": "2016-05-11T09:00:00-00:00",
+		"notes": [
+			"[Improved] Switched the Freshdesk icon from 'help' to 'mail'."
+		]
+	},
+	{
 		"version": "1.5.0",
 		"downloadUrl": "https://github.com/supercool/Tools/archive/1.5.0.zip",
 		"date": "2016-05-10T10:00:00-00:00",
