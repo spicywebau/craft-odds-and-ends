@@ -76,7 +76,7 @@ class SupercoolToolsPlugin extends BasePlugin
 
 		if (!is_null(craft()->config->get('freshdeskHandle', 'SupercoolTools')))
 		{
-			$nav['supercooltools-freshdesk'] = array('label' => 'Support', 'url' => '#help', 'icon' => 'help');
+			$nav['supercooltools-freshdesk'] = array('label' => 'Support', 'url' => '#help', 'icon' => 'mail');
 		}
 	}
 
