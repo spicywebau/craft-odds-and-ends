@@ -85,6 +85,9 @@ Here is an example you could use with cron:
 # Changelog
 
 
+### 1.5.2
+- Fixed a casing bug that would cause the Tools cp tab to error on some servers.
+
 ### 1.5.1
 - Switched the Freshdesk icon from ‘help’ to ‘mail’.
 
