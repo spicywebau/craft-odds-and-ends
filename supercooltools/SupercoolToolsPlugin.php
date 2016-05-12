@@ -20,7 +20,7 @@ class SupercoolToolsPlugin extends BasePlugin
 
 	public function getVersion()
 	{
-		return '1.5.1';
+		return '1.5.2';
 	}
 
 	public function getSchemaVersion()
@@ -50,7 +50,7 @@ class SupercoolToolsPlugin extends BasePlugin
 
 	public function init()
 	{
-		Craft::import('plugins.supercoolTools.tools.*');
+		Craft::import('plugins.supercooltools.tools.*');
 
 		if ( craft()->request->isCpRequest() && craft()->userSession->isLoggedIn() )
 		{
