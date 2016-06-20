@@ -10,7 +10,7 @@ namespace Craft;
  * @see       http://plugins.supercooldesign.co.uk
  */
 
-class SupercoolTools_CategoriesMultipleGroupsFieldType extends CategoriesFieldType
+class SupercoolTools_CategoriesMultipleGroupsFieldType extends CategoriesFieldType implements IPreviewableFieldType
 {
 
 	// Properties

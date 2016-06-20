@@ -10,7 +10,7 @@ namespace Craft;
  * @see       http://plugins.supercooldesign.co.uk
  */
 
-class SupercoolTools_DisabledNumberFieldType extends NumberFieldType
+class SupercoolTools_DisabledNumberFieldType extends NumberFieldType implements IPreviewableFieldType
 {
 	// Public Methods
 	// =========================================================================

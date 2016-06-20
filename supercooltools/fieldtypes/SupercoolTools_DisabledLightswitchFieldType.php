@@ -10,7 +10,7 @@ namespace Craft;
  * @see       http://plugins.supercooldesign.co.uk
  */
 
-class SupercoolTools_DisabledLightswitchFieldType extends LightswitchFieldType
+class SupercoolTools_DisabledLightswitchFieldType extends LightswitchFieldType implements IPreviewableFieldType
 {
 	// Public Methods
 	// =========================================================================
