@@ -1,8 +1,16 @@
 [
 	{
+		"version": "1.5.4",
+		"downloadUrl": "https://github.com/supercool/Tools/archive/1.5.4.zip",
+		"date": "2016-06-20T11:10:15-00:00",
+		"notes": [
+			"[Fixed] Fixed a bug where clearing all Tasks wouldn’t actually kill it, it would lie in wait and the next time a Task of the same name ran it would piggy back on that db row ..."
+		]
+	},
+	{
 		"version": "1.5.3",
 		"downloadUrl": "https://github.com/supercool/Tools/archive/1.5.3.zip",
-		"date": "2016-06-20T11:00:00-00:00",
+		"date": "2016-06-20T11:09:00-00:00",
 		"notes": [
 			"[Improved] Made all the field types previewable."
 		]
