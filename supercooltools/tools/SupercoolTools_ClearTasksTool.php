@@ -55,7 +55,14 @@ class SupercoolTools_ClearTasksTool extends BaseTool
 	 */
 	public function performAction($params = array())
 	{
-		craft()->db->createCommand()->truncateTable('tasks');
+		$tasks = craft()->tasks->getAllTasks();
+		if (is_array($tasks))
+		{
+			foreach ($tasks as $task)
+			{
+				craft()->tasks->deleteTaskById($task->id);
+			}
+		}
 	}
 
 }
