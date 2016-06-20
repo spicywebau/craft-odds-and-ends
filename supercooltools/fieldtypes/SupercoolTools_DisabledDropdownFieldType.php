@@ -10,7 +10,7 @@ namespace Craft;
  * @see       http://plugins.supercooldesign.co.uk
  */
 
-class SupercoolTools_DisabledDropdownFieldType extends DropdownFieldType
+class SupercoolTools_DisabledDropdownFieldType extends DropdownFieldType implements IPreviewableFieldType
 {
 
 	// Public Methods
