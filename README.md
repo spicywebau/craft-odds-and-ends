@@ -85,6 +85,9 @@ Here is an example you could use with cron:
 # Changelog
 
 
+### 1.5.4
+- Fixed a bug where clearing all Tasks wouldn’t actually kill it, it would lie in wait and the next time a Task of the same name ran it would piggy back on that db row ...
+
 ### 1.5.3
 - Made all the field types previewable.
 
