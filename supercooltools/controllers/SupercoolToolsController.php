@@ -36,7 +36,7 @@ class SupercoolToolsController extends BaseController
 	/**
 	 * Downloads a file and cleans up old temporary assets
 	 */
-	public function actionDownloadFile()
+	public function actionDownloadFile(array $variables = array())
 	{
 
 		// Clean up temp assets files that are more than a day old
@@ -54,7 +54,7 @@ class SupercoolToolsController extends BaseController
 		}
 
 		// Sort out the file we want to download
-		$id = craft()->request->getParam('id');
+		$id = !empty($variables['id']) ? $variables['id'] : craft()->request->getParam('id');
 
 		$criteria = craft()->elements->getCriteria(ElementType::Asset);
 		$criteria->id = $id;
