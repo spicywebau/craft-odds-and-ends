@@ -1,0 +1,13 @@
+{% import "_includes/forms" as forms %}
+
+{{
+	forms.textField({
+		label: 'Author Instructions' | t,
+		instructions: 'Enter instructions for author here' | t,
+		name: 'instructions',
+		id: 'instructions',
+		value: settings.instructions,
+		required: true,
+		errors: settings.getErrors('instructions'),
+	})
+}}
