@@ -1,16 +1,10 @@
-<style type="text/css">
+{% set authorInstructionsCss %}
 	#{{ id }}-field .heading label {
       display: none;
     }
+{% endset %}
+{% includeCss authorInstructionsCss %}
 
-	.instructor-instructions {
-		background-color: #f1f1f1;
-		border-left: 4px solid #FF5500;
-		padding: 15px;
-		font-size: 15px;
-	}
-</style>
-
-<div class="instructor-instructions"> 
+<div class="supercooltools__author-instructions"> 
 	{{ settings.authorInstructions | markdown }} 
 </div>

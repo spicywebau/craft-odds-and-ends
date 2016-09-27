@@ -39,3 +39,13 @@ body.rtl .supercooltools-elementsearch__menu ul li a .status { margin: 3px -18px
   margin-left: -10px;
 }
 #supercooltools-freshdesk iframe { position: relative; }
+
+/**
+ * Styling Author Instruction field
+ */
+.supercooltools__author-instructions {
+	background-color: #f1f1f1;
+	border-left: 4px solid #FF5500;
+	padding: 15px;
+	font-size: 15px;
+}
