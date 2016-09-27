@@ -3,6 +3,8 @@
 ### Author Instructions
 This lets you output markdown instead of a field, which is useful when you have a Matrix block that doesn’t have any fields.
 
+![Author Instructions Example](https://raw.githubusercontent.com/supercool/Tools/master/screenshots/author-instructions-example.png)
+
 ### Categories (multiple groups)
 A Categories input that lets you select multiple Category groups.
 
