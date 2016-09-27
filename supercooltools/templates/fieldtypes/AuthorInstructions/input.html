@@ -1,10 +1,10 @@
 {% set authorInstructionsCss %}
 	#{{ id }}-field .heading label {
-      display: none;
-    }
+		display: none;
+	}
 {% endset %}
 {% includeCss authorInstructionsCss %}
 
-<div class="supercooltools__author-instructions"> 
-	{{ settings.authorInstructions | markdown }} 
+<div class="supercooltools__author-instructions">
+	{{ settings.authorInstructions | markdown }}
 </div>
