@@ -1,5 +1,8 @@
 ## Field types
 
+### Author Instructions
+This lets you output markdown instead of a field, which is useful when you have a Matrix block that doesn’t have any fields.
+
 ### Categories (multiple groups)
 A Categories input that lets you select multiple Category groups.
 
@@ -84,6 +87,9 @@ Here is an example you could use with cron:
 
 # Changelog
 
+
+### 1.6.0
+- Added a new field type called Author Instructions that lets you output markdown instead of a field. Useful when you have a Matrix block that doesn’t have any fields.
 
 ### 1.5.4
 - Fixed a bug where clearing all Tasks wouldn’t actually kill it, it would lie in wait and the next time a Task of the same name ran it would piggy back on that db row ...
