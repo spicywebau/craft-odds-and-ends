@@ -2,14 +2,14 @@
 
 namespace Craft;
 
-class SupercoolTools_InstructionFieldType extends BaseFieldType
+class SupercoolTools_AuthorInstructionsFieldType extends BaseFieldType
 {
 	/**
 	 * Returns field type name
 	 */
 	public function getName()
 	{
-		return Craft::t('Instructor');
+		return Craft::t('Author Instructions');
 	}
 
 	/**
@@ -18,7 +18,7 @@ class SupercoolTools_InstructionFieldType extends BaseFieldType
 	protected function defineSettings()
 	{
 		return array(
-			'instructions' => array( AttributeType::Mixed )
+			'authorInstructions' => array( AttributeType::Mixed )
 		);
 	}
 
@@ -27,7 +27,7 @@ class SupercoolTools_InstructionFieldType extends BaseFieldType
 	 */
 	public function getSettingsHtml()
 	{
-		return craft()->templates->render( 'supercoolTools/fieldtypes/Instruction/settings',
+		return craft()->templates->render( 'supercoolTools/fieldtypes/AuthorInstructions/settings',
 			array( 'settings' => $this->getSettings() )
 		);
 	}
@@ -40,7 +40,7 @@ class SupercoolTools_InstructionFieldType extends BaseFieldType
 		// Getting the namespaced id for the field
 		$id =  craft()->templates->namespaceInputId( craft()->templates->formatInputId( $name ) );
 
-		return craft()->templates->render( 'supercoolTools/fieldtypes/Instruction/input', array(
+		return craft()->templates->render( 'supercoolTools/fieldtypes/AuthorInstructions/input', array(
 			'name'     => $name,
 			'value'    => $value,
 			'id'	   => $id,
