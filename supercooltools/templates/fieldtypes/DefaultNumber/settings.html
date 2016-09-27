@@ -1,0 +1,11 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.textField({
+	label: "Default Number"|t,
+	id: 'defaultNumber',
+	name: 'defaultNumber',
+	value: settings.defaultNumber,
+	size: 5,
+	required: true,
+	errors: settings.getErrors('defaultNumber')
+}) }}
