@@ -6,7 +6,7 @@ namespace Craft;
  * Class SupercoolTools_DefaultNumberFieldType
  *
  * @package   SupercoolTools
- * @author    Josh Angell <josh@supercooldesign.co.uk>
+ * @author    Naveed Ziarab <naveed@supercooldesign.co.uk>
  * @copyright Copyright (c) 2016, Supercool Ltd
  * @see       http://plugins.supercooldesign.co.uk
  */
@@ -17,7 +17,7 @@ class SupercoolTools_DefaultNumberFieldType extends NumberFieldType
 	/**
 	 * Returns name of the field type
 	 * 
-	 * @return String
+	 * @return string
 	 */
 	public function getName()
 	{
@@ -27,6 +27,8 @@ class SupercoolTools_DefaultNumberFieldType extends NumberFieldType
 
 	/**
 	 * Pass data to the settings template
+	 *
+	 * @return array
 	 */
 	public function getSettingsHtml()
 	{
@@ -37,30 +39,25 @@ class SupercoolTools_DefaultNumberFieldType extends NumberFieldType
         ));
 	}
 
-
 	/**
-	 * Pass data to input template
+	 * Setting the default value
+	 * @inheritDoc IFieldType::defineContentAttribute()
+	 *
+	 * @return mixed
 	 */
-	public function getInputHtml($name, $value)
+	public function defineContentAttribute()
 	{
-		if( $this->isFresh() && $this->settings->defaultNumber )
-		{
-			$value = $this->settings->defaultNumber;
-		}
-		elseif ($this->isFresh() && ($value < $this->settings->min || $value > $this->settings->max))
-		{
-			$value = $this->settings->min;
-		}
+		$attribute = ModelHelper::getNumberAttributeConfig($this->settings->min, $this->settings->max, $this->settings->decimals);
+		$attribute['default'] = $this->settings->defaultNumber;
 
-		return craft()->templates->render('_includes/forms/text', array(
-			'name'  => $name,
-			'value' => craft()->numberFormatter->formatDecimal($value, false),
-			'size'  => 5
-		));
+		return $attribute;
 	}
+
 
 	/**
 	 * Creating an instance of Default Number FieldTypeSettings Model
+	 *
+	 * @return BaseModel
 	 */
 	protected function getSettingsModel()
 	{
