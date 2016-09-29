@@ -1,0 +1,11 @@
+{% import "_includes/forms" as forms %}
+
+{{
+	forms.textField({
+		label: 'Label for the other option'|t,
+		name: 'otherLabel',
+		id: 'otherLabel',
+		value: settings.otherLabel,
+		errors: settings.getErrors('otherLabel')
+	})
+}}

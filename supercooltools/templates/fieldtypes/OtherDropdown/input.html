@@ -1,0 +1,45 @@
+{% import "_includes/forms" as forms %}
+
+{% set values = value | split(",") %}
+
+{% if values[1] is not defined %}
+	{% set dropdown = value %}
+	{% set otherValue = "" %}
+{% else %}
+	{% set dropdown = values[0] %}
+	{% set otherValue = values[1] %}
+{% endif %}
+
+{{
+	forms.selectField({
+		name: name~'[dropdown]',
+		value: dropdown,
+		options: options,
+		toggle: true,
+		targetPrefix: 'section'
+	})
+}}
+
+{% set selectedSection = dropdown %}
+
+{% for option in options %}
+
+	{% set showSection = (( not selectedSection and loop.first ) or selectedSection == option.value) %}
+
+	{% if option.value == 'other' %}
+		<div id="sectionother" {% if not showSection %} class="hidden" {% endif %}>
+
+			{{
+				forms.textField({
+					placeholder: 'Other field value'|t,
+					name: name~'[otherValue]',
+					value: otherValue,
+					required: true,
+				})
+			}}
+
+		</div>
+	{% endif %}
+
+{% endfor %}
+
