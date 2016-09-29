@@ -1,26 +1,17 @@
 {% import "_includes/forms" as forms %}
 
-{% set values = value | split(",") %}
-
-{% if values[1] is not defined %}
-	{% set dropdown = value %}
-	{% set otherValue = "" %}
-{% else %}
-	{% set dropdown = values[0] %}
-	{% set otherValue = values[1] %}
-{% endif %}
 
 {{
 	forms.selectField({
 		name: name~'[dropdown]',
-		value: dropdown,
+		value: value.dropdown,
 		options: options,
 		toggle: true,
 		targetPrefix: 'section'
 	})
 }}
 
-{% set selectedSection = dropdown %}
+{% set selectedSection = value.dropdown %}
 
 {% for option in options %}
 
@@ -33,7 +24,7 @@
 				forms.textField({
 					placeholder: 'Other field value'|t,
 					name: name~'[otherValue]',
-					value: otherValue,
+					value: value.otherValue,
 					required: true,
 				})
 			}}

@@ -68,16 +68,15 @@ class SupercoolTools_OtherDropdownFieldType extends DropdownFieldType
      */
 	public function getInputHtml($name, $value)
 	{
-
 		$options = $this->getTranslatedOptions();
 
 		// Add other option
 		$options[] = ['label' => $this->settings->otherLabel, 'value' => 'other', 'default' => ''];
 
 		// If this is a new entry, look for a default option
-		if ($this->isFresh() || $value == "")
+		if ($this->isFresh() || $value['dropdown'] == null )
 		{
-			$value = $this->getDefaultValue();
+			$value['dropdown'] = $this->getDefaultValue();
 		}
 
 		return craft()->templates->render('supercoolTools/fieldtypes/OtherDropdown/input', array(
@@ -88,18 +87,19 @@ class SupercoolTools_OtherDropdownFieldType extends DropdownFieldType
 	}
 
 	/**
-	 * Prepare values to be saved in the database
-	 * 
+	 * Preparing value to be saved in the database
+	 *
 	 * @param  $value
 	 * 
-	 * @return string
+	 * @return string 
 	 */
 	public function prepValueFromPost($value)
 	{
-		if( $value ) {
-			$value = serialize($value);
+		if( $value['dropdown'] != "other" ) {
+			$value['otherValue'] = "";
 		}
-		return parent::prepValueFromPost( $value );
+
+		return $value;
 	}
 
 	/**
@@ -111,11 +111,15 @@ class SupercoolTools_OtherDropdownFieldType extends DropdownFieldType
 	 */
 	public function prepValue($value)
 	{
-		$data = "";
-		if( $value ) {
-			$data = unserialize($value);
-			$data = $data['dropdown'] . ',' . $data['otherValue'];
-		}
+		$dropdown = $value['dropdown'];
+		$dropdown = parent::prepValue($dropdown);
+		
+		$dropdown = $dropdown->__toString();
+
+		$data = array(
+			'dropdown' => $dropdown,
+			'otherValue' => $value['otherValue']
+		);		
 
 		return $data;
 	}
@@ -130,9 +134,8 @@ class SupercoolTools_OtherDropdownFieldType extends DropdownFieldType
 	public function validate($value)
 	{
 		if( $value ) {
-			$data = unserialize($value);
-			if( $data['dropdown'] == "other" && $data['otherValue'] == "" ) {
-				return Craft::t('{attribute} is invalid.', array(
+			if( $value['dropdown'] == "other" && $value['otherValue'] == "" ) {
+				return Craft::t('{attribute} is invalid. It cannot be empty', array(
 					'attribute' => Craft::t($this->model->name)
 				));
 			}
