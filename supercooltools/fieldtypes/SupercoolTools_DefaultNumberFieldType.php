@@ -48,9 +48,26 @@ class SupercoolTools_DefaultNumberFieldType extends NumberFieldType
 	public function defineContentAttribute()
 	{
 		$attribute = ModelHelper::getNumberAttributeConfig($this->settings->min, $this->settings->max, $this->settings->decimals);
-		$attribute['default'] = $this->settings->defaultNumber;
+		$attribute['default'] = null;
 
 		return $attribute;
+	}
+
+	/**
+	 * If value is null and not equals to 0 then set its value to default value
+	 * 
+	 * @param  $value
+	 * 
+	 * @return mixed
+	 */
+	public function prepValue($value)
+	{
+
+		if( $value == null && $value !== 0 ) {
+			$value = $this->settings->defaultNumber;
+		}
+		
+		return $value;
 	}
 
 
