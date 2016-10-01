@@ -71,8 +71,9 @@ class SupercoolToolsPlugin extends BasePlugin
 
 	public function modifyCpNav(&$nav)
 	{
-
-		$nav['supercooltools'] = array('label' => 'Tools', 'url' => 'supercooltools', 'icon' => 'tool');
+		if (isset($nav['supercooltools'])) {
+			$nav['supercooltools'] = array('label' => 'Tools', 'url' => 'supercooltools', 'icon' => 'tool');
+		}
 
 		if (!is_null(craft()->config->get('freshdeskHandle', 'SupercoolTools')))
 		{
