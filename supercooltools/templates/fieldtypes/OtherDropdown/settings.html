@@ -9,3 +9,13 @@
 		errors: settings.getErrors('otherLabel')
 	})
 }}
+
+{{
+	forms.textField({
+		label: 'Placeholder for the other field'|t,
+		name: 'otherPlaceholder',
+		id: 'otherPlaceholder',
+		value: settings.otherPlaceholder,
+		errors: settings.getErrors('otherPlaceholder')
+	})
+}}

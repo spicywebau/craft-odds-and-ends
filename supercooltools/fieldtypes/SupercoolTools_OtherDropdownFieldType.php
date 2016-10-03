@@ -32,6 +32,7 @@ class SupercoolTools_OtherDropdownFieldType extends DropdownFieldType
 	{
 		$settings = parent::defineSettings();
 		$settings['otherLabel'] = array(AttributeType::String);
+		$settings['otherPlaceholder'] = array(AttributeType::String);
 		return $settings;
 	}
 
@@ -70,8 +71,16 @@ class SupercoolTools_OtherDropdownFieldType extends DropdownFieldType
 	{
 		$options = $this->getTranslatedOptions();
 
-		// Add other option
-		$options[] = ['label' => $this->settings->otherLabel, 'value' => 'other', 'default' => ''];
+		// Setting the Other label
+		$otherLabel = $this->settings->otherLabel;
+
+		if( $otherLabel == "" )
+		{
+			$otherLabel = "Other";
+		}
+
+		// Add the other option
+		$options[] = ['label' => $otherLabel, 'value' => 'other', 'default' => ''];
 
 		// If this is a new entry, look for a default option
 		if ($this->isFresh() || $value['dropdown'] == null )
@@ -82,7 +91,8 @@ class SupercoolTools_OtherDropdownFieldType extends DropdownFieldType
 		return craft()->templates->render('supercoolTools/fieldtypes/OtherDropdown/input', array(
 			'name'    => $name,
 			'value'   => $value,
-			'options' => $options
+			'options' => $options,
+			'settings' => $this->getSettings()
 		));
 	}
 
@@ -135,8 +145,9 @@ class SupercoolTools_OtherDropdownFieldType extends DropdownFieldType
 	{
 		if( $value ) {
 			if( $value['dropdown'] == "other" && $value['otherValue'] == "" ) {
-				return Craft::t('{attribute} is invalid. It cannot be empty', array(
-					'attribute' => Craft::t($this->model->name)
+				return Craft::t('{attribute} is invalid. You have selected {selected} but not entered a value.', array(
+					'attribute' => Craft::t($this->model->name),
+					'selected' => Craft::t($this->model->settings['otherLabel']),
 				));
 			}
 		}
