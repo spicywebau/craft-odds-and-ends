@@ -83,9 +83,9 @@ class SupercoolTools_OtherDropdownFieldType extends DropdownFieldType
 		$options[] = ['label' => $otherLabel, 'value' => 'other', 'default' => ''];
 
 		// If this is a new entry, look for a default option
-		if ($this->isFresh() || $value['dropdown'] == null )
+		if ($this->isFresh() || $value->__toString() == null )
 		{
-			$value['dropdown'] = $this->getDefaultValue();
+			$value->value = $this->getDefaultValue();
 		}
 
 		return craft()->templates->render('supercoolTools/fieldtypes/OtherDropdown/input', array(
@@ -121,17 +121,34 @@ class SupercoolTools_OtherDropdownFieldType extends DropdownFieldType
 	 */
 	public function prepValue($value)
 	{
-		$dropdown = $value['dropdown'];
-		$dropdown = parent::prepValue($dropdown);
+		$selectedValues = ArrayHelper::stringToArray($value);
 
-		$dropdown = $dropdown->__toString();
+		// Setting the label for selected value
+		$label = $this->getOptionLabel($value['dropdown']);
 
-		$data = array(
-			'dropdown' => $dropdown,
-			'otherValue' => $value['otherValue']
-		);
+		if( $label == "other" )
+		{
+			$label = $this->settings->otherLabel;
+		}
 
-		return $data;
+		$value = new OtherDropdownData($label, $value['dropdown'], $value['otherValue'], true);
+
+		$options = array();
+
+		foreach ($this->getOptions() as $option)
+		{
+			$selected = in_array($option['value'], $selectedValues);
+			$options[] = new OtherDropdownData($option['label'], $option['value'], null, $selected);
+		}
+
+		// Add other in the options
+		$selected = in_array('other', $selectedValues);
+		$options[] = new OtherDropdownData($this->settings->otherLabel, 'other', $value->otherValue, $selected);
+
+		// Set all the options
+		$value->setOptions($options);
+
+		return $value;
 	}
 
 	/**

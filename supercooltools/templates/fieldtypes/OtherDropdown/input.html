@@ -4,14 +4,14 @@
 {{
 	forms.selectField({
 		name: name~'[dropdown]',
-		value: value.dropdown,
+		value: value,
 		options: options,
 		toggle: true,
 		targetPrefix: 'section'
 	})
 }}
 
-{% set selectedSection = value.dropdown %}
+{% set selectedSection = value %}
 
 {% for option in options %}
 
