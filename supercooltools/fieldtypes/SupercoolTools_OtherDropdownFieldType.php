@@ -20,7 +20,7 @@ class SupercoolTools_OtherDropdownFieldType extends DropdownFieldType
 	 */
 	public function getName()
 	{
-		return Craft::t('Dropdown (Other)');
+		return Craft::t('Dropdown (other)');
 	}
 
 	/**
@@ -60,10 +60,10 @@ class SupercoolTools_OtherDropdownFieldType extends DropdownFieldType
 
     /**
      * Pass data to the field type input template
-     * 
+     *
      * @param  $name
      * @param  $value
-     * 
+     *
      * @return string
      */
 	public function getInputHtml($name, $value)
@@ -90,8 +90,8 @@ class SupercoolTools_OtherDropdownFieldType extends DropdownFieldType
 	 * Preparing value to be saved in the database
 	 *
 	 * @param  $value
-	 * 
-	 * @return string 
+	 *
+	 * @return string
 	 */
 	public function prepValueFromPost($value)
 	{
@@ -104,31 +104,31 @@ class SupercoolTools_OtherDropdownFieldType extends DropdownFieldType
 
 	/**
 	 * Prepare values to be shown in the template
-	 * 
+	 *
 	 * @param  $value
-	 * 
+	 *
 	 * @return string
 	 */
 	public function prepValue($value)
 	{
 		$dropdown = $value['dropdown'];
 		$dropdown = parent::prepValue($dropdown);
-		
+
 		$dropdown = $dropdown->__toString();
 
 		$data = array(
 			'dropdown' => $dropdown,
 			'otherValue' => $value['otherValue']
-		);		
+		);
 
 		return $data;
 	}
 
 	/**
 	 * Validate the value before it is saved to the database
-	 * 
+	 *
 	 * @param  $value
-	 * 
+	 *
 	 * @return boolean
 	 */
 	public function validate($value)
