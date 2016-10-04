@@ -1,0 +1,107 @@
+{% import "_includes/forms" as forms %}
+
+<p> Field here </p>
+
+{{
+	forms.textField({
+		label: 'Width'|t,
+		placeholder: 'Enter width value',
+		name: name~'[width]',
+		id: name~'-width',
+		value: value.width
+	})
+}}
+
+{{
+	forms.textField({
+		label: 'Left'|t,
+		placeholder: 'Enter left offset value',
+		name: name~'[left]',
+		value: value.left
+	})
+}}
+
+{{
+	forms.textField({
+		label: 'Right'|t,
+		placeholder: 'Enter right offset value',
+		name: name~'[right]',
+		value: value.right
+	})
+}}
+
+
+
+{% includeCssResource "supercoolTools/css/nouislider.css" %}
+
+<div id="{{ name }}-slider"></div>
+
+{% set leftKey = "" %}
+{% set rightKey = "" %}
+{% set widthKey = "" %}
+
+{% for key, val in value.leftOptions %}
+	{% if val == value.left %}
+		{% set leftKey = key + 1 %}
+	{% endif %}
+{% endfor %}
+
+{% for key, val in value.rightOptions %}
+	{% if val == value.right %}
+		{% set rightKey = key + 1 %}
+	{% endif %}
+{% endfor %}
+
+{% for key, val in value.widthOptions %}
+	{% if val == value.width %}
+		{% set widthKey = key + 1 %}
+	{% endif %}
+{% endfor %}
+
+
+{% set sliderFieldJS %}
+
+	var slider = document.getElementById("{{namespaceId}}-slider");
+
+	noUiSlider.create(slider, {
+		start: [ {{ leftKey }}, {{ leftKey + widthKey }}, {{ (leftKey + widthKey) + widthKey }}, {{ 12 - rightKey }} ],
+		connect: [true, false, true, false, true],
+		margin: 0,
+		step: 1,
+		tooltips: false,
+		range: {
+			'min': 0,
+			'max': 12
+		}
+	});
+
+	slider.noUiSlider.on('update', function(values, handle) {
+		spaceLeft = parseInt( values[0] );
+		spaceRight = 12 - values[3];
+		width = values[2] - values[1];
+
+		output = "Left: " + spaceLeft + " | Width: " + width + " | Right: " + spaceRight;
+		document.getElementById('{{namespaceId}}-output').innerHTML = output;
+
+	});
+
+
+{% endset %}
+{% includeJsResource "supercoolTools/js/nouislider.js" %}
+{% includeJs sliderFieldJS %}
+
+
+<p> {{ value.left ~ " " ~ value.width ~ " " ~ value.right }} </p>
+<p> {{ leftKey ~ " " ~ widthKey ~ " " ~ rightKey }} </p>
+
+<div id="{{name}}-output"></div>
+
+
+
+
+
+
+
+
+
+
