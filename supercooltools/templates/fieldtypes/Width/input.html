@@ -17,6 +17,7 @@
 		label: 'Left'|t,
 		placeholder: 'Enter left offset value',
 		name: name~'[left]',
+		id: name~'-left',
 		value: value.left
 	})
 }}
@@ -26,6 +27,7 @@
 		label: 'Right'|t,
 		placeholder: 'Enter right offset value',
 		name: name~'[right]',
+		id: name~'-right',
 		value: value.right
 	})
 }}
@@ -75,13 +77,28 @@
 		}
 	});
 
-	slider.noUiSlider.on('update', function(values, handle) {
+
+	var widthOptions = {{ value.widthOptions | json_encode | raw }};
+	var leftOptions  = {{ value.leftOptions | json_encode | raw }};
+	var rightOptions = {{ value.rightOptions | json_encode | raw }};
+
+
+	slider.noUiSlider.on('end', function(values, handle) {
+
 		spaceLeft = parseInt( values[0] );
 		spaceRight = 12 - values[3];
 		width = values[2] - values[1];
 
 		output = "Left: " + spaceLeft + " | Width: " + width + " | Right: " + spaceRight;
 		document.getElementById('{{namespaceId}}-output').innerHTML = output;
+
+		console.log( widthOptions[width - 1] );
+		console.log( leftOptions[spaceLeft - 1] );
+		console.log( rightOptions[spaceRight - 1] );
+
+		$('#{{namespaceId}}-width').val( widthOptions[width - 1] );
+		$('#{{namespaceId}}-left').val( leftOptions[spaceLeft - 1] );
+		$('#{{namespaceId}}-right').val( rightOptions[spaceRight - 1] );
 
 	});
 
