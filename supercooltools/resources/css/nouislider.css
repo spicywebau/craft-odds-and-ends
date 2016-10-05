@@ -1,7 +1,3 @@
-
-
-
-
 /* Functional styling;
  * These styles are required for noUiSlider to function.
  * You don't need to change these rules to apply your design.
@@ -158,4 +154,13 @@
 [disabled].noUi-handle,
 [disabled] .noUi-handle {
 	cursor: not-allowed;
+}
+
+
+.firstHandle, .fourthHandle {
+	top: 15px !important;
+}
+
+.secondHandle, .thirdHandle {
+	top: -28px !important;
 }

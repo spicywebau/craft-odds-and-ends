@@ -116,8 +116,12 @@ class SupercoolTools_WidthFieldType extends DropdownFieldType
      */
 	public function getInputHtml($name, $value)
 	{
-		//$options = $this->getTranslatedOptions();
-		
+		if( $value == null ) {
+			$options = $this->getOptions();
+			$data = new WidthData();
+			$value = $data->setData($options, $value);
+		}
+				
 		$id = craft()->templates->namespaceInputId( craft()->templates->formatInputId($name) );
 
 		return craft()->templates->render( 'SupercoolTools/fieldtypes/Width/input', array(
@@ -133,9 +137,7 @@ class SupercoolTools_WidthFieldType extends DropdownFieldType
 	public function prepValue($value)
 	{
 		$options = $this->getOptions();
-
 		$data = new WidthData();
-
 		return $data->setData($options, $value);
 	}
 

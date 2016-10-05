@@ -1,19 +1,17 @@
 {% import "_includes/forms" as forms %}
 
-<p> Field here </p>
-
 {{
-	forms.textField({
+	forms.hidden({
 		label: 'Width'|t,
 		placeholder: 'Enter width value',
 		name: name~'[width]',
 		id: name~'-width',
-		value: value.width
+		value: value.width,
 	})
 }}
 
 {{
-	forms.textField({
+	forms.hidden({
 		label: 'Left'|t,
 		placeholder: 'Enter left offset value',
 		name: name~'[left]',
@@ -23,7 +21,7 @@
 }}
 
 {{
-	forms.textField({
+	forms.hidden({
 		label: 'Right'|t,
 		placeholder: 'Enter right offset value',
 		name: name~'[right]',
@@ -33,7 +31,13 @@
 }}
 
 
-
+{% set sliderFieldCss %}
+	#{{namespaceId}}-slider {
+		margin-top: 50px;
+		margin-bottom: 40px;
+	}
+{% endset %}
+{% includeCss sliderFieldCss %}
 {% includeCssResource "supercoolTools/css/nouislider.css" %}
 
 <div id="{{ name }}-slider"></div>
@@ -60,41 +64,50 @@
 	{% endif %}
 {% endfor %}
 
+{% if not widthKey %} {% set widthKey = 0 %} {% endif %}
+{% if not leftKey %}  {% set leftKey = 0 %}  {% endif %}
+{% if not rightKey %} {% set rightKey = 0 %} {% endif %}
+
 
 {% set sliderFieldJS %}
 
+	var widthOptions = {{ value.widthOptions | json_encode | raw }};
+	var leftOptions  = {{ value.leftOptions | json_encode | raw }};
+	var rightOptions = {{ value.rightOptions | json_encode | raw }};
+
 	var slider = document.getElementById("{{namespaceId}}-slider");
 
+
+
 	noUiSlider.create(slider, {
-		start: [ {{ leftKey }}, {{ leftKey + widthKey }}, {{ (leftKey + widthKey) + widthKey }}, {{ 12 - rightKey }} ],
+		start: [ {{ leftKey }}, {{ leftKey }}, {{ leftKey + widthKey }}, widthOptions.length - {{ rightKey }} ],
 		connect: [true, false, true, false, true],
 		margin: 0,
 		step: 1,
 		tooltips: false,
 		range: {
 			'min': 0,
-			'max': 12
+			'max': widthOptions.length
 		}
 	});
 
-
-	var widthOptions = {{ value.widthOptions | json_encode | raw }};
-	var leftOptions  = {{ value.leftOptions | json_encode | raw }};
-	var rightOptions = {{ value.rightOptions | json_encode | raw }};
-
-
-	slider.noUiSlider.on('end', function(values, handle) {
+	slider.noUiSlider.on('update', function(values, handle) {
 
 		spaceLeft = parseInt( values[0] );
-		spaceRight = 12 - values[3];
+		spaceRight = widthOptions.length - values[3];
 		width = values[2] - values[1];
 
 		output = "Left: " + spaceLeft + " | Width: " + width + " | Right: " + spaceRight;
 		document.getElementById('{{namespaceId}}-output').innerHTML = output;
 
-		console.log( widthOptions[width - 1] );
-		console.log( leftOptions[spaceLeft - 1] );
-		console.log( rightOptions[spaceRight - 1] );
+	});
+
+
+	slider.noUiSlider.on('end', function(values, handle) {
+
+		spaceLeft = parseInt( values[0] );
+		spaceRight = widthOptions.length - values[3];
+		width = values[2] - values[1];
 
 		$('#{{namespaceId}}-width').val( widthOptions[width - 1] );
 		$('#{{namespaceId}}-left').val( leftOptions[spaceLeft - 1] );
@@ -102,14 +115,17 @@
 
 	});
 
+	// Settings classes on handles
+	var origins = slider.getElementsByClassName('noUi-handle');
+	origins[0].className += origins[0].className ? ' firstHandle' : 'firstHandle';
+	origins[1].className += origins[1].className ? ' secondHandle' : 'secondHandle';
+	origins[2].className += origins[2].className ? ' thirdHandle' : 'thirdHandle';
+	origins[3].className += origins[3].className ? ' fourthHandle' : 'fourthHandle';
+
 
 {% endset %}
 {% includeJsResource "supercoolTools/js/nouislider.js" %}
 {% includeJs sliderFieldJS %}
-
-
-<p> {{ value.left ~ " " ~ value.width ~ " " ~ value.right }} </p>
-<p> {{ leftKey ~ " " ~ widthKey ~ " " ~ rightKey }} </p>
 
 <div id="{{name}}-output"></div>
 
