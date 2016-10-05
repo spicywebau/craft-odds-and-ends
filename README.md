@@ -1,5 +1,17 @@
 ## Field types
 
+### Dropdown (other)
+Like a normal Dropdown field but with an additional text option that the user can add what they like to.
+
+![Dropdown (other)](https://raw.githubusercontent.com/supercool/Tools/master/screenshots/dropdown-other.gif)
+
+You can customise the label and placeholder of the extra field, and also access all of the options from twig in the same way you can on a normal Dropdown field, see the official docs on this [here](https://craftcms.com/docs/dropdown-fields#templating).
+
+If the ‘other’ option has been selected then the value will be set to `other` and you can access the extra text the user entered via `{{ entry.dropdownField.otherValue }}`.
+
+### Default Number
+An extension of the standard Number field to let you add a default value.
+
 ### Author Instructions
 This lets you output markdown instead of a field, which is useful when you have a Matrix block that doesn’t have any fields.
 
