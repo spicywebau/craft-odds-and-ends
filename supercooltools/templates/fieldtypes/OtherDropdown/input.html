@@ -1,0 +1,36 @@
+{% import "_includes/forms" as forms %}
+
+
+{{
+	forms.selectField({
+		name: name~'[dropdown]',
+		value: value,
+		options: options,
+		toggle: true,
+		targetPrefix: 'section'
+	})
+}}
+
+{% set selectedSection = value %}
+
+{% for option in options %}
+
+	{% set showSection = (( not selectedSection and loop.first ) or selectedSection == option.value) %}
+
+	{% if option.value == 'other' %}
+		<div id="sectionother" {% if not showSection %} class="hidden" {% endif %}>
+
+			{{
+				forms.textField({
+					placeholder: settings.otherPlaceholder|t,
+					name: name~'[otherValue]',
+					value: value.otherValue,
+					required: true,
+				})
+			}}
+
+		</div>
+	{% endif %}
+
+{% endfor %}
+
