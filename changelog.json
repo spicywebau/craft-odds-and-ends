@@ -1,5 +1,14 @@
 [
 	{
+		"version": "1.6.1",
+		"downloadUrl": "https://github.com/supercool/Tools/archive/1.6.1.zip",
+		"date": "2016-10-05T16:00:00-00:00",
+		"notes": [
+			"[Added] Added a new field type called Default Number that mimics the behaviour of the normal Number field type but lets you set a default value.",
+			"[Added] Added a new field type called Dropdown (other) that lets you add an ‘other’ option to a dropdown field. When ‘other’ is selected another text input is shown to allow the user to enter something other than the standard options provided.",
+		]
+	},
+	{
 		"version": "1.6.0",
 		"downloadUrl": "https://github.com/supercool/Tools/archive/1.6.0.zip",
 		"date": "2016-09-27T16:00:00-00:00",

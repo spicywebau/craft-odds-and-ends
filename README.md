@@ -90,6 +90,11 @@ Here is an example you could use with cron:
 # Changelog
 
 
+### 1.6.1
+
+- Added a new field type called Default Number that mimics the behaviour of the normal Number field type but lets you set a default value.",
+- Added a new field type called Dropdown (other) that lets you add an ‘other’ option to a dropdown field. When ‘other’ is selected another text input is shown to allow the user to enter something other than the standard options provided.",
+
 ### 1.6.0
 - Added a new field type called Author Instructions that lets you output markdown instead of a field. Useful when you have a Matrix block that doesn’t have any fields.
 
