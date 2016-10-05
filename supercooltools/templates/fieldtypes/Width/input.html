@@ -77,11 +77,9 @@
 
 	var slider = document.getElementById("{{namespaceId}}-slider");
 
-
-
 	noUiSlider.create(slider, {
-		start: [ {{ leftKey }}, {{ leftKey }}, {{ leftKey + widthKey }}, widthOptions.length - {{ rightKey }} ],
-		connect: [true, false, true, false, true],
+		start: [ {{ leftKey }} - widthOptions.length, {{ leftKey }}, {{ leftKey + widthKey }}, {{ (leftKey + widthKey) + rightKey}}],
+		connect: [false, true, true, true, false],
 		margin: 0,
 		step: 1,
 		tooltips: false,
@@ -93,9 +91,14 @@
 
 	slider.noUiSlider.on('update', function(values, handle) {
 
-		spaceLeft = parseInt( values[0] );
-		spaceRight = widthOptions.length - values[3];
-		width = values[2] - values[1];
+		left = parseInt(values[0]);
+		right = parseInt(values[3]);
+		second = parseInt(values[1]);
+		third = parseInt(values[2]);
+
+		width = third - second;
+		spaceLeft = second - left;
+		spaceRight = right - third;
 
 		output = "Left: " + spaceLeft + " | Width: " + width + " | Right: " + spaceRight;
 		document.getElementById('{{namespaceId}}-output').innerHTML = output;
@@ -105,9 +108,14 @@
 
 	slider.noUiSlider.on('end', function(values, handle) {
 
-		spaceLeft = parseInt( values[0] );
-		spaceRight = widthOptions.length - values[3];
-		width = values[2] - values[1];
+		left = parseInt(values[0]);
+		right = parseInt(values[3]);
+		second = parseInt(values[1]);
+		third = parseInt(values[2]);
+
+		width = third - second;
+		spaceLeft = second - left;
+		spaceRight = right - third;
 
 		$('#{{namespaceId}}-width').val( widthOptions[width - 1] );
 		$('#{{namespaceId}}-left').val( leftOptions[spaceLeft - 1] );
