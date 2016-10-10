@@ -38,7 +38,7 @@ class WidthData
 
 	public function __toString()
 	{
-		return $this->width;
+		return $this->left . " " . $this->width . " " . $this->right;
 	}
 
 
