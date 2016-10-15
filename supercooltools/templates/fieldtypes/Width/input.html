@@ -30,43 +30,47 @@
 	})
 }}
 
+{{
+	forms.hidden({
+		label: 'firstPointer'|t,
+		name: name~'[firstPointer]',
+		id: name~'-firstPointer',
+		value: value.firstPointer,
+	})
+}}
 
-{% set sliderFieldCss %}
-	#{{namespaceId}}-slider {
-		margin-top: 50px;
-		margin-bottom: 40px;
-	}
-{% endset %}
-{% includeCss sliderFieldCss %}
+{{
+	forms.hidden({
+		label: 'secondPointer'|t,
+		name: name~'[secondPointer]',
+		id: name~'-secondPointer',
+		value: value.secondPointer,
+	})
+}}
+
+{{
+	forms.hidden({
+		label: 'thirdPointer'|t,
+		name: name~'[thirdPointer]',
+		id: name~'-thirdPointer',
+		value: value.thirdPointer,
+	})
+}}
+
+{{
+	forms.hidden({
+		label: 'fourthPointer'|t,
+		name: name~'[fourthPointer]',
+		id: name~'-fourthPointer',
+		value: value.fourthPointer,
+	})
+}}
+
+
+{% includeCssResource "supercoolTools/css/nouislider.pips.css" %}
 {% includeCssResource "supercoolTools/css/nouislider.css" %}
 
 <div id="{{ name }}-slider"></div>
-
-{% set leftKey = "" %}
-{% set rightKey = "" %}
-{% set widthKey = "" %}
-
-{% for key, val in value.leftOptions %}
-	{% if val == value.left %}
-		{% set leftKey = key + 1 %}
-	{% endif %}
-{% endfor %}
-
-{% for key, val in value.rightOptions %}
-	{% if val == value.right %}
-		{% set rightKey = key + 1 %}
-	{% endif %}
-{% endfor %}
-
-{% for key, val in value.widthOptions %}
-	{% if val == value.width %}
-		{% set widthKey = key + 1 %}
-	{% endif %}
-{% endfor %}
-
-{% if not widthKey %} {% set widthKey = 0 %} {% endif %}
-{% if not leftKey %}  {% set leftKey = 0 %}  {% endif %}
-{% if not rightKey %} {% set rightKey = 0 %} {% endif %}
 
 
 {% set sliderFieldJS %}
@@ -75,10 +79,16 @@
 	var leftOptions  = {{ value.leftOptions | json_encode | raw }};
 	var rightOptions = {{ value.rightOptions | json_encode | raw }};
 
+	var firstPointer = {{ value.firstPointer }};
+	var secondPointer = {{ value.secondPointer }};
+	var thirdPointer = {{ value.thirdPointer }};
+	var fourthPointer = {{ value.fourthPointer }};
+	
+
 	var slider = document.getElementById("{{namespaceId}}-slider");
 
 	noUiSlider.create(slider, {
-		start: [ {{ leftKey }} - widthOptions.length, {{ leftKey }}, {{ leftKey + widthKey }}, {{ (leftKey + widthKey) + rightKey}}],
+		start: [ firstPointer, secondPointer, thirdPointer, fourthPointer],
 		connect: [false, true, true, true, false],
 		margin: 0,
 		step: 1,
@@ -86,6 +96,10 @@
 		range: {
 			'min': 0,
 			'max': widthOptions.length
+		},
+		pips: {
+			mode: 'steps',
+			density: 100
 		}
 	});
 
@@ -101,7 +115,10 @@
 		spaceRight = right - third;
 
 		output = "Left: " + spaceLeft + " | Width: " + width + " | Right: " + spaceRight;
+		total = "TOTAL: " + (width + spaceLeft + spaceRight) + " UNITS";
+
 		document.getElementById('{{namespaceId}}-output').innerHTML = output;
+		document.getElementById('{{namespaceId}}-total').innerHTML = total;
 
 	});
 
@@ -121,6 +138,11 @@
 		$('#{{namespaceId}}-left').val( leftOptions[spaceLeft - 1] );
 		$('#{{namespaceId}}-right').val( rightOptions[spaceRight - 1] );
 
+		$('#{{namespaceId}}-firstPointer').val( left );
+		$('#{{namespaceId}}-secondPointer').val( second );
+		$('#{{namespaceId}}-thirdPointer').val( third );
+		$('#{{namespaceId}}-fourthPointer').val( right );
+
 	});
 
 	// Settings classes on handles
@@ -135,7 +157,13 @@
 {% includeJsResource "supercoolTools/js/nouislider.js" %}
 {% includeJs sliderFieldJS %}
 
-<div id="{{name}}-output"></div>
+<div class="noUi__output" id="{{name}}-output"></div>
+<div class="noUi__total" id="{{name}}-total"></div>
+
+<div class="noUi__info-block">
+	<div class="noUi__width-info"> <span></span> Block width </div>
+	<div class="noUi__margin-info"> <span></span> Block margin </div>
+</div>
 
 
 
