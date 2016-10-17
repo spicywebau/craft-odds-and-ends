@@ -126,10 +126,10 @@ class WidthData
 			$left  = $value['left'];
 			$right = $value['right'];
 
-			$firstPointer = $value['firstPointer'];
-			$secondPointer = $value['secondPointer'];
-			$thirdPointer = $value['thirdPointer'];
-			$fourthPointer = $value['fourthPointer'];
+			$firstPointer = $value['firstPointer'] ?? 0;
+			$secondPointer = $value['secondPointer'] ?? 0;
+			$thirdPointer = $value['thirdPointer'] ?? 0;
+			$fourthPointer = $value['fourthPointer'] ?? 0;
 		}
 
 		return new self( $widthOptions, $leftOptions, $rightOptions, $width, $left, $right,
