@@ -67,8 +67,8 @@
 }}
 
 
-{% includeCssResource "supercoolTools/css/nouislider.pips.css" %}
-{% includeCssResource "supercoolTools/css/nouislider.css" %}
+{% includeCssResource "supercooltools/css/nouislider.pips.css" %}
+{% includeCssResource "supercooltools/css/nouislider.css" %}
 
 <div id="{{ name }}-slider"></div>
 
@@ -114,10 +114,9 @@
 		spaceLeft = second - left;
 		spaceRight = right - third;
 
-		output = "Left: " + spaceLeft + " | Width: " + width + " | Right: " + spaceRight;
+		
 		total = "TOTAL: " + (width + spaceLeft + spaceRight) + " UNITS";
-
-		document.getElementById('{{namespaceId}}-output').innerHTML = output;
+		
 		document.getElementById('{{namespaceId}}-total').innerHTML = total;
 
 	});
@@ -154,10 +153,9 @@
 
 
 {% endset %}
-{% includeJsResource "supercoolTools/js/nouislider.js" %}
+{% includeJsResource "supercooltools/js/nouislider.js" %}
 {% includeJs sliderFieldJS %}
 
-<div class="noUi__output" id="{{name}}-output"></div>
 <div class="noUi__total" id="{{name}}-total"></div>
 
 <div class="noUi__info-block">
