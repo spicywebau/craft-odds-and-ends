@@ -37,7 +37,7 @@ SupercoolTools.TargetBlankInstructionLinks = Garnish.Base.extend(
 /**
  * Opens a modal with the Freshdesk widget in it
  */
-SupercoolTools.Freshdesk = Garnish.Base.extend(
+SupercoolTools.Zendesk = Garnish.Base.extend(
 {
 
 	modal: null,
@@ -46,7 +46,12 @@ SupercoolTools.Freshdesk = Garnish.Base.extend(
 	init: function(handle)
 	{
 		this.handle = handle;
-		this.addListener($('.supercooltools-trigger-freshdesk, #nav-supercooltools-freshdesk a'), 'click', 'showModal');
+		this.addListener($('.supercooltools-trigger-zendesk, #nav-supercooltools-zendesk a'), 'click', 'showModal');
+		
+		window.zEmbed||function(e,t){var n,o,d,i,s,a=[],r=document.createElement("iframe");window.zEmbed=function(){a.push(arguments)},window.zE=window.zE||window.zEmbed,r.src="javascript:false",r.title="",r.role="presentation",(r.frameElement||r).style.cssText="display: none",d=document.getElementsByTagName("script"),d=d[d.length-1],d.parentNode.insertBefore(r,d),i=r.contentWindow,s=i.document;try{o=s}catch(e){n=document.domain,r.src='javascript:var d=document.open();d.domain="'+n+'";void(0);',o=s}o.open()._l=function(){var o=this.createElement("script");n&&(this.domain=n),o.id="js-iframe-async",o.src=e,this.t=+new Date,this.zendeskHost=t,this.zEQueue=a,this.body.appendChild(o)},o.write('<body onload="document._l();">'),o.close()}("https://assets.zendesk.com/embeddable_framework/main.js","supercool.zendesk.com");
+		zE(function() {
+	    	zE.hide();
+	  	});
 	},
 
 	showModal: function(ev)
@@ -54,25 +59,7 @@ SupercoolTools.Freshdesk = Garnish.Base.extend(
 
 		ev.preventDefault();
 
-		if (!this.modal)
-		{
-
-			var $modal = $('<div id="supercooltools-freshdesk" class="modal"></div>').appendTo(Garnish.$bod),
-					$body  = $('<div class="body"></div>').appendTo($modal),
-					$iframe = $('<iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="//'+this.handle+'.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&screenshot=no&searchArea=no" scrolling="no" height="500px" width="100%" frameborder="0"></iframe>').appendTo($body),
-					$cancelBtn = $('<div class="btn right" data-icon="error"></div><div class="spinner big"></div>').prependTo($body);
-
-			this.modal = new Garnish.Modal($modal);
-
-			this.addListener($cancelBtn, 'click', function() {
-				this.modal.hide();
-			});
-
-		}
-		else
-		{
-			this.modal.show();
-		}
+		zE.activate();
 	}
 
 });

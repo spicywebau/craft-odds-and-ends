@@ -61,9 +61,9 @@ class SupercoolToolsPlugin extends BasePlugin
 				craft()->templates->includeJs('new SupercoolTools.TargetBlankInstructionLinks();');
 			}
 
-			$freshdeskHandle = craft()->config->get('freshdeskHandle', 'SupercoolTools');
-			if (!is_null($freshdeskHandle)) {
-				craft()->templates->includeJs('new SupercoolTools.Freshdesk("'.$freshdeskHandle.'");');
+			$zendeskHandle = craft()->config->get('zendeskHandle', 'SupercoolTools');
+			if (!is_null($zendeskHandle)) {
+				craft()->templates->includeJs('new SupercoolTools.Zendesk("'.$zendeskHandle.'");');
 			}
 
 		}
@@ -74,9 +74,9 @@ class SupercoolToolsPlugin extends BasePlugin
 
 		$nav['supercooltools'] = array('label' => 'Tools', 'url' => 'supercooltools', 'icon' => 'tool');
 
-		if (!is_null(craft()->config->get('freshdeskHandle', 'SupercoolTools')))
+		if (!is_null(craft()->config->get('zendeskHandle', 'SupercoolTools')))
 		{
-			$nav['supercooltools-freshdesk'] = array('label' => 'Support', 'url' => '#help', 'icon' => 'mail');
+			$nav['supercooltools-zendesk'] = array('label' => 'Support', 'url' => '#help', 'icon' => 'mail');
 		}
 	}
 
