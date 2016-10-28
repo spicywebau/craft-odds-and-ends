@@ -40,6 +40,10 @@ body.rtl .supercooltools-elementsearch__menu ul li a .status { margin: 3px -18px
 }
 #supercooltools-freshdesk iframe { position: relative; }
 
+iframe.zEWidget-launcher {
+  display: none !important;
+}
+
 /**
  * Styling Author Instruction field
  */

@@ -2,5 +2,5 @@
 
 return array(
 	'openInstructionLinksInNewWindow' => true,
-	'freshdeskHandle' => null
+	'zendeskHandle' => null
 );
