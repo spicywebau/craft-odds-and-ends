@@ -56,12 +56,15 @@ class SupercoolToolsPlugin extends BasePlugin
 		{
 			craft()->templates->includeCssResource('supercooltools/css/supercooltools.css');
 			craft()->templates->includeJsResource('supercooltools/js/supercooltools.js');
+		
 
 			if (craft()->config->get('openInstructionLinksInNewWindow', 'SupercoolTools')) {
 				craft()->templates->includeJs('new SupercoolTools.TargetBlankInstructionLinks();');
 			}
 
+			craft()->templates->includeJsFile('//assets.zendesk.com/embeddable_framework/main.js');
 			$zendeskHandle = craft()->config->get('zendeskHandle', 'SupercoolTools');
+
 			if (!is_null($zendeskHandle)) {
 				craft()->templates->includeJs('new SupercoolTools.Zendesk("'.$zendeskHandle.'");');
 			}
@@ -74,7 +77,8 @@ class SupercoolToolsPlugin extends BasePlugin
 
 		$nav['supercooltools'] = array('label' => 'Tools', 'url' => 'supercooltools', 'icon' => 'tool');
 
-		if (!is_null(craft()->config->get('zendeskHandle', 'SupercoolTools')))
+		$zendeskHandle = craft()->config->get('zendeskHandle', 'SupercoolTools');
+		if (!is_null($zendeskHandle))
 		{
 			$nav['supercooltools-zendesk'] = array('label' => 'Support', 'url' => '#help', 'icon' => 'mail');
 		}
