@@ -1,5 +1,11 @@
 ## Field types
 
+### Width
+This lets you define the width of a block as well as left and right padding. This field simply outputs three sets of classes which can be defined when setting the field up.
+
+![width Field Settings](https://raw.githubusercontent.com/supercool/Tools/master/screenshots/width-settings.png)
+![width Field](https://raw.githubusercontent.com/supercool/Tools/master/screenshots/width-field.png)
+
 ### Dropdown (other)
 Like a normal Dropdown field but with an additional text option that the user can add what they like to.
 
@@ -64,12 +70,15 @@ Default: `true`
 Set this to true to force all instruction links to open in new a window/tab.
 
 
-### `freshdeskHandle`
+### `zendeskHandle`
 
 Default: `null`
 
-Set this to your Freshdesk subdomain handle (e.g. http://mycompanyhandle.freshdesk.com would be ‘mycompanyhandle’).
-Once set this will add a “Support” link to the main nav that will pop open a modal with the widget in it. If you want to open the modal from some other arbitrary html then give it a class of `supercooltools-trigger-freshdesk`.
+Set this to your Zendesk subdomain handle (e.g. http://mycompanyhandle.zenddesk.com would be ‘mycompanyhandle’).
+Once set this will add a “Support” link to the main nav that will pop open a widget.
+
+![Zendesk Support Link](https://raw.githubusercontent.com/supercool/Tools/master/screenshots/zendesk-support-link.png)
+![Zendesk Support Widget](https://raw.githubusercontent.com/supercool/Tools/master/screenshots/zendesk-support-widget.png)
 
 
 ## Miscellaneous
@@ -101,6 +110,11 @@ Here is an example you could use with cron:
 
 # Changelog
 
+### 1.7.0
+
+- Added a new field type called Width which lets you define the width of a block as well as left and right padding. This field simply outputs three sets of classes which can be defined when setting the field up.
+- Added a Zendesk widget.
+- Removed the support for Freshdesk.
 
 ### 1.6.1
 
