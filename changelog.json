@@ -6,7 +6,8 @@
 		"notes": [
 			"[Added] Added a new field type called Width that lets you define width of a block as well as left and right padding.",
 			"[Added] Added a Zendesk widget.",
-			"[Removed] We no longer support Freshdesk."
+			"# Breaking Change",
+			"[Added] We no longer support Freshdesk."
 		]
 	},
 	{
