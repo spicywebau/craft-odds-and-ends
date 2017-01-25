@@ -7,7 +7,7 @@
 		value: value,
 		options: options,
 		toggle: true,
-		targetPrefix: 'section'
+		targetPrefix: 'section'~name
 	})
 }}
 
@@ -18,13 +18,13 @@
 	{% set showSection = (( not selectedSection and loop.first ) or selectedSection == option.value) %}
 
 	{% if option.value == 'other' %}
-		<div id="sectionother" {% if not showSection %} class="hidden" {% endif %}>
+		<div id="section{{loop.parent.name}}other" {% if not showSection %} class="hidden" {% endif %}>
 
 			{{
 				forms.textField({
 					placeholder: settings.otherPlaceholder|t,
 					name: name~'[otherValue]',
-					value: value.otherValue,
+					value: value.otherValue ?? null,
 					required: true,
 				})
 			}}
