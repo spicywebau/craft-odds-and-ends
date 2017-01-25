@@ -1,5 +1,13 @@
 [
 	{
+		"version": "1.7.1",
+		"downloadUrl": "https://github.com/supercool/Tools/archive/1.7.1.zip",
+		"date": "2017-01-25T14:00:00-00:00",
+		"notes": [
+			"[Fixed] Fixed other dropdown and Matrix conflict"
+		]
+	},
+	{
 		"version": "1.7.0",
 		"downloadUrl": "https://github.com/supercool/Tools/archive/1.7.0.zip",
 		"date": "2016-10-28T16:00:00-00:00",
