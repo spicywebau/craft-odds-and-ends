@@ -28,6 +28,14 @@ class SupercoolToolsController extends BaseController
 			'SearchIndex' => craft()->components->getComponentByTypeAndClass(ComponentType::Tool, 'SearchIndex')
 		);
 
+		// Check supercal plugin is enabled
+		// if yes then add save events tool
+		$plugin = craft()->plugins->getPlugin('superCal', false);
+		if ( $plugin->isEnabled )
+		{
+			$tools['SupercoolTools_SaveEvents'] = craft()->components->getComponentByTypeAndClass(ComponentType::Tool, 'SupercoolTools_SaveEvents');
+		}
+
 		$variables['tools'] = ToolVariable::populateVariables($tools);
 
 		$this->renderTemplate('supercooltools/_index', $variables);
