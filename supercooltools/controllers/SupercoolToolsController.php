@@ -15,32 +15,6 @@ class SupercoolToolsController extends BaseController
 
 	protected $allowAnonymous = array('actionDownloadFile','actionClearCache');
 
-
-	/**
-	 * Shows the Tools index template
-	 */
-	public function actionToolsIndex()
-	{
-		// Get only the tools we want
-		$tools = array(
-			'SupercoolTools_ClearCaches' => craft()->components->getComponentByTypeAndClass(ComponentType::Tool, 'SupercoolTools_ClearCaches'),
-			'SupercoolTools_ClearTasks' => craft()->components->getComponentByTypeAndClass(ComponentType::Tool, 'SupercoolTools_ClearTasks'),
-			'SearchIndex' => craft()->components->getComponentByTypeAndClass(ComponentType::Tool, 'SearchIndex')
-		);
-
-		// Check supercal plugin is enabled
-		// if yes then add save events tool
-		$plugin = craft()->plugins->getPlugin('superCal', false);
-		if ( $plugin->isEnabled )
-		{
-			$tools['SupercoolTools_SaveEvents'] = craft()->components->getComponentByTypeAndClass(ComponentType::Tool, 'SupercoolTools_SaveEvents');
-		}
-
-		$variables['tools'] = ToolVariable::populateVariables($tools);
-
-		$this->renderTemplate('supercooltools/_index', $variables);
-	}
-
 	/**
 	 * Downloads a file and cleans up old temporary assets
 	 */
