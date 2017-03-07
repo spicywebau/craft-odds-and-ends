@@ -57,7 +57,8 @@ class SupercoolToolsPlugin extends BasePlugin
 				craft()->templates->includeJs('new SupercoolTools.TargetBlankInstructionLinks();');
 			}
 
-			craft()->templates->includeJsFile('//assets.zendesk.com/embeddable_framework/main.js');
+			// craft()->templates->includeJsFile('//assets.zendesk.com/embeddable_framework/main.js');
+			craft()->templates->includeJsResource('supercooltools/js/zendesk.js');
 			$zendeskHandle = craft()->config->get('zendeskHandle', 'SupercoolTools');
 
 			if (!is_null($zendeskHandle)) {
