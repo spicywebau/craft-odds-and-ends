@@ -69,18 +69,6 @@ Default: `true`
 
 Set this to true to force all instruction links to open in new a window/tab.
 
-
-### `zendeskHandle`
-
-Default: `null`
-
-Set this to your Zendesk subdomain handle (e.g. http://mycompanyhandle.zenddesk.com would be ‘mycompanyhandle’).
-Once set this will add a “Support” link to the main nav that will pop open a widget.
-
-![Zendesk Support Link](https://raw.githubusercontent.com/supercool/Tools/master/screenshots/zendesk-support-link.png)
-![Zendesk Support Widget](https://raw.githubusercontent.com/supercool/Tools/master/screenshots/zendesk-support-widget.png)
-
-
 ## Miscellaneous
 
 ### Download File
