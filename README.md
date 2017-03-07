@@ -110,6 +110,10 @@ Here is an example you could use with cron:
 
 # Changelog
 
+### 1.10.0
+
+- Removed Zendesk support.
+
 ### 1.7.0
 
 - Added a new field type called Width which lets you define the width of a block as well as left and right padding. This field simply outputs three sets of classes which can be defined when setting the field up.

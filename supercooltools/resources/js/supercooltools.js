@@ -35,47 +35,6 @@ SupercoolTools.TargetBlankInstructionLinks = Garnish.Base.extend(
 
 
 /**
- * Opens a modal with the Freshdesk widget in it
- */
-SupercoolTools.Zendesk = Garnish.Base.extend(
-{
-
-	modal: null,
-	handle: null,
-
-	init: function(handle)
-	{
-		this.handle = handle;
-		this.addListener($('.supercooltools-trigger-zendesk, #nav-supercooltools-zendesk a'), 'click', 'showModal');
-		
-		window.zEmbed||(function(){
-		  var queue = [];
-
-		  window.zEmbed = function() {
-		    queue.push(arguments);
-		  }
-		  window.zE = window.zE || window.zEmbed;
-		  document.zendeskHost = handle+'.zendesk.com';
-		  document.zEQueue = queue;
-		}());
-
-		zE(function() {
-	    	zE.hide();
-	  	});
-	},
-
-	showModal: function(ev)
-	{
-
-		ev.preventDefault();
-
-		zE.activate();
-	}
-
-});
-
-
-/**
  * Search elements like Tags - forked from `Craft.TagSelectInput`
  */
 SupercoolTools.ElementSearchInput = Craft.BaseElementSelectInput.extend(

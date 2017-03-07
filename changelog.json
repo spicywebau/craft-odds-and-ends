@@ -1,5 +1,14 @@
 [
 	{
+		"version": "1.10.0",
+		"downloadUrl": "https://github.com/supercool/Tools/archive/1.9.0.zip",
+		"date": "2017-03-07T12:00:00-00:00",
+		"notes": [
+			"# Breaking Change",
+			"We no longer support Zendesk."
+		]
+	},
+	{
 		"version": "1.9.0",
 		"downloadUrl": "https://github.com/supercool/Tools/archive/1.9.0.zip",
 		"date": "2017-01-27T14:00:00-00:00",

@@ -20,7 +20,7 @@ class SupercoolToolsPlugin extends BasePlugin
 
 	public function getVersion()
 	{
-		return '1.9.0';
+		return '1.10.0';
 	}
 
 	public function getSchemaVersion()
@@ -57,23 +57,6 @@ class SupercoolToolsPlugin extends BasePlugin
 				craft()->templates->includeJs('new SupercoolTools.TargetBlankInstructionLinks();');
 			}
 
-			// craft()->templates->includeJsFile('//assets.zendesk.com/embeddable_framework/main.js');
-			craft()->templates->includeJsResource('supercooltools/js/zendesk.js');
-			$zendeskHandle = craft()->config->get('zendeskHandle', 'SupercoolTools');
-
-			if (!is_null($zendeskHandle)) {
-				craft()->templates->includeJs('new SupercoolTools.Zendesk("'.$zendeskHandle.'");');
-			}
-
-		}
-	}
-
-	public function modifyCpNav(&$nav)
-	{
-		$zendeskHandle = craft()->config->get('zendeskHandle', 'SupercoolTools');
-		if (!is_null($zendeskHandle))
-		{
-			$nav['supercooltools-zendesk'] = array('label' => 'Support', 'url' => '#help', 'icon' => 'mail');
 		}
 	}
 
