@@ -1,0 +1,17 @@
+{% import "_includes/forms" as forms %}
+
+{% if settings.defaultNumber is not empty %}
+	{% set value = settings.defaultNumber | number_format( settings.decimals ) %}
+{% else %}
+	{% set value = null %}
+{% endif %}
+
+{{ forms.textField({
+	label: "Default Number"|t,
+	id: 'defaultNumber',
+	name: 'defaultNumber',
+	value: value,
+	size: 5,
+	required: true,
+	errors: settings.getErrors('defaultNumber')
+}) }}

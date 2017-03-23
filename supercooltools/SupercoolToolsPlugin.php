@@ -20,7 +20,7 @@ class SupercoolToolsPlugin extends BasePlugin
 
 	public function getVersion()
 	{
-		return '1.5.4';
+		return '1.10.0';
 	}
 
 	public function getSchemaVersion()
@@ -43,11 +43,6 @@ class SupercoolToolsPlugin extends BasePlugin
 		return 'https://raw.githubusercontent.com/supercool/Tools/master/changelog.json';
 	}
 
-	public function hasCpSection()
-	{
-		return true;
-	}
-
 	public function init()
 	{
 		Craft::import('plugins.supercooltools.tools.*');
@@ -56,36 +51,12 @@ class SupercoolToolsPlugin extends BasePlugin
 		{
 			craft()->templates->includeCssResource('supercooltools/css/supercooltools.css');
 			craft()->templates->includeJsResource('supercooltools/js/supercooltools.js');
+		
 
 			if (craft()->config->get('openInstructionLinksInNewWindow', 'SupercoolTools')) {
 				craft()->templates->includeJs('new SupercoolTools.TargetBlankInstructionLinks();');
 			}
 
-			$freshdeskHandle = craft()->config->get('freshdeskHandle', 'SupercoolTools');
-			if (!is_null($freshdeskHandle)) {
-				craft()->templates->includeJs('new SupercoolTools.Freshdesk("'.$freshdeskHandle.'");');
-			}
-
 		}
 	}
-
-	public function modifyCpNav(&$nav)
-	{
-		if (isset($nav['supercooltools'])) {
-			$nav['supercooltools'] = array('label' => 'Tools', 'url' => 'supercooltools', 'icon' => 'tool');
-		}
-
-		if (!is_null(craft()->config->get('freshdeskHandle', 'SupercoolTools')))
-		{
-			$nav['supercooltools-freshdesk'] = array('label' => 'Support', 'url' => '#help', 'icon' => 'mail');
-		}
-	}
-
-	public function registerCpRoutes()
-	{
-		return array(
-			'supercooltools' => array('action' => 'supercoolTools/toolsIndex'),
-		);
-	}
-
 }

@@ -1,5 +1,28 @@
 ## Field types
 
+### Width
+This lets you define the width of a block as well as left and right padding. This field simply outputs three sets of classes which can be defined when setting the field up.
+
+![width Field Settings](https://raw.githubusercontent.com/supercool/Tools/master/screenshots/width-settings.png)
+![width Field](https://raw.githubusercontent.com/supercool/Tools/master/screenshots/width-field.png)
+
+### Dropdown (other)
+Like a normal Dropdown field but with an additional text option that the user can add what they like to.
+
+![Dropdown (other)](https://raw.githubusercontent.com/supercool/Tools/master/screenshots/dropdown-other.gif)
+
+You can customise the label and placeholder of the extra field, and also access all of the options from twig in the same way you can on a normal Dropdown field, see the official docs on this [here](https://craftcms.com/docs/dropdown-fields#templating).
+
+If the ‘other’ option has been selected then the value will be set to `other` and you can access the extra text the user entered via `{{ entry.dropdownField.otherValue }}`.
+
+### Default Number
+An extension of the standard Number field to let you add a default value.
+
+### Author Instructions
+This lets you output markdown instead of a field, which is useful when you have a Matrix block that doesn’t have any fields.
+
+![Author Instructions Example](https://raw.githubusercontent.com/supercool/Tools/master/screenshots/author-instructions-example.png)
+
 ### Categories (multiple groups)
 A Categories input that lets you select multiple Category groups.
 
@@ -46,15 +69,6 @@ Default: `true`
 
 Set this to true to force all instruction links to open in new a window/tab.
 
-
-### `freshdeskHandle`
-
-Default: `null`
-
-Set this to your Freshdesk subdomain handle (e.g. http://mycompanyhandle.freshdesk.com would be ‘mycompanyhandle’).
-Once set this will add a “Support” link to the main nav that will pop open a modal with the widget in it. If you want to open the modal from some other arbitrary html then give it a class of `supercooltools-trigger-freshdesk`.
-
-
 ## Miscellaneous
 
 ### Download File
@@ -84,6 +98,23 @@ Here is an example you could use with cron:
 
 # Changelog
 
+### 1.10.0
+
+- Removed Zendesk support.
+
+### 1.7.0
+
+- Added a new field type called Width which lets you define the width of a block as well as left and right padding. This field simply outputs three sets of classes which can be defined when setting the field up.
+- Added a Zendesk widget.
+- Removed the support for Freshdesk.
+
+### 1.6.1
+
+- Added a new field type called Default Number that mimics the behaviour of the normal Number field type but lets you set a default value.",
+- Added a new field type called Dropdown (other) that lets you add an ‘other’ option to a dropdown field. When ‘other’ is selected another text input is shown to allow the user to enter something other than the standard options provided.",
+
+### 1.6.0
+- Added a new field type called Author Instructions that lets you output markdown instead of a field. Useful when you have a Matrix block that doesn’t have any fields.
 
 ### 1.5.4
 - Fixed a bug where clearing all Tasks wouldn’t actually kill it, it would lie in wait and the next time a Task of the same name ran it would piggy back on that db row ...
