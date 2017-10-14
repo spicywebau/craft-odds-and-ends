@@ -145,6 +145,15 @@ class SupercoolToolsController extends BaseController
 			$criteria->section = $sections;
 
 		}
+
+		// Deal with Users
+		if ($elementType == ElementType::User)
+		{
+			// Start the criteria
+			$criteria = craft()->elements->getCriteria(ElementType::User);
+
+		}
+
 		// Deal with Categories
 		else if ($elementType == ElementType::Category)
 		{
@@ -161,7 +170,13 @@ class SupercoolToolsController extends BaseController
 		}
 
 		// Set the rest of the criteria
-		$criteria->title   = '*'.DbHelper::escapeParam($search).'*';
+
+		if ($elementType == ElementType::User)
+		{
+			$criteria->search = $search;
+		} else {
+			$criteria->title   = '*'.DbHelper::escapeParam($search).'*';
+		}
 		$criteria->id      = $notIds;
 		$criteria->status  = null;
 		$criteria->limit   = 20;
@@ -206,6 +221,32 @@ class SupercoolToolsController extends BaseController
 					'status'      => $element->status,
 					'sourceName'  => $element->group->name
 				);
+			}
+			else if ($elementType == ElementType::User)
+			{
+				// If "All" is ticked for sources
+				if ($sources[0] == "*") {
+
+					$sourceKey = "*";
+					$return[$sourceKey][] = array(
+						'id'          => $element->id,
+						'title'    		=> $element->fullName,
+						'status'      => $element->status,
+						'sourceName'  => 'User'
+					);
+
+				} else if (count($element->getGroups()) > 0) {
+
+					foreach ($element->getGroups() as $group) {
+						$sourceKey = "group:".$group->id;
+						$return[$sourceKey][] = array(
+							'id'          => $element->id,
+							'title'    		=> $element->fullName,
+							'status'      => $element->status,
+							'sourceName'  => $group->name
+						);
+					}
+				}
 			}
 
 			$normalizedTitle = StringHelper::normalizeKeywords($element->getContent()->title);

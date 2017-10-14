@@ -258,7 +258,7 @@ SupercoolTools.ElementSearchInput = Craft.BaseElementSelectInput.extend(
 
 			console.log(this.settings.elementType);
 
-		if (this.settings.elementType == 'Entry')
+		if (this.settings.elementType == 'Entry' || this.settings.elementType == 'User')
 		{
 			var $element = $('<div class="element removable" data-id="'+elementId+'" data-editable/>').appendTo(this.$elementsContainer),
 				$input = $('<input type="hidden" name="'+this.settings.name+'[]" value="'+elementId+'"/>').appendTo($element)
@@ -324,7 +324,7 @@ SupercoolTools.ElementSearchInput = Craft.BaseElementSelectInput.extend(
 	removeElement: function($element)
 	{
 
-		if (this.settings.elementType == 'Entry')
+		if (this.settings.elementType == 'Entry' || this.settings.elementType == 'User')
 		{
 			this.removeElements($element);
 			this.animateElementAway($element, function() {
