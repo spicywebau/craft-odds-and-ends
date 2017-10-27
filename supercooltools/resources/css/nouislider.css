@@ -220,6 +220,10 @@
     cursor: move;
 }
 
+.noUi-handle:hover:after {
+	color: #0d78f2;
+}
+
 .noUi__output {
 	background-color: #BDC0C4;
 	display: inline-block;
