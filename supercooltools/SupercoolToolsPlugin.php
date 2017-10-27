@@ -20,7 +20,7 @@ class SupercoolToolsPlugin extends BasePlugin
 
 	public function getVersion()
 	{
-		return '1.10.0';
+		return '1.11.0';
 	}
 
 	public function getSchemaVersion()

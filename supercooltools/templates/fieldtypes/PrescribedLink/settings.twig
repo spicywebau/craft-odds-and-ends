@@ -1,0 +1,39 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.textField({
+	label: "Prescribed link"|t,
+	instructions: "https://example.com/{value}"|t,
+	id: 'prescribedLink',
+	name: 'prescribedLink',
+	required: true,
+	value: settings.prescribedLink,
+	errors: settings.getErrors('prescribedLink')
+}) }}
+
+{{ forms.textField({
+	label: "Prescribed link title"|t,
+	instructions: "Go to Spektrix iframe"|t,
+	id: 'prescribedLinkTitle',
+	name: 'prescribedLinkTitle',
+	required: true,
+	value: settings.prescribedLinkTitle,
+	errors: settings.getErrors('prescribedLinkTitle')
+}) }}
+
+{{ forms.textField({
+	label: "Size"|t,
+	instructions: "The size of the input."|t,
+	id: 'size',
+	name: 'size',
+	value: settings.size,
+	size: 3,
+	errors: settings.getErrors('size')
+}) }}
+
+{{ forms.lightswitchField({
+	label: "Disabled"|t,
+	id: 'disabled',
+	name: 'disabled',
+	on: settings.disabled,
+	errors: settings.getErrors('disabled')
+}) }}

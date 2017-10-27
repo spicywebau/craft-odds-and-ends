@@ -53,3 +53,10 @@ iframe.zEWidget-launcher {
 	padding: 15px;
 	font-size: 15px;
 }
+
+/**
+ * Prescribed Link
+ */
+.tools__prescribed-link {
+  margin-bottom: 5px;
+}
