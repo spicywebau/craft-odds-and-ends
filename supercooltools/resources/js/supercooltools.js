@@ -260,7 +260,7 @@ SupercoolTools.ElementSearchInput = Craft.BaseElementSelectInput.extend(
 
 		if (this.settings.elementType == 'Entry')
 		{
-			var $element = $('<div class="element removable" data-id="'+elementId+'" data-editable/>').appendTo(this.$elementsContainer),
+			var $element = $('<div class="element small removable" data-id="'+elementId+'" data-editable/>').appendTo(this.$elementsContainer),
 				$input = $('<input type="hidden" name="'+this.settings.name+'[]" value="'+elementId+'"/>').appendTo($element)
 
 			$('<a class="delete icon" title="'+Craft.t('Remove')+'"></a>').appendTo($element);
