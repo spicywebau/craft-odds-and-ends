@@ -33,7 +33,7 @@ class DisabledDropdown extends Dropdown
 
     // Static Methods
     // =========================================================================
-    
+
     /**
      * Returns the display name of this class.
      *
@@ -46,6 +46,19 @@ class DisabledDropdown extends Dropdown
 
     // Public Methods
     // =========================================================================
+
+    /**
+     * @inheritdoc
+     */
+    public function normalizeValue($value, ElementInterface $element = null)
+    {
+        if ($value == null) {
+            $value = $this->defaultValue();
+        }
+
+        return parent::normalizeValue($value, $element);
+    }
+
 
     /**
      * @inheritdoc

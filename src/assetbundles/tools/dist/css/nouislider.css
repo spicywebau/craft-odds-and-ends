@@ -166,27 +166,27 @@
 	border: none;
 	height: 5px;
 	background: #BCBFC3;
-	margin-top: 60px;
+	margin-top: 40px;
 	margin-bottom: 20px;
 }
 
 .noUi-pips .noUi-value-sub, .noUi-pips .noUi-value-large {
-  display: none; 
+  display: none;
 }
 
 .noUi-pips .noUi-marker-sub, .noUi-pips .noUi-marker-large {
   top: -9px;
   height: 14px;
   width: 4px;
-  background: #BCBFC3; 
+  background: #BCBFC3;
 }
 
 .noUi-base .noUi-connect:nth-child(4) {
-  background: #DC5942; 
+  background: #DC5942;
 }
 
 .noUi-base .noUi-connect:nth-child(6), .noUi-base .noUi-connect:nth-child(2) {
-  background: #566576; 
+  background: #566576;
 }
 
 .firstHandle, .fourthHandle {
@@ -214,7 +214,7 @@
 	top: 0;
 	left: 11px;
 	background: none;
-	font-family: 'Craft';    
+	font-family: 'Craft';
     word-wrap: normal !important;
     color: rgba(0,0,0,0.2);
     cursor: move;
@@ -236,16 +236,15 @@
 	padding: 3px;
 	border-radius: 2px;
 	position: absolute;
-	top: 18px;
+	top: 0;
 	right: 0;
 	font-size: 10px;
 	color: #fff;
 }
 
 .noUi__info-block {
-	position: absolute;
-	top: 25px;
-	left: 0;
+	display: inline-block;
+	width: 50%;
 	color: #BDC0C4;
 	font-size: 10px;
 }

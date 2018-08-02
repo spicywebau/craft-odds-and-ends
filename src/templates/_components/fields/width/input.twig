@@ -1,5 +1,7 @@
 {% import "_includes/forms" as forms %}
 
+{% do view.registerAssetBundle("supercool\\tools\\assetbundles\\tools\\ToolsAsset") %}
+
 {{
 	forms.hidden({
 		label: 'Width'|t,
@@ -66,6 +68,12 @@
 	})
 }}
 
+<div class="noUi__total" id="{{name}}-total"></div>
+
+<div class="noUi__info-block">
+	<div class="noUi__width-info"> <span></span> Block width </div>
+	<div class="noUi__margin-info"> <span></span> Block margin </div>
+</div>
 
 <div id="{{ name }}-slider"></div>
 
@@ -80,7 +88,7 @@
 	var secondPointer = {{ value.secondPointer }};
 	var thirdPointer = {{ value.thirdPointer }};
 	var fourthPointer = {{ value.fourthPointer }};
-	
+
 
 	var slider = document.getElementById("{{namespaceId}}-slider");
 
@@ -111,9 +119,9 @@
 		spaceLeft = second - left;
 		spaceRight = right - third;
 
-		
+
 		total = "TOTAL: " + (width + spaceLeft + spaceRight) + " UNITS";
-		
+
 		document.getElementById('{{namespaceId}}-total').innerHTML = total;
 
 	});
@@ -152,13 +160,6 @@
 {% endset %}
 
 {% js sliderFieldJS %}
-
-<div class="noUi__total" id="{{name}}-total"></div>
-
-<div class="noUi__info-block">
-	<div class="noUi__width-info"> <span></span> Block width </div>
-	<div class="noUi__margin-info"> <span></span> Block margin </div>
-</div>
 
 
 

@@ -20,7 +20,6 @@ use supercool\tools\fields\DisabledDropdown as DisabledDropdownField;
 use supercool\tools\fields\EntriesSearch as EntriesSearchField;
 use supercool\tools\fields\CategoriesSearch as CategoriesSearchField;
 use supercool\tools\fields\CategoriesMultipleGroups as CategoriesMultipleGroupsField;
-use supercool\tools\fields\OtherDropdown as OtherDropdownField;
 use supercool\tools\fields\Width as WidthField;
 use supercool\tools\fields\Ancestors as AncestorsField;
 
@@ -98,7 +97,6 @@ class Tools extends Plugin
                 $event->types[] = EntriesSearchField::class;
                 $event->types[] = CategoriesSearchField::class;
                 $event->types[] = CategoriesMultipleGroupsField::class;
-                $event->types[] = OtherDropdownField::class;
                 $event->types[] = WidthField::class;
                 $event->types[] = AncestorsField::class;
             }

@@ -6,18 +6,6 @@ This lets you define the width of a block as well as left and right padding. Thi
 ![width Field Settings](https://raw.githubusercontent.com/supercool/Tools/master/screenshots/width-settings.png)
 ![width Field](https://raw.githubusercontent.com/supercool/Tools/master/screenshots/width-field.png)
 
-### Dropdown (other)
-Like a normal Dropdown field but with an additional text option that the user can add what they like to.
-
-![Dropdown (other)](https://raw.githubusercontent.com/supercool/Tools/master/screenshots/dropdown-other.gif)
-
-You can customise the label and placeholder of the extra field, and also access all of the options from twig in the same way you can on a normal Dropdown field, see the official docs on this [here](https://craftcms.com/docs/dropdown-fields#templating).
-
-If the ‘other’ option has been selected then the value will be set to `other` and you can access the extra text the user entered via `{{ entry.dropdownField.otherValue }}`.
-
-### Default Number
-An extension of the standard Number field to let you add a default value.
-
 ### Author Instructions
 This lets you output markdown instead of a field, which is useful when you have a Matrix block that doesn’t have any fields.
 
@@ -51,15 +39,6 @@ The following field types are currently supported:
 A simple widget that lets you assign a template to load from your site templates folder. Go nuts.
 
 
-## CP Tools
-
-The “Tools” section, accessible from the main menu, has a few simplified tools in it, much like the tools you can find on the Settings page. At present there are three:
-
-- Clear Tasks - empties the Tasks table, which is useful if you get a stuck Task
-- Clear Caches - clears only the template caches
-- Rebuild Search Indexes - behaves the same as the Settings page one
-
-
 ## Config variables
 
 
@@ -79,12 +58,4 @@ The `id` parameter is required and must be a valid Asset id.
 Usage:
 ```
 <a href="{{ actionUrl('supercoolTools/downloadFile', { id : file.id }) }}">Download</a>
-```
-
-### Clear Cache
-A controller action that will delete the all the template caches.
-
-Here is an example you could use with cron:
-```
-/usr/bin/curl --silent -H "X-Requested-With:XMLHttpRequest" http://example.com/actions/supercoolTools/clearCache
 ```
