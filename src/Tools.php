@@ -22,6 +22,7 @@ use supercool\tools\fields\CategoriesSearch as CategoriesSearchField;
 use supercool\tools\fields\CategoriesMultipleGroups as CategoriesMultipleGroupsField;
 use supercool\tools\fields\Width as WidthField;
 use supercool\tools\fields\Ancestors as AncestorsField;
+use supercool\tools\fields\Grid as GridField;
 
 use supercool\tools\widgets\RollYourOwn as RollYourOwnWidget;
 
@@ -35,21 +36,6 @@ use craft\events\RegisterComponentTypesEvent;
 
 use yii\base\Event;
 
-/**
- * Craft plugins are very much like little applications in and of themselves. We’ve made
- * it as simple as we can, but the training wheels are off. A little prior knowledge is
- * going to be required to write a plugin.
- *
- * For the purposes of the plugin docs, we’re going to assume that you know PHP and SQL,
- * as well as some semi-advanced concepts like object-oriented programming and PHP namespaces.
- *
- * https://craftcms.com/docs/plugins/introduction
- *
- * @author    Naveed
- * @package   Tester
- * @since     1.0.0
- *
- */
 class Tools extends Plugin
 {
     // Static Properties
@@ -99,6 +85,7 @@ class Tools extends Plugin
                 $event->types[] = CategoriesMultipleGroupsField::class;
                 $event->types[] = WidthField::class;
                 $event->types[] = AncestorsField::class;
+                $event->types[] = GridField::class;
             }
         );
 

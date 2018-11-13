@@ -7,3 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## 2.0.0 - 2018-08-02
 ### Added
 - Initial Craft CMS 3 release
+
+## 2.1.0 - 2018-11-13
+### Added
+- Added a grid field type which is going to be used as a width field
