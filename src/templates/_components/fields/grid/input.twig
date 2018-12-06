@@ -30,62 +30,89 @@
 	})
 }}
 
-<div class="noUi__grid-value" id="{{name}}-grid-value"></div>
+<div><a href="#" id="{{ name }}-toggle">Toggle</a></div>
 
 <div id="{{ name }}-slider"></div>
 
 
 {% set sliderFieldJS %}
 
-	var left = {{ value.left }};
-	var right = {{ value.right }};
-
-
+	var left = {{ value.left }} == 0 ? 1 : {{ value.left }};
+	var right = {{ value.right }} == 0 ? 2 : {{ value.right }};
+	var leftInitial = left;
+	var rightInitial = right;
+	
 	var slider = document.getElementById("{{namespaceId}}-slider");
 
-	noUiSlider.create(slider, {
-		start: [left, right],
-		connect: true,
-		margin: 0,
-		step: 1,
-		tooltips: false,
-		range: {
-			'min': 1,
-			'max': {{ value.totalColumns + 1 }}
-		},
-		pips: {
-			mode: 'steps',
-			density: 100
-		}
+	$( "#{{namespaceId}}-toggle" ).click(function() {
+	
+			if($( "#{{namespaceId}}-slider" ).children().length > 0){
+				$( "#{{namespaceId}}-slider" ).empty();
+				slider.noUiSlider = null;
+				$( "#{{namespaceId}}-slider" ).removeClass();
+				$('#{{namespaceId}}-left').val("0");
+				$('#{{namespaceId}}-right').val("0");
+			}
+			else{
+				left = leftInitial;
+				right = rightInitial;
+				$('#{{namespaceId}}-left').val( left );
+				$('#{{namespaceId}}-right').val( right );
+				setupSlider();
+			}
+			
 	});
 
-	slider.noUiSlider.on('update', function(values, handle) {
+	{% if value.left != 0 %}
+		setupSlider();
+	{% endif %}
+	
+	function setupSlider(){
+		
+		noUiSlider.create(slider, {
+			start: [left, right],
+			connect: true,
+			margin: 0,
+			step: 1,
+			tooltips: false,
+			range: {
+				'min': 1,
+				'max': {{ value.totalColumns + 1 }}
+			},
+			pips: {
+				mode: 'steps',
+				density: 100
+			}
+		});
 
-		left = parseInt(values[0]);
-		right = parseInt(values[1]);
+		slider.noUiSlider.on('update', function(values, handle) {
 
-		width = left + right;
+			left = parseInt(values[0]);
+			right = parseInt(values[1]);
+			leftInitial = left;
+			rightInitial = right;
 
-		gridValue = "Value: " + left +","+ right;
-		document.getElementById('{{namespaceId}}-grid-value').innerHTML = gridValue;
-	});
+			width = left + right;
+			
+		});
 
 
-	slider.noUiSlider.on('end', function(values, handle) {
+		slider.noUiSlider.on('end', function(values, handle) {
 
-		left = parseInt(values[0]);
-		right = parseInt(values[1]);
+			left = parseInt(values[0]);
+			right = parseInt(values[1]);
 
-		width = left + right;
+			width = left + right;
 
-		$('#{{namespaceId}}-left').val( left );
-		$('#{{namespaceId}}-right').val( right );
-	});
+			$('#{{namespaceId}}-left').val( left );
+			$('#{{namespaceId}}-right').val( right );
+		});
 
-	// Settings classes on handles
-	var origins = slider.getElementsByClassName('noUi-handle');
-	origins[0].className += origins[0].className ? ' grid__firstHandle' : 'grid__firstHandle';
-	origins[1].className += origins[1].className ? ' grid__secondHandle' : 'grid__secondHandle';
+		// Settings classes on handles
+		var origins = slider.getElementsByClassName('noUi-handle');
+		origins[0].className += origins[0].className ? ' grid__firstHandle' : 'grid__firstHandle';
+		origins[1].className += origins[1].className ? ' grid__secondHandle' : 'grid__secondHandle';
+	}
 
 {% endset %}
 
