@@ -30,47 +30,66 @@
 	})
 }}
 
-<div><a href="#" id="{{ name }}-toggle">Toggle</a></div>
+{{
+	forms.hidden({
+		label: 'leftStored'|t,
+		name: name~'[leftStored]',
+		id: name~'-leftStored',
+		value: value.left,
+	})
+}}
+
+{{
+	forms.hidden({
+		label: 'rightStored'|t,
+		name: name~'[rightStored]',
+		id: name~'-rightStored',
+		value: value.right,
+	})
+}}
+
+<div><a href="#" id="{{ name }}-toggle" data-slider="{{ namespaceId }}" data-leftright="{{ namespaceId }}">Toggle</a></div>
 
 <div id="{{ name }}-slider"></div>
 
 
 {% set sliderFieldJS %}
 
-	var left = {{ value.left }} == 0 ? 1 : {{ value.left }};
-	var right = {{ value.right }} == 0 ? 2 : {{ value.right }};
-	var leftInitial = left;
-	var rightInitial = right;
-	
-	var slider = document.getElementById("{{namespaceId}}-slider");
-
-	$( "#{{namespaceId}}-toggle" ).click(function() {
-	
-			if($( "#{{namespaceId}}-slider" ).children().length > 0){
-				$( "#{{namespaceId}}-slider" ).empty();
-				slider.noUiSlider = null;
-				$( "#{{namespaceId}}-slider" ).removeClass();
-				$('#{{namespaceId}}-left').val("0");
-				$('#{{namespaceId}}-right').val("0");
+	$( "#{{namespaceId}}-toggle" ).click(function(ev) {
+			var slider = $('#'+$(this).data('slider')+"-slider");
+			var sliderhtml = document.getElementById($(this).data('slider')+"-slider");
+			if(slider.children().length > 0){
+				slider.empty();
+				sliderhtml.noUiSlider = null;
+				slider.removeClass();
+				$('#' + $(this).data('leftright') + '-left').val("0");
+				$('#' + $(this).data('leftright') + '-right').val("0");
 			}
 			else{
-				left = leftInitial;
-				right = rightInitial;
-				$('#{{namespaceId}}-left').val( left );
-				$('#{{namespaceId}}-right').val( right );
-				setupSlider();
+				
+				var left = $('#' + $(this).data('leftright') + '-leftStored').val();
+				var right = $('#' + $(this).data('leftright') + '-rightStored').val();
+				$('#' + $(this).data('leftright') + '-left').val( left );
+				$('#' + $(this).data('leftright') + '-right').val( right );
+
+				left = left == 0 ? 2 : left;
+				right = right == 0 ? 4 : right;
+	
+				setupSlider($(this).data('slider'), left, right);
 			}
 			
 	});
 
 	{% if value.left != 0 %}
-		setupSlider();
+		setupSlider("{{namespaceId}}", {{ value.left }},{{ value.right }});
 	{% endif %}
 	
-	function setupSlider(){
+	function setupSlider(sld, ll, rr){
 		
+		var slider = document.getElementById(sld + "-slider");
+	
 		noUiSlider.create(slider, {
-			start: [left, right],
+			start: [ll, rr],
 			connect: true,
 			margin: 0,
 			step: 1,
@@ -87,25 +106,28 @@
 
 		slider.noUiSlider.on('update', function(values, handle) {
 
-			left = parseInt(values[0]);
-			right = parseInt(values[1]);
-			leftInitial = left;
-			rightInitial = right;
-
-			width = left + right;
+			ll = parseInt(values[0]);
+			rr = parseInt(values[1]);
+			
+			//leftInitial = left;
+			//rightInitial = right;
+ 
+			width = ll + rr;
 			
 		});
 
 
 		slider.noUiSlider.on('end', function(values, handle) {
 
-			left = parseInt(values[0]);
-			right = parseInt(values[1]);
+			ll = parseInt(values[0]);
+			rr = parseInt(values[1]);
 
-			width = left + right;
+			width = ll + rr;
 
-			$('#{{namespaceId}}-left').val( left );
-			$('#{{namespaceId}}-right').val( right );
+			$('#' + sld + '-left').val( ll );
+			$('#' + sld + '-right').val( rr );
+			$('#' + sld + '-leftStored').val( ll );
+			$('#' + sld + '-rightStored').val( rr );
 		});
 
 		// Settings classes on handles
