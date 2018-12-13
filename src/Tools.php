@@ -132,5 +132,8 @@ class Tools extends Plugin
 
     // Protected Methods
     // =========================================================================
-
+    protected function createSettingsModel()
+    {
+        return new \supercool\tools\models\Settings();
+    }
 }

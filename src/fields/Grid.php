@@ -108,6 +108,8 @@ class Grid extends Field implements PreviewableFieldInterface
     {
         if ( !$value )
         {
+            $this->leftDefault = ToolsPlugin::getInstance()->getSettings()->leftDefault;
+            $this->rightDefault = ToolsPlugin::getInstance()->getSettings()->rightDefault;
             $value = new GridData($this->totalColumns, $this->leftDefault, $this->rightDefault);
         }
 

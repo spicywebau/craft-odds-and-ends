@@ -87,22 +87,13 @@ class Width extends Dropdown
                         'type'         => 'singleline',
                         'class'        => 'code'
                     ),
-                    'leftDefault' => array(
-                        'heading'      => Craft::t('tools', 'Left Default?'),
-                        'type'         => 'checkbox',
-                        'class'        => 'thin'
-                    ),
 
                     'rightValue' => array(
                         'heading'      => Craft::t('tools', 'Right Value'),
                         'type'         => 'singleline',
                         'class'        => 'code'
-                    ),
-                    'rightDefault' => array(
-                        'heading'      => Craft::t('tools', 'Right Default?'),
-                        'type'         => 'checkbox',
-                        'class'        => 'thin'
-                    ),
+                    )
+                    
                 ),
                 'rows' => $options
             )
@@ -183,9 +174,7 @@ class Width extends Dropdown
                 'widthValue' => $option['widthValue'],
                 'widthDefault' => $option['widthDefault'],
                 'leftValue' => $option['leftValue'],
-                'leftDefault' => $option['leftDefault'],
                 'rightValue' => $option['rightValue'],
-                'rightDefault' => $option['rightDefault'],
             ];
         }
 
