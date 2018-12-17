@@ -106,17 +106,17 @@ class Grid extends Field implements PreviewableFieldInterface
 
     public function normalizeValue($value, ElementInterface $element = null)
     {
+        $this->leftDefault = ToolsPlugin::getInstance()->getSettings()->leftDefault;
+        $this->rightDefault = ToolsPlugin::getInstance()->getSettings()->rightDefault;
         if ( !$value )
         {
-            $this->leftDefault = ToolsPlugin::getInstance()->getSettings()->leftDefault;
-            $this->rightDefault = ToolsPlugin::getInstance()->getSettings()->rightDefault;
-            $value = new GridData($this->totalColumns, $this->leftDefault, $this->rightDefault);
+            $value = new GridData($this->totalColumns, 0, 0, $this->leftDefault, $this->rightDefault);
         }
 
         if (is_string($value))
         {
             $value = json_decode($value);
-            $value = new GridData($this->totalColumns, $value->left, $value->right);
+            $value = new GridData($this->totalColumns, $value->left, $value->right, $this->leftDefault, $this->rightDefault);
         }
 
         return $value;

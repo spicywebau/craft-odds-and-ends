@@ -11,7 +11,6 @@
 	})
 }}
 
-
 {{
 	forms.hidden({
 		label: 'left'|t,
@@ -32,10 +31,28 @@
 
 {{
 	forms.hidden({
+		label: 'leftDefault'|t,
+		name: name~'[leftDefault]',
+		id: name~'-leftDefault',
+		value: value.leftDefault,
+	})
+}}
+
+{{
+	forms.hidden({
+		label: 'rightDefault'|t,
+		name: name~'[rightDefault]',
+		id: name~'-rightDefault',
+		value: value.rightDefault,
+	})
+}}
+
+{{
+	forms.hidden({
 		label: 'leftStored'|t,
 		name: name~'[leftStored]',
 		id: name~'-leftStored',
-		value: value.left,
+		value: 0,
 	})
 }}
 
@@ -44,7 +61,7 @@
 		label: 'rightStored'|t,
 		name: name~'[rightStored]',
 		id: name~'-rightStored',
-		value: value.right,
+		value: 0,
 	})
 }}
 
@@ -67,13 +84,23 @@
 			}
 			else{
 				
-				var left = $('#' + $(this).data('leftright') + '-leftStored').val();
-				var right = $('#' + $(this).data('leftright') + '-rightStored').val();
-				$('#' + $(this).data('leftright') + '-left').val( left );
-				$('#' + $(this).data('leftright') + '-right').val( right );
+				var leftStored = $('#' + $(this).data('leftright') + '-leftStored').val();
+				var rightStored = $('#' + $(this).data('leftright') + '-rightStored').val();
+				var leftDefault = $('#' + $(this).data('leftright') + '-leftDefault').val();
+				var rightDefault = $('#' + $(this).data('leftright') + '-rightDefault').val();
 
-				left = left == 0 ? 2 : left;
-				right = right == 0 ? 4 : right;
+				if(leftStored != 0 && rightStored != 0){
+					$('#' + $(this).data('leftright') + '-left').val( leftStored );
+					$('#' + $(this).data('leftright') + '-right').val( rightStored );
+				}
+				else {
+					$('#' + $(this).data('leftright') + '-left').val( leftDefault );
+					$('#' + $(this).data('leftright') + '-right').val( rightDefault );
+				}
+				
+
+				var left = leftStored == 0 ? leftDefault : leftStored;
+				var right = rightStored == 0 ? rightDefault : rightStored;
 	
 				setupSlider($(this).data('slider'), left, right);
 			}
@@ -83,7 +110,7 @@
 	{% if value.left != 0 %}
 		setupSlider("{{namespaceId}}", {{ value.left }},{{ value.right }});
 	{% endif %}
-	
+
 	function setupSlider(sld, ll, rr){
 		
 		var slider = document.getElementById(sld + "-slider");
@@ -109,9 +136,6 @@
 			ll = parseInt(values[0]);
 			rr = parseInt(values[1]);
 			
-			//leftInitial = left;
-			//rightInitial = right;
- 
 			width = ll + rr;
 			
 		});
@@ -123,7 +147,6 @@
 			rr = parseInt(values[1]);
 
 			width = ll + rr;
-
 			$('#' + sld + '-left').val( ll );
 			$('#' + sld + '-right').val( rr );
 			$('#' + sld + '-leftStored').val( ll );
