@@ -29,7 +29,7 @@ class SupercoolToolsController extends BaseController
 		foreach ($files as $file)
 		{
 			$lastModifiedTime = IOHelper::getLastTimeModified($file, true);
-			if (substr(IOHelper::getFileName($file, false, true), 0, 6) === "assets" && DateTimeHelper::currentTimeStamp() - $lastModifiedTime->getTimestamp() >= 86400)
+			if (substr(IOHelper::getFileName($file, false, true), 0, 6) === "assets" && DateTimeHelper::currentTimeStamp() - $lastModifiedTime->getTimestamp() >= 300)
 			{
 				IOHelper::deleteFile($file);
 			}
