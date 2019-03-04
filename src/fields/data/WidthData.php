@@ -88,12 +88,12 @@ class WidthData
 				$width = $option['widthValue'];
 			}
 
-			if ( $option['leftDefault'] == 1 ) 
+			if ( array_key_exists('leftDefault', $option) && $option['leftDefault'] == 1 ) 
 			{
 				$left = $option['leftValue'];
 			}
 
-			if ( $option['rightDefault'] == 1 ) 
+			if ( array_key_exists('leftDefault', $option) && $option['rightDefault'] == 1 ) 
 			{
 				$right = $option['rightValue'];
 			}
