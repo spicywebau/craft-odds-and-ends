@@ -42,4 +42,9 @@ class GridData
         return $this->left . ',' . $this->right;
     }
 
+    public function leftRight()
+    {
+        return $this->left . ',' . $this->right;
+    }
+
 }
