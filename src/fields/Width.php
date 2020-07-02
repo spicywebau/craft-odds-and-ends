@@ -162,6 +162,53 @@ class Width extends Dropdown
         return [];
     }
 
+
+    /**
+     * Override crafts option validation for our custom setup
+     */
+    public function validateOptions()
+    {
+        $widthValues = [];
+        $leftValues = [];
+        $rightValues = [];
+        $hasDuplicateWidthValues = false;
+        $hasDuplicateLeftValues = false;
+        $hasDuplicateRightValues = false;
+
+        foreach ($this->options as &$option) {
+
+            $widthValue = (string)$option['widthValue'];
+            if (isset($widthValues[$widthValue])) {
+                $hasDuplicateWidthValues = true;
+            }
+
+            $leftValue = (string)$option['leftValue'];
+            if (isset($leftValues[$leftValue])) {
+                $hasDuplicateLeftValues = true;
+            }
+
+            $rightValue = (string)$option['rightValue'];
+            if (isset($rightValues[$rightValue])) {
+                $hasDuplicateRightValues = true;
+            }
+
+
+        }
+
+        if ($hasDuplicateWidthValues) {
+            $this->addError('options', Craft::t('app', 'All width values must be unique.'));
+        }
+
+        if ($hasDuplicateLeftValues) {
+            $this->addError('options', Craft::t('app', 'All left values must be unique.'));
+
+        }
+
+        if ($hasDuplicateRightValues) {
+            $this->addError('options', Craft::t('app', 'All right values must be unique.'));
+        }
+    }
+
     /**
      * @inheritdoc
      */
