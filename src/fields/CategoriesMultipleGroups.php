@@ -62,9 +62,9 @@ class CategoriesMultipleGroups extends Categories
      /**
      * @inheritdoc
      */
-    public function getInputHtml($value, ElementInterface $element = null): string
+    public function inputHtml($value, ElementInterface $element = null): string
     {
-        return BaseRelationField::getInputHtml($value, $element);
+        return BaseRelationField::inputHtml($value, $element);
     }
 
 
