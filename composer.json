@@ -2,7 +2,7 @@
     "name": "supercool/tools",
     "description": "A collection of useful things for Craft websites",
     "type": "craft-plugin",
-    "version": "2.1.9",
+    "version": "2.2.0",
     "keywords": [
         "craft",
         "cms",
