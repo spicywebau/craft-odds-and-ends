@@ -172,6 +172,8 @@ class Grid extends Field implements PreviewableFieldInterface
                 $this->totalColumns,
                 $this->leftDefault,
                 $this->rightDefault,
+                $this->leftDefault,
+                $this->rightDefault,
                 $this->minColumnSpan,
                 $this->maxColumnSpan
             );
@@ -190,6 +192,8 @@ class Grid extends Field implements PreviewableFieldInterface
                 $this->totalColumns,
                 $value->left,
                 $value->right,
+                $this->leftDefault,
+                $this->rightDefault,
                 $this->minColumnSpan,
                 $this->maxColumnSpan
             );
@@ -233,6 +237,8 @@ class Grid extends Field implements PreviewableFieldInterface
                     $this->totalColumns,
                     $newData->left,
                     $newData->right,
+                    $this->leftDefault,
+                    $this->rightDefault,
                     $this->minColumnSpan,
                     $this->maxColumnSpan
                 );
