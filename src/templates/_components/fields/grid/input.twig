@@ -10,6 +10,11 @@
 <b>value.left</b> : {{ dump(value.left) }} <br/>
 <b>value.right</b> : {{ dump(value.right) }} <br/>
 
+{# Default values to be used to see if field has a non-default value (and should be hidden)#}
+<b>value.leftDefault (for comparison to value.left to see if field should be hidden)</b> {{ dump(value.leftDefault) }} <br/>
+<b>value.rightDefault (for comparison to value.right to see if field should be hidden)</b> {{ dump(value.rightDefault) }} <br/> <br/>
+
+<b> NB: </b> Even if field is hidden it <b>MUST</b> still send left and right data to backend <br/>
 
 {# Text fields that allow for dummy saving of data.#}
 {# NOTE: This is the only data that needs to be sent to the backend (left and right values) #}
