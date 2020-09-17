@@ -2,7 +2,7 @@
     "name": "supercool/tools",
     "description": "A collection of useful things for Craft websites",
     "type": "craft-plugin",
-    "version": "2.2.0",
+    "version": "2.2.1",
     "keywords": [
         "craft",
         "cms",
@@ -22,7 +22,7 @@
         }
     ],
     "require": {
-        "craftcms/cms": "^3.5.0"
+        "craftcms/cms": ">=3.5.0"
     },
     "autoload": {
         "psr-4": {

@@ -2,166 +2,198 @@
 
 {% do view.registerAssetBundle("supercool\\tools\\assetbundles\\tools\\ToolsAsset") %}
 
-{{
-	forms.hidden({
-		label: 'totalColumns'|t,
-		name: name~'[totalColumns]',
-		id: name~'-totalColumns',
-		value: value.totalColumns,
-	})
-}}
 
-{{
-	forms.hidden({
-		label: 'left'|t,
-		name: name~'[left]',
-		id: name~'-left',
-		value: value.left,
-	})
-}}
-
-{{
-	forms.hidden({
-		label: 'right'|t,
-		name: name~'[right]',
-		id: name~'-right',
-		value: value.right,
-	})
-}}
-
-{{
-	forms.hidden({
-		label: 'leftDefault'|t,
-		name: name~'[leftDefault]',
-		id: name~'-leftDefault',
-		value: value.leftDefault,
-	})
-}}
-
-{{
-	forms.hidden({
-		label: 'rightDefault'|t,
-		name: name~'[rightDefault]',
-		id: name~'-rightDefault',
-		value: value.rightDefault,
-	})
-}}
-
-{{
-	forms.hidden({
-		label: 'leftStored'|t,
-		name: name~'[leftStored]',
-		id: name~'-leftStored',
-		value: 0,
-	})
-}}
-
-{{
-	forms.hidden({
-		label: 'rightStored'|t,
-		name: name~'[rightStored]',
-		id: name~'-rightStored',
-		value: 0,
-	})
-}}
-
-<div><a href="#" id="{{ name }}-toggle" data-slider="{{ namespaceId }}" data-leftright="{{ namespaceId }}">Toggle</a></div>
-
-<div id="{{ name }}-slider"></div>
+<b>Available variables:</b> <br/>
+<b>value.totalColumns</b> : {{ dump(value.totalColumns) }} <br/>
+<b>value.maxColumnSpan (max width in columns, falsy values mean unlimited)</b> : {{ dump(value.maxColumnSpan) }} <br/>
+<b>value.minColumnSpan (min width in columns)</b> : {{ dump(value.minColumnSpan) }} <br/>
+<b>value.left</b> : {{ dump(value.left) }} <br/>
+<b>value.right</b> : {{ dump(value.right) }} <br/>
 
 
-{% set sliderFieldJS %}
+{# Text fields that allow for dummy saving of data.#}
+{# NOTE: This is the only data that needs to be sent to the backend (left and right values) #}
+{{ forms.textField({
+	label: 'left',
+	name: name ~ '[left]',
+	id: name ~ '-left',
+	value: value.left
+}) }}
 
-	$( "#{{namespaceId}}-toggle" ).click(function(ev) {
-			var slider = $('#'+$(this).data('slider')+"-slider");
-			var sliderhtml = document.getElementById($(this).data('slider')+"-slider");
-			if(slider.children().length > 0){
-				slider.empty();
-				sliderhtml.noUiSlider = null;
-				slider.removeClass();
-				$('#' + $(this).data('leftright') + '-left').val("0");
-				$('#' + $(this).data('leftright') + '-right').val("0");
-			}
-			else{
-				
-				var leftStored = $('#' + $(this).data('leftright') + '-leftStored').val();
-				var rightStored = $('#' + $(this).data('leftright') + '-rightStored').val();
-				var leftDefault = $('#' + $(this).data('leftright') + '-leftDefault').val();
-				var rightDefault = $('#' + $(this).data('leftright') + '-rightDefault').val();
-
-				if(leftStored != 0 && rightStored != 0){
-					$('#' + $(this).data('leftright') + '-left').val( leftStored );
-					$('#' + $(this).data('leftright') + '-right').val( rightStored );
-				}
-				else {
-					$('#' + $(this).data('leftright') + '-left').val( leftDefault );
-					$('#' + $(this).data('leftright') + '-right').val( rightDefault );
-				}
-				
-
-				var left = leftStored == 0 ? leftDefault : leftStored;
-				var right = rightStored == 0 ? rightDefault : rightStored;
-	
-				setupSlider($(this).data('slider'), left, right);
-			}
-			
-	});
-
-	{% if value.left != 0 %}
-		setupSlider("{{namespaceId}}", {{ value.left }},{{ value.right }});
-	{% endif %}
-
-	function setupSlider(sld, ll, rr){
-		
-		var slider = document.getElementById(sld + "-slider");
-	
-		noUiSlider.create(slider, {
-			start: [ll, rr],
-			connect: true,
-			margin: 0,
-			step: 1,
-			tooltips: false,
-			range: {
-				'min': 1,
-				'max': {{ value.totalColumns + 1 }}
-			},
-			pips: {
-				mode: 'steps',
-				density: 100
-			}
-		});
-
-		slider.noUiSlider.on('update', function(values, handle) {
-
-			ll = parseInt(values[0]);
-			rr = parseInt(values[1]);
-			
-			width = ll + rr;
-			
-		});
+{{ forms.textField({
+	label: 'right',
+	name: name ~ '[right]',
+	id: name ~ '-right',
+	value: value.right
+}) }}
 
 
-		slider.noUiSlider.on('end', function(values, handle) {
+{################################################################################
+ ################################################################################
+ ##############  All below is from pre-update (september 2020)  #################
+ ################################################################################
+ ################################################################################}
 
-			ll = parseInt(values[0]);
-			rr = parseInt(values[1]);
+{#{{#}
+{#	forms.hidden({#}
+{#		label: 'totalColumns'|t,#}
+{#		name: name~'[totalColumns]',#}
+{#		id: name~'-totalColumns',#}
+{#		value: value.totalColumns,#}
+{#	})#}
+{#}}#}
 
-			width = ll + rr;
-			$('#' + sld + '-left').val( ll );
-			$('#' + sld + '-right').val( rr );
-			$('#' + sld + '-leftStored').val( ll );
-			$('#' + sld + '-rightStored').val( rr );
-		});
+{#{{#}
+{#	forms.hidden({#}
+{#		label: 'left'|t,#}
+{#		name: name~'[left]',#}
+{#		id: name~'-left',#}
+{#		value: value.left,#}
+{#	})#}
+{#}}#}
 
-		// Settings classes on handles
-		var origins = slider.getElementsByClassName('noUi-handle');
-		origins[0].className += origins[0].className ? ' grid__firstHandle' : 'grid__firstHandle';
-		origins[1].className += origins[1].className ? ' grid__secondHandle' : 'grid__secondHandle';
-	}
+{#{{#}
+{#	forms.hidden({#}
+{#		label: 'right'|t,#}
+{#		name: name~'[right]',#}
+{#		id: name~'-right',#}
+{#		value: value.right,#}
+{#	})#}
+{#}}#}
 
-{% endset %}
+{#{{#}
+{#	forms.hidden({#}
+{#		label: 'leftDefault'|t,#}
+{#		name: name~'[leftDefault]',#}
+{#		id: name~'-leftDefault',#}
+{#		value: value.leftDefault,#}
+{#	})#}
+{#}}#}
 
-{% js sliderFieldJS %}
+{#{{#}
+{#	forms.hidden({#}
+{#		label: 'rightDefault'|t,#}
+{#		name: name~'[rightDefault]',#}
+{#		id: name~'-rightDefault',#}
+{#		value: value.rightDefault,#}
+{#	})#}
+{#}}#}
+
+{#{{#}
+{#	forms.hidden({#}
+{#		label: 'leftStored'|t,#}
+{#		name: name~'[leftStored]',#}
+{#		id: name~'-leftStored',#}
+{#		value: 0,#}
+{#	})#}
+{#}}#}
+
+{#{{#}
+{#	forms.hidden({#}
+{#		label: 'rightStored'|t,#}
+{#		name: name~'[rightStored]',#}
+{#		id: name~'-rightStored',#}
+{#		value: 0,#}
+{#	})#}
+{#}}#}
+
+{#<div><a href="#" id="{{ name }}-toggle" data-slider="{{ namespaceId }}" data-leftright="{{ namespaceId }}">Toggle</a></div>#}
+
+{#<div id="{{ name }}-slider"></div>#}
+
+
+{#{% set sliderFieldJS %}#}
+
+{#	$( "#{{namespaceId}}-toggle" ).click(function(ev) {#}
+{#			var slider = $('#'+$(this).data('slider')+"-slider");#}
+{#			var sliderhtml = document.getElementById($(this).data('slider')+"-slider");#}
+{#			if(slider.children().length > 0){#}
+{#				slider.empty();#}
+{#				sliderhtml.noUiSlider = null;#}
+{#				slider.removeClass();#}
+{#				$('#' + $(this).data('leftright') + '-left').val("0");#}
+{#				$('#' + $(this).data('leftright') + '-right').val("0");#}
+{#			}#}
+{#			else{#}
+
+{#				var leftStored = $('#' + $(this).data('leftright') + '-leftStored').val();#}
+{#				var rightStored = $('#' + $(this).data('leftright') + '-rightStored').val();#}
+{#				var leftDefault = $('#' + $(this).data('leftright') + '-leftDefault').val();#}
+{#				var rightDefault = $('#' + $(this).data('leftright') + '-rightDefault').val();#}
+
+{#				if(leftStored != 0 && rightStored != 0){#}
+{#					$('#' + $(this).data('leftright') + '-left').val( leftStored );#}
+{#					$('#' + $(this).data('leftright') + '-right').val( rightStored );#}
+{#				}#}
+{#				else {#}
+{#					$('#' + $(this).data('leftright') + '-left').val( leftDefault );#}
+{#					$('#' + $(this).data('leftright') + '-right').val( rightDefault );#}
+{#				}#}
+
+
+{#				var left = leftStored == 0 ? leftDefault : leftStored;#}
+{#				var right = rightStored == 0 ? rightDefault : rightStored;#}
+
+{#				setupSlider($(this).data('slider'), left, right);#}
+{#			}#}
+
+{#	});#}
+
+{#	{% if value.left != 0 %}#}
+{#		setupSlider("{{namespaceId}}", {{ value.left }},{{ value.right }});#}
+{#	{% endif %}#}
+
+{#	function setupSlider(sld, ll, rr){#}
+
+{#		var slider = document.getElementById(sld + "-slider");#}
+
+{#		noUiSlider.create(slider, {#}
+{#			start: [ll, rr],#}
+{#			connect: true,#}
+{#			margin: 0,#}
+{#			step: 1,#}
+{#			tooltips: false,#}
+{#			range: {#}
+{#				'min': 1,#}
+{#				'max': {{ value.totalColumns + 1 }}#}
+{#			},#}
+{#			pips: {#}
+{#				mode: 'steps',#}
+{#				density: 100#}
+{#			}#}
+{#		});#}
+
+{#		slider.noUiSlider.on('update', function(values, handle) {#}
+
+{#			ll = parseInt(values[0]);#}
+{#			rr = parseInt(values[1]);#}
+
+{#			width = ll + rr;#}
+
+{#		});#}
+
+
+{#		slider.noUiSlider.on('end', function(values, handle) {#}
+
+{#			ll = parseInt(values[0]);#}
+{#			rr = parseInt(values[1]);#}
+
+{#			width = ll + rr;#}
+{#			$('#' + sld + '-left').val( ll );#}
+{#			$('#' + sld + '-right').val( rr );#}
+{#			$('#' + sld + '-leftStored').val( ll );#}
+{#			$('#' + sld + '-rightStored').val( rr );#}
+{#		});#}
+
+{#		// Settings classes on handles#}
+{#		var origins = slider.getElementsByClassName('noUi-handle');#}
+{#		origins[0].className += origins[0].className ? ' grid__firstHandle' : 'grid__firstHandle';#}
+{#		origins[1].className += origins[1].className ? ' grid__secondHandle' : 'grid__secondHandle';#}
+{#	}#}
+
+{#{% endset %}#}
+
+{#{% js sliderFieldJS %}#}
 
 
 
