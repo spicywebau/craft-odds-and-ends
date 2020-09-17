@@ -1,7 +1,7 @@
 {% import "_includes/forms" as forms %}
 
 {{ forms.textField({
-    label: "Total columns"|t('tools'),
+    label: "Total columns",
     id: 'totalColumns',
     name: 'totalColumns',
     value: field.totalColumns,
@@ -9,5 +9,45 @@
     errors: field.getErrors('totalColumns')
 }) }}
 
+{{ forms.textField({
+    label: "Min Column Span",
+    instructions: "The minimum number of columns the value for this field should be allowed to span (Must be at least 1)",
+    id: 'minColumnSpan',
+    name: 'minColumnSpan',
+    value: field.minColumnSpan,
+    size: 5,
+    errors: field.getErrors('minColumnSpan')
+}) }}
+
+{{ forms.textField({
+    label: "Max Column Span",
+    instructions: "The maximum number of columns the value for this field should be allowed to span, blank = unlimited",
+    id: 'maxColumnSpan',
+    name: 'maxColumnSpan',
+    value: field.maxColumnSpan,
+    size: 5,
+    errors: field.getErrors('maxColumnSpan')
+}) }}
+
+
+{{ forms.textField({
+    label: "Left Default",
+    instructions: "Which column should the 'left' of the select default to (0 = furthest left)",
+    id: 'leftDefault',
+    name: 'leftDefault',
+    value: field.leftDefault,
+    size: 5,
+    errors: field.getErrors('leftDefault')
+}) }}
+
+{{ forms.textField({
+    label: "Right Default",
+    instructions: "Which column should the 'left' of the select default to (0 = furthest left, <maxColumnSpan (see above)> = furthest right)",
+    id: 'rightDefault',
+    name: 'rightDefault',
+    value: field.rightDefault,
+    size: 5,
+    errors: field.getErrors('rightDefault')
+}) }}
 
 

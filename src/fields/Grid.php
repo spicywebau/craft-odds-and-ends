@@ -11,19 +11,14 @@
 
 namespace supercool\tools\fields;
 
-use supercool\tools\Tools as ToolsPlugin;
-use supercool\tools\assetbundles\tools\ToolsAsset;
-use supercool\tools\fields\data\GridData;
-
 use Craft;
+use craft\base\Element;
 use craft\base\ElementInterface;
 use craft\base\Field;
 use craft\base\PreviewableFieldInterface;
-use craft\helpers\Db;
-use yii\db\Schema;
 use craft\helpers\Json;
-use craft\helpers\Template;
-use craft\helpers\ArrayHelper;
+use supercool\tools\fields\data\GridData;
+use yii\db\Schema;
 
 /**
  * Grid Field
@@ -32,7 +27,6 @@ use craft\helpers\ArrayHelper;
  * @package   SupercoolTools
  * @since     1.0.0
  */
-
 class Grid extends Field implements PreviewableFieldInterface
 {
 
@@ -47,12 +41,22 @@ class Grid extends Field implements PreviewableFieldInterface
     /**
      * @var int The default value for left pointer
      */
-    public $leftDefault;
+    public $leftDefault = 2;
 
     /**
      * @var int The default value for right pointer
      */
-    public $rightDefault;
+    public $rightDefault = 10;
+
+    /**
+     * @var int The minimum number of columns for the left->right to span
+     */
+    public $minColumnSpan = 1;
+
+    /**
+     * @var int The maximum number of columns for the left->right to span
+     */
+    public $maxColumnSpan;
 
 
     // Static Methods
@@ -68,6 +72,59 @@ class Grid extends Field implements PreviewableFieldInterface
         return Craft::t('tools', 'Grid');
     }
 
+    /**
+     * @inheritDoc
+     */
+    public function rules()
+    {
+        $rules = parent::rules();
+        $rules[] = [
+            [
+                'totalColumns',
+                'leftDefault',
+                'rightDefault',
+                'maxColumnSpan'
+            ],
+            'number', 'integerOnly' => true
+        ];
+        $rules[] = [['leftDefault', 'rightDefault'], 'required'];
+        $rules[] = [['leftDefault', 'rightDefault'], function ($attribute, $params, $validator) {
+            // Ensure defaults are at least min column span width apart
+            $minSpan = (int) $this->minColumnSpan;
+            $maxSpan = $this->maxColumnSpan ? (int) $this->maxColumnSpan : false;
+            $leftDefault = (int) $this->leftDefault;
+            $rightDefault = (int) $this->rightDefault;
+
+            if ((int)$this->$attribute > $this->totalColumns) {
+                $this->addError($attribute, "Must be lower than the total columns");
+            }
+
+            if($leftDefault > $rightDefault)
+            {
+                $this->addError($attribute,
+                    "Left Default cannot be larger than Right Default"
+                );
+                return;
+            }
+
+            if ($leftDefault > ($rightDefault - $minSpan)) {
+                $this->addError($attribute,
+                    "Difference between Left and Right Defaults must be >= the Minimum Column Span ($minSpan)"
+                );
+            }
+
+            if($maxSpan) {
+                if ( ((int) $this->leftDefault + $maxSpan) < (int) $this->rightDefault ) {
+                    $this->addError($attribute,
+                        "Difference Between Left and Right Defaults must be <= the Maximum Column Span ($maxSpan)"
+                    );
+                }
+            }
+        }];
+
+        return $rules;
+    }
+
     // Public Methods
     // =========================================================================
 
@@ -77,9 +134,9 @@ class Grid extends Field implements PreviewableFieldInterface
     public function getSettingsHtml()
     {
         return Craft::$app->getView()->renderTemplate('tools/_components/fields/grid/settings',
-        [
-            'field' => $this
-        ]);
+            [
+                'field' => $this
+            ]);
     }
 
 
@@ -95,7 +152,7 @@ class Grid extends Field implements PreviewableFieldInterface
         $namespacedId = Craft::$app->getView()->namespaceInputId($id);
 
 
-        return Craft::$app->getView()->renderTemplate( 'tools/_components/fields/grid/input', array(
+        return Craft::$app->getView()->renderTemplate('tools/_components/fields/grid/input', array(
             'name' => $this->handle,
             'value' => $value,
             'namespaceId' => $namespacedId
@@ -104,26 +161,45 @@ class Grid extends Field implements PreviewableFieldInterface
     }
 
 
+    /**
+     * @inheritDoc
+     */
     public function normalizeValue($value, ElementInterface $element = null)
     {
-        $this->leftDefault = ToolsPlugin::getInstance()->getSettings()->leftDefault;
-        $this->rightDefault = ToolsPlugin::getInstance()->getSettings()->rightDefault;
-        if ( !$value )
-        {
-            $value = new GridData($this->totalColumns, 0, 0, $this->leftDefault, $this->rightDefault);
+
+        if (!$value) {
+            $value = new GridData(
+                $this->totalColumns,
+                $this->leftDefault,
+                $this->rightDefault,
+                $this->minColumnSpan,
+                $this->maxColumnSpan
+            );
         }
 
-        if (is_string($value))
-        {
+        if (is_string($value)) {
             $value = json_decode($value);
-            $value = new GridData($this->totalColumns, $value->left, $value->right, $this->leftDefault, $this->rightDefault);
+
+            // Make sure values from pre 2020 rework are at least 1 column span
+            if((int)$value->left >= (int)$value->right) {
+                $value->left = $this->leftDefault;
+                $value->right = $this->rightDefault;
+            }
+
+            $value = new GridData(
+                $this->totalColumns,
+                $value->left,
+                $value->right,
+                $this->minColumnSpan,
+                $this->maxColumnSpan
+            );
         }
 
         return $value;
     }
 
     /**
-     * Value we are going to save into the database
+     * @inheritDoc
      */
     public function serializeValue($value, ElementInterface $element = null)
     {
@@ -144,7 +220,61 @@ class Grid extends Field implements PreviewableFieldInterface
      */
     public function getElementValidationRules(): array
     {
-        return [];
+        return [
+            [function(Element $element, $params) {
+                $handle = $this->handle;
+                $newData = $element->$handle;
+
+                if(is_array($newData)) {
+                    $newData = (object) $newData;
+                }
+
+                $value = new GridData(
+                    $this->totalColumns,
+                    $newData->left,
+                    $newData->right,
+                    $this->minColumnSpan,
+                    $this->maxColumnSpan
+                );
+
+                // Ensure if any errors are present, the field input still receives a grid data model
+                $element->$handle = $value;
+
+                $totalColumns = $value->totalColumns;
+                $minSpan = $value->minColumnSpan;
+                $maxSpan = $value->maxColumnSpan;
+
+                if((!$newData->left && $newData->left !== '0')  || (!$newData->right && $newData->right !== '0')) {
+                    $element->addError($handle, "Must provide a left and a right value");
+                    return;
+                }
+
+                if($value->left > $totalColumns) {
+                    $element->addError($handle, "The left value ($value->left) cannot be greater than the total columns available ($totalColumns)");
+                    return;
+                }
+
+                if($value->right > $totalColumns) {
+                    $element->addError($handle, "The right value ($value->right) cannot be greater than the total columns available ($totalColumns)");
+                    return;
+                }
+
+                if($value->left > $value->right) {
+                    $element->addError($handle, "Left value ($value->left) cannot be greater than Right ($value->right)");
+                    return;
+                }
+
+                if($value->left > ($value->right - $minSpan)) {
+                    $element->addError($handle, "Must be at least $minSpan columns wide");
+                }
+
+                if($maxSpan) {
+                    if(($value->left + $maxSpan) < $value->right) {
+                        $element->addError($handle, "Must be less than $maxSpan columns wide");
+                    }
+                }
+            }]
+        ];
     }
 
 }

@@ -19,22 +19,20 @@ class GridData
     public $totalColumns;
     public $left;
     public $right;
-    public $leftDefault;
-    public $rightDefault;
+    public $minColumnSpan;
+    public $maxColumnSpan;
 
     public function __construct($totalColumns = null,
                                 $left = null,
                                 $right = null,
-                                $leftDefault = null,
-                                $rightDefault = null)
+                                $minColumnSpan = null,
+                                $maxColumnSpan = null)
     {
-        $this->totalColumns = $totalColumns;
-        $this->left = $left;
-        $this->right = $right;
-        $this->leftDefault = $leftDefault;
-        $this->rightDefault = $rightDefault;
-
-
+        $this->totalColumns = (int) $totalColumns;
+        $this->left = (int) $left;
+        $this->right = (int) $right;
+        $this->minColumnSpan = (int) $minColumnSpan;
+        $this->maxColumnSpan = $maxColumnSpan ? (int) $maxColumnSpan : null;
     }
 
     public function __toString()
