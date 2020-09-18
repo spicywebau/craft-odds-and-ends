@@ -244,7 +244,7 @@ class Grid extends Field implements PreviewableFieldInterface
                 );
 
                 // Ensure if any errors are present, the field input still receives a grid data model
-                $element->$handle = $value;
+                $element->setFieldValue($handle, $value);
 
                 $totalColumns = $value->totalColumns;
                 $minSpan = $value->minColumnSpan;
