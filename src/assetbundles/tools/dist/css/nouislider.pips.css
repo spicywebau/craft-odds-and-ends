@@ -10,6 +10,8 @@
 .noUi-pips {
 	position: absolute;
 	color: #999;
+	z-index: 1;
+	pointer-events: none;
 }
 
 /* Values;
@@ -29,22 +31,22 @@
  */
 .noUi-marker {
 	position: absolute;
-	background: #CCC;
+	background: rgba(0, 0, 20, 0.1);
 }
 .noUi-marker-sub {
-	background: #AAA;
+	background: rgba(0, 0, 20, 0.1);
 }
 .noUi-marker-large {
-	background: #AAA;
+	background: rgba(0, 0, 20, 0.1);
 }
 
 /* Horizontal layout;
  *
  */
 .noUi-pips-horizontal {
-	padding: 10px 0;
-	height: 80px;
-	top: 100%;
+	padding: 0;
+	height: 20px;
+	top: 0%;
 	left: 0;
 	width: 100%;
 }
@@ -54,12 +56,11 @@
 }
 
 .noUi-marker-horizontal.noUi-marker {
-	margin-left: -1px;
-	width: 2px;
+	width: 1px;
 	height: 5px;
 }
 .noUi-marker-horizontal.noUi-marker-sub {
-	height: 10px;
+	height: 18px;
 }
 .noUi-marker-horizontal.noUi-marker-large {
 	height: 15px;
