@@ -39,14 +39,16 @@
 .noUi-handle {
 	position: relative;
 	z-index: 1;
+	cursor: col-resize !important;
 }
+
 .noUi-state-tap .noUi-connect,
 .noUi-state-tap .noUi-origin {
 -webkit-transition: top 0.3s, right 0.3s, bottom 0.3s, left 0.3s;
 	transition: top 0.3s, right 0.3s, bottom 0.3s, left 0.3s;
 }
 .noUi-state-drag * {
-	cursor: inherit !important;
+	cursor: grabbing;
 }
 
 /* Painting and performance;
@@ -64,19 +66,29 @@
 	height: 18px;
 }
 .noUi-horizontal .noUi-handle {
-	width: 15px;
-	height: 15px;
-	left: -17px;
-	top: -6px;
+	width: 20px;
+	height: 18px;
+	left: 0;
 }
-.noUi-vertical {
-	width: 18px;
+
+.noUi-horizontal .noUi-handle:hover {
+	animation: pulse 1s infinite;
 }
-.noUi-vertical .noUi-handle {
-	width: 28px;
-	height: 34px;
-	left: -6px;
-	top: -17px;
+
+@keyframes pulse {
+	0% {
+		transform: scale(1)
+	}
+	50% {
+		transform: scale(1.2)
+	}
+	100% {
+		transform: scale(1)
+	}
+}
+
+.noUi-horizontal .noUi-handle.grid__secondHandle {
+	left: -20px;
 }
 
 /* Styling;
@@ -87,18 +99,23 @@
 	border: 1px solid #D3D3D3;
 	box-shadow: inset 0 1px 1px #F0F0F0, 0 3px 6px -5px #BBB;
 }
-.noUi-connect {
-	background: #3FB8AF;
-	box-shadow: inset 0 0 3px rgba(51,51,51,0.45);
--webkit-transition: background 450ms;
-	transition: background 450ms;
-}
 
 /* Handles and cursors;
  */
 .noUi-draggable {
-	cursor: w-resize;
+	cursor: grab;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	font-size: 12px;
+	color: #fafafa;
 }
+
+.noUi-state-drag .noUi-draggable {
+	cursor: grabbing;
+}
+
 .noUi-vertical .noUi-draggable {
 	cursor: n-resize;
 }
@@ -123,25 +140,10 @@
 .noUi-handle:after {
 	content: "";
 	display: block;
-	position: absolute;
-	height: 14px;
-	width: 1px;
 	background: #E8E7E6;
-	left: 14px;
-	top: 6px;
 }
 .noUi-handle:after {
 	left: 17px;
-}
-.noUi-vertical .noUi-handle:before,
-.noUi-vertical .noUi-handle:after {
-	width: 14px;
-	height: 1px;
-	left: 6px;
-	top: 14px;
-}
-.noUi-vertical .noUi-handle:after {
-	top: 17px;
 }
 
 /* Disabled state;
@@ -161,24 +163,23 @@
 -----------------------------------------------------*/
 
 .noUi-target {
-	border-radius: 0px;
 	box-shadow: none;
-	border: none;
-	height: 5px;
-	background: #BCBFC3;
-	margin-top: 40px;
-	margin-bottom: 20px;
+	border: 1px solid rgba(0, 0, 20, 0.1);
+	height: 20px;
+	margin-top: 10px;
+	margin-bottom: 0px;
+	background: #ffffff;
 }
 
-.noUi-pips .noUi-value-sub, .noUi-pips .noUi-value-large {
+.noUi-pips .noUi-value-sub, .noUi-pips .noUi-value-large, .noUi-pips .noUi-marker-large {
   display: none;
 }
 
 .noUi-pips .noUi-marker-sub, .noUi-pips .noUi-marker-large {
-  top: -9px;
+  top: -0;
   height: 14px;
   width: 4px;
-  background: #BCBFC3;
+  background: rgba(0, 0, 20, 0.1);
 }
 
 .noUi-base .noUi-connect:nth-child(4) {
@@ -186,19 +187,13 @@
 }
 
 .noUi-base .noUi-connect:nth-child(6), .noUi-base .noUi-connect:nth-child(2) {
-  background: #566576;
+  background: #DC5942;
+	transition: background .3s;
+	border-radius: 3px;
 }
 
-.grid__firstHandle, .grid__secondHandle {
-	top: -27px !important;
-}
-
-.firstHandle, .fourthHandle {
-	top: 20px !important;
-}
-
-.secondHandle, .thirdHandle {
-	top: -27px !important;
+.noUi-base .noUi-connect:nth-child(6):hover, .noUi-base .noUi-connect:nth-child(2):hover {
+  background: #cc5643;
 }
 
 .noUi-handle {
@@ -206,6 +201,9 @@
 	border-radius: 0px;
 	box-shadow: none;
 	background: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .noUi-handle:before {
@@ -214,14 +212,11 @@
 
 .noUi-handle:after {
 	content: "move";
-	position: absolute;
-	top: 0;
-	left: 11px;
 	background: none;
 	font-family: 'Craft';
-    word-wrap: normal !important;
-    color: rgba(0,0,0,0.2);
-    cursor: move;
+  word-wrap: normal !important;
+  color: rgba(0,0,0,0.2);
+	font-size: 12px;
 }
 
 .noUi__output {
