@@ -2,7 +2,6 @@
 
 {% do view.registerAssetBundle("supercool\\tools\\assetbundles\\tools\\ToolsAsset") %}
 
-
 {# <b>Available variables:</b> <br/>
 <b>value.totalColumns</b> : {{ dump(value.totalColumns) }} <br/>
 <b>value.maxColumnSpan (max width in columns, falsy values mean unlimited)</b> : {{ dump(value.maxColumnSpan) }} <br/>
@@ -18,6 +17,7 @@
 
 {# Text fields that allow for dummy saving of data.#}
 {# NOTE: This is the only data that needs to be sent to the backend (left and right values) #}
+
 {{ forms.hidden({
 	label: 'left',
 	name: name ~ '[left]',
@@ -31,76 +31,6 @@
 	id: name ~ '-right',
 	value: value.right
 }) }}
-
-
-{################################################################################
- ################################################################################
- ##############  All below is from pre-update (september 2020)  #################
- ################################################################################
- ################################################################################}
-
-{#{{#}
-{#	forms.hidden({#}
-{#		label: 'totalColumns'|t,#}
-{#		name: name~'[totalColumns]',#}
-{#		id: name~'-totalColumns',#}
-{#		value: value.totalColumns,#}
-{#	})#}
-{#}}#}
-
-{#{{#}
-{#	forms.hidden({#}
-{#		label: 'left'|t,#}
-{#		name: name~'[left]',#}
-{#		id: name~'-left',#}
-{#		value: value.left,#}
-{#	})#}
-{#}}#}
-
-{#{{#}
-{#	forms.hidden({#}
-{#		label: 'right'|t,#}
-{#		name: name~'[right]',#}
-{#		id: name~'-right',#}
-{#		value: value.right,#}
-{#	})#}
-{#}}#}
-
-{#{{#}
-{#	forms.hidden({#}
-{#		label: 'leftDefault'|t,#}
-{#		name: name~'[leftDefault]',#}
-{#		id: name~'-leftDefault',#}
-{#		value: value.leftDefault,#}
-{#	})#}
-{#}}#}
-
-{#{{#}
-{#	forms.hidden({#}
-{#		label: 'rightDefault'|t,#}
-{#		name: name~'[rightDefault]',#}
-{#		id: name~'-rightDefault',#}
-{#		value: value.rightDefault,#}
-{#	})#}
-{#}}#}
-
-{#{{#}
-{#	forms.hidden({#}
-{#		label: 'leftStored'|t,#}
-{#		name: name~'[leftStored]',#}
-{#		id: name~'-leftStored',#}
-{#		value: 0,#}
-{#	})#}
-{#}}#}
-
-{#{{#}
-{#	forms.hidden({#}
-{#		label: 'rightStored'|t,#}
-{#		name: name~'[rightStored]',#}
-{#		id: name~'-rightStored',#}
-{#		value: 0,#}
-{#	})#}
-{#}}#}
 
 {% if value.maxColumnSpan %}
 	<span class="">This block has a minimum width of {{value.minColumnSpan}} columns, and a maximum width of {{value.maxColumnSpan}} columns<span>
@@ -116,21 +46,21 @@
 {% set sliderFieldJS %}
 
 	var sliderErrorCatch = 0;
-	setupSlider("{{namespaceId}}", {{ value.left }},{{ value.right }});
+	setupSlider("{{namespaceId}}", {{ value.left }}, {{ value.right }}, {{ value.minColumnSpan}}, {{value.maxColumnSpan ?? value.totalColumns}}, {{ value.totalColumns }});
 
-	function setupSlider(sld, ll, rr) {
+	function setupSlider(sld, ll, rr, min, max, total) {
 		var slider = document.getElementById(sld + "-slider");
 		noUiSlider.create(slider, {
 			start: [ll, rr],
 			connect: true,
-			margin: {{ value.minColumnSpan }},
-			limit: {{value.maxColumnSpan ?? 12}},
+			margin: min,
+			limit: max,
 			step: 1,
 			behaviour: "drag",
 			tooltips: false,
 			range: {
 				'min': 0,
-				'max': {{ value.totalColumns }}
+				'max': total
 			},
 			pips: {
 				mode: 'steps',
@@ -141,6 +71,13 @@
 			ll = parseInt(values[0]);
 			rr = parseInt(values[1]);
 			width = rr - ll;
+
+			if (width == max || width == min) {
+				slider.classList.add('is-at-limit')
+			}
+			else {
+				slider.classList.remove('is-at-limit')
+			}
 
 			var draggable = slider.querySelector('.noUi-draggable')
 			draggable.innerHTML = '-' + width + '-';

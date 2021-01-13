@@ -110,6 +110,13 @@
 	font-weight: bold;
 	font-size: 12px;
 	color: #fafafa;
+	background: #566576;
+	border-radius: 3px;
+	transition: background .3s;
+}
+
+.is-at-limit .noUi-draggable {
+	background: #da5a47;
 }
 
 .noUi-state-drag .noUi-draggable {
@@ -180,20 +187,6 @@
   height: 14px;
   width: 4px;
   background: rgba(0, 0, 20, 0.1);
-}
-
-.noUi-base .noUi-connect:nth-child(4) {
-  background: #DC5942;
-}
-
-.noUi-base .noUi-connect:nth-child(6), .noUi-base .noUi-connect:nth-child(2) {
-  background: #DC5942;
-	transition: background .3s;
-	border-radius: 3px;
-}
-
-.noUi-base .noUi-connect:nth-child(6):hover, .noUi-base .noUi-connect:nth-child(2):hover {
-  background: #cc5643;
 }
 
 .noUi-handle {
