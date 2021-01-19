@@ -11,3 +11,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## 2.1.0 - 2018-11-13
 ### Added
 - Added a grid field type which is going to be used as a width field
+
+## 2.2.0 - 2020-09-24
+### Added
+- Support for craft 3.5
+
+## 2.2.1 - 2021-19-01
+### Changed
+- Settings and UI for grid field
