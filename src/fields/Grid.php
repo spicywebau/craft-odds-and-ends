@@ -250,7 +250,7 @@ class Grid extends Field implements PreviewableFieldInterface
                 $minSpan = $value->minColumnSpan;
                 $maxSpan = $value->maxColumnSpan;
 
-                if((!$newData->left && $newData->left !== '0')  || (!$newData->right && $newData->right !== '0')) {
+                if((!$newData->left && $newData->left !== '0' && $newData->left !== 0)  || (!$newData->right && $newData->right !== '0' && $newData->right !== 0)) {
                     $element->addError($handle, "Must provide a left and a right value");
                     return;
                 }
