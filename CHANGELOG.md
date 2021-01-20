@@ -19,3 +19,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## 2.2.1 - 2021-19-01
 ### Changed
 - Settings and UI for grid field
+
+## 2.2.1.1 - 2021-20-01
+### Fixed
+- Validation error when grid data was typecasted to int
