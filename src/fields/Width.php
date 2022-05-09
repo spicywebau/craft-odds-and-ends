@@ -35,7 +35,7 @@ class Width extends Dropdown
 
     // Static Methods
     // =========================================================================
-    
+
     /**
      * Returns the display name of this class.
      *
@@ -48,7 +48,7 @@ class Width extends Dropdown
 
     // Public Methods
     // =========================================================================
-    
+
     /**
      * @inheritdoc
      */
@@ -93,7 +93,7 @@ class Width extends Dropdown
                         'type'         => 'singleline',
                         'class'        => 'code'
                     )
-                    
+
                 ),
                 'rows' => $options
             )
@@ -115,10 +115,10 @@ class Width extends Dropdown
 
         // Come up with an ID value for 'foo'
         $id = Craft::$app->getView()->formatInputId($this->handle);
-     
+
         // Figure out what that ID is going to be namespaced into
         $namespacedId = Craft::$app->getView()->namespaceInputId($id);
-                
+
 
         return Craft::$app->getView()->renderTemplate( 'tools/_components/fields/width/input', array(
             'name' => $this->handle,
@@ -131,6 +131,10 @@ class Width extends Dropdown
 
     public function normalizeValue($value, ElementInterface $element = null)
     {
+        if($value instanceof WidthData) {
+            return $value;
+        }
+
         $options = $this->translatedOptions();
         $data = new WidthData();
         $value = $data->setData($options, $value);
