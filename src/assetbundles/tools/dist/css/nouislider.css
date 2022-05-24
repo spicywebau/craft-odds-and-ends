@@ -272,3 +272,204 @@
 	color: #fff;
 	text-align: center;
 }
+
+/* hacky targeting fix for craft 2 width field */
+[data-type*="Width"] .noUi-horizontal .noUi-handle {
+	width: 15px;
+	height: 15px;
+	left: -16px;
+	top: -6px;
+}
+
+[data-type*="Width"]  .noUi-horizontal {
+	height: 18px;
+}
+[data-type*="Width"] .noUi-horizontal .noUi-handle {
+	width: 15px;
+	height: 15px;
+	left: -17px;
+	top: -6px;
+}
+[data-type*="Width"] .noUi-vertical {
+	width: 18px;
+}
+[data-type*="Width"] .noUi-vertical .noUi-handle {
+	width: 28px;
+	height: 34px;
+	left: -6px;
+	top: -17px;
+}
+
+[data-type*="Width"] .noUi-target {
+	background: #FAFAFA;
+	border-radius: 4px;
+	border: 1px solid #D3D3D3;
+	box-shadow: inset 0 1px 1px #F0F0F0, 0 3px 6px -5px #BBB;
+}
+[data-type*="Width"] .noUi-connect {
+	background: #3FB8AF;
+	box-shadow: inset 0 0 3px rgba(51,51,51,0.45);
+-webkit-transition: background 450ms;
+	transition: background 450ms;
+}
+
+[data-type*="Width"] .noUi-draggable {
+	cursor: w-resize;
+}
+[data-type*="Width"] .noUi-vertical .noUi-draggable {
+	cursor: n-resize;
+}
+[data-type*="Width"] .noUi-handle {
+	border: 1px solid #D9D9D9;
+	border-radius: 3px;
+	background: #FFF;
+	cursor: default;
+	box-shadow: inset 0 0 1px #FFF,
+				inset 0 1px 7px #EBEBEB,
+				0 3px 6px -3px #BBB;
+}
+[data-type*="Width"] .noUi-active {
+	box-shadow: inset 0 0 1px #FFF,
+				inset 0 1px 7px #DDD,
+				0 3px 6px -3px #BBB;
+}
+
+[data-type*="Width"] .noUi-handle:before,
+[data-type*="Width"] .noUi-handle:after {
+	content: "";
+	display: block;
+	position: absolute;
+	height: 14px;
+	width: 1px;
+	background: #E8E7E6;
+	left: 14px;
+	top: 6px;
+}
+[data-type*="Width"] .noUi-handle:after {
+	left: 17px;
+}
+[data-type*="Width"] .noUi-vertical .noUi-handle:before,
+[data-type*="Width"] .noUi-vertical .noUi-handle:after {
+	width: 14px;
+	height: 1px;
+	left: 6px;
+	top: 14px;
+}
+[data-type*="Width"] .noUi-vertical .noUi-handle:after {
+	top: 17px;
+}
+
+[data-type*="Width"] .noUi-target {
+	border-radius: 0px;
+	box-shadow: none;
+	border: none;
+	height: 5px;
+	background: #BCBFC3;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+[data-type*="Width"] .noUi-pips .noUi-value-sub, [data-type*="Width"] .noUi-pips .noUi-value-large {
+  display: block; 
+}
+
+[data-type*="Width"] .noUi-pips .noUi-marker-sub, [data-type*="Width"] .noUi-pips .noUi-marker-large {
+  top: -5px;
+  height: 14px;
+  width: 2px;
+  background: #BCBFC3; 
+}
+
+[data-type*="Width"] .noUi-base .noUi-connect:nth-child(4) {
+  background: #DC5942; 
+}
+
+[data-type*="Width"] .noUi-base .noUi-connect:nth-child(6), [data-type*="Width"] .noUi-base .noUi-connect:nth-child(2) {
+  background: #566576; 
+}
+
+[data-type*="Width"] .firstHandle, .fourthHandle {
+	top: 10px !important;
+}
+
+[data-type*="Width"] .secondHandle, .thirdHandle {
+	top: -30px !important;
+}
+
+[data-type*="Width"] .noUi-handle {
+	border: none;
+	border-radius: 0px;
+	box-shadow: none;
+	background: none;
+}
+
+[data-type*="Width"] .noUi-handle:before {
+	display: none;
+}
+
+[data-type*="Width"] .noUi-handle:after {
+	content: "move";
+	position: absolute;
+	top: 0;
+	left: 11px;
+	background: none;
+	font-family: 'Craft';    
+    word-wrap: normal !important;
+    color: rgba(0,0,0,0.2);
+    cursor: move;
+}
+
+[data-type*="Width"] .noUi-handle:hover:after {
+	color: #0d78f2;
+}
+
+[data-type*="Width"] .noUi__output {
+	background-color: #BDC0C4;
+	display: inline-block;
+	margin-top: 10px;
+	padding: 3px;
+	border-radius: 2px;
+	font-size: 12px;
+	color: #fff;
+}
+
+[data-type*="Width"] .noUi__total {
+	background-color: #BDC0C4;
+	display: inline-block;
+	padding: 3px;
+	border-radius: 2px;
+	position: absolute;
+	top: 32px;
+	right: 0;
+	font-size: 10px;
+	color: #fff;
+}
+
+[data-type*="Width"] .noUi__info-block {
+	position: absolute;
+	top: 36px;
+	left: 0;
+	color: #BDC0C4;
+	font-size: 10px;
+}
+
+[data-type*="Width"] .noUi__info-block div {
+	display: inline-block;
+	margin-right: 5px;
+}
+
+[data-type*="Width"] .noUi__width-info span {
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	background-color: #DC5942;
+	vertical-align: inherit;
+}
+
+[data-type*="Width"] .noUi__margin-info span {
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	background-color: #566576;
+	vertical-align: inherit;
+}
