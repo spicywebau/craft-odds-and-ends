@@ -287,7 +287,7 @@
 [data-type*="Width"] .noUi-horizontal .noUi-handle {
 	width: 15px;
 	height: 15px;
-	left: -17px;
+	left: -16px;
 	top: -6px;
 }
 [data-type*="Width"] .noUi-vertical {
@@ -370,10 +370,11 @@
 }
 
 [data-type*="Width"] .noUi-pips .noUi-value-sub, [data-type*="Width"] .noUi-pips .noUi-value-large {
-  display: block; 
+  display: none; 
 }
 
 [data-type*="Width"] .noUi-pips .noUi-marker-sub, [data-type*="Width"] .noUi-pips .noUi-marker-large {
+  display: block;
   top: -5px;
   height: 14px;
   width: 2px;
