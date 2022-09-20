@@ -58,5 +58,12 @@ class CategoriesSearch extends Categories
         $this->inputTemplate = 'tools/_components/fields/categoriessearch/input';
     }
 
-
+    /**
+     * @inheritdoc
+     */
+    protected function inputHtml($value, ElementInterface $element = null): string
+    {
+        Craft::$app->getView()->registerAssetBundle(ToolsAsset::class);
+        return parent::inputHtml($value, $element);
+    }
 }

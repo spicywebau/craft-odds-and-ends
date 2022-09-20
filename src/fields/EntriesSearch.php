@@ -55,4 +55,12 @@ class EntriesSearch extends Entries
         return Craft::t('tools', 'Entries (Search)');
     }
 
+    /**
+     * @inheritdoc
+     */
+    protected function inputHtml($value, ElementInterface $element = null): string
+    {
+        Craft::$app->getView()->registerAssetBundle(ToolsAsset::class);
+        return parent::inputHtml($value, $element);
+    }
 }
