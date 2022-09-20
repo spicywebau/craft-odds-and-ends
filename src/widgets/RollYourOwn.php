@@ -27,8 +27,12 @@ class RollYourOwn extends Widget
 
     // Public Properties
     // =========================================================================
-    
-    public $title = "Roll Your Own";
+
+    /**
+     * @var string|null
+     */
+    public $title;
+
     public $template = "_dashboard";
 
     // Static Methods
@@ -91,6 +95,14 @@ class RollYourOwn extends Widget
                 'widget' => $this
             ]
         );
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getTitle(): string
+    {
+        return $this->title ? Craft::t('site', $this->title) : static::displayName();
     }
 
     /**
