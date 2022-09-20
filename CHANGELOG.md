@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## Unreleased
 
+### Changed
+- Now requires Craft 3.7.46 or later Craft 3 releases
+
 ### Fixed
 - Fixed an error that occurred when creating a width field on Craft 3.7.46 or later Craft 3 releases
 
