@@ -216,17 +216,26 @@ class Width extends Dropdown
     /**
      * @inheritdoc
      */
-    protected function translatedOptions(): array
+    protected function translatedOptions(bool $encode = false): array
     {
         $translatedOptions = [];
 
         foreach ($this->options as $option) {
-            $translatedOptions[] = [
-                'widthValue' => $option['widthValue'],
-                'widthDefault' => $option['widthDefault'],
-                'leftValue' => $option['leftValue'],
-                'rightValue' => $option['rightValue'],
-            ];
+            if ($encode) {
+                $translatedOptions[] = [
+                    'widthValue' => $this->encodeValue($option['widthValue']),
+                    'widthDefault' => $this->encodeValue($option['widthDefault']),
+                    'leftValue' => $this->encodeValue($option['leftValue']),
+                    'rightValue' => $this->encodeValue($option['rightValue']),
+                ];
+            } else {
+                $translatedOptions[] = [
+                    'widthValue' => $option['widthValue'],
+                    'widthDefault' => $option['widthDefault'],
+                    'leftValue' => $option['leftValue'],
+                    'rightValue' => $option['rightValue'],
+                ];
+            }
         }
 
         return $translatedOptions;
