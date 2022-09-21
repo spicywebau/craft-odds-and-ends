@@ -1,30 +1,22 @@
 <?php
-/**
- * SupercoolTools plugin for Craft CMS 3.x
- *
- * SupercoolTools
- *
- * @link      http://supercooldesign.co.uk
- * @copyright Copyright (c) 2017 Supercool
- */
 
-namespace supercool\tools;
+namespace spicyweb\tools;
 
-use supercool\tools\fields\AuthorInstructions as AuthorInstructionsField;
-use supercool\tools\fields\DisabledLightswitch as DisabledLightswitchField;
-use supercool\tools\fields\DisabledPlainText as DisabledPlainTextField;
-use supercool\tools\fields\DisabledNumber as DisabledNumberField;
-use supercool\tools\fields\DisabledEntries as DisabledEntriesField;
-use supercool\tools\fields\DisabledCategories as DisabledCategoriesField;
-use supercool\tools\fields\DisabledDropdown as DisabledDropdownField;
-use supercool\tools\fields\EntriesSearch as EntriesSearchField;
-use supercool\tools\fields\CategoriesSearch as CategoriesSearchField;
-use supercool\tools\fields\CategoriesMultipleGroups as CategoriesMultipleGroupsField;
-use supercool\tools\fields\Width as WidthField;
-use supercool\tools\fields\Ancestors as AncestorsField;
-use supercool\tools\fields\Grid as GridField;
+use spicyweb\tools\fields\AuthorInstructions as AuthorInstructionsField;
+use spicyweb\tools\fields\DisabledLightswitch as DisabledLightswitchField;
+use spicyweb\tools\fields\DisabledPlainText as DisabledPlainTextField;
+use spicyweb\tools\fields\DisabledNumber as DisabledNumberField;
+use spicyweb\tools\fields\DisabledEntries as DisabledEntriesField;
+use spicyweb\tools\fields\DisabledCategories as DisabledCategoriesField;
+use spicyweb\tools\fields\DisabledDropdown as DisabledDropdownField;
+use spicyweb\tools\fields\EntriesSearch as EntriesSearchField;
+use spicyweb\tools\fields\CategoriesSearch as CategoriesSearchField;
+use spicyweb\tools\fields\CategoriesMultipleGroups as CategoriesMultipleGroupsField;
+use spicyweb\tools\fields\Width as WidthField;
+use spicyweb\tools\fields\Ancestors as AncestorsField;
+use spicyweb\tools\fields\Grid as GridField;
 
-use supercool\tools\widgets\RollYourOwn as RollYourOwnWidget;
+use spicyweb\tools\widgets\RollYourOwn as RollYourOwnWidget;
 
 use Craft;
 use craft\base\Plugin;
@@ -36,6 +28,14 @@ use craft\events\RegisterComponentTypesEvent;
 
 use yii\base\Event;
 
+/**
+ * Class Tools
+ *
+ * @package spicyweb\tools
+ * @author Spicy Web <plugins@spicyweb.com.au>
+ * @author Supercool
+ * @since 2.0.0
+ */
 class Tools extends Plugin
 {
     // Static Properties
@@ -43,9 +43,9 @@ class Tools extends Plugin
 
     /**
      * Static property that is an instance of this plugin class so that it can be accessed via
-     * SupercoolTools::$plugin
+     * Tools::$plugin
      *
-     * @var SupercoolTools
+     * @var Tools
      */
     public static $plugin;
 
@@ -54,7 +54,7 @@ class Tools extends Plugin
 
     /**
      * Set our $plugin static property to this class so that it can be accessed via
-     * SupercoolTools::$plugin
+     * Tools::$plugin
      *
      * Called after the plugin class is instantiated; do any one-time initialization
      * here such as hooks and events.
@@ -134,6 +134,6 @@ class Tools extends Plugin
     // =========================================================================
     protected function createSettingsModel()
     {
-        return new \supercool\tools\models\Settings();
+        return new \spicyweb\tools\models\Settings();
     }
 }

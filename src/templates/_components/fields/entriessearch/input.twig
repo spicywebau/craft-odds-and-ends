@@ -10,7 +10,7 @@
 
 {% from "_includes/forms" import text %}
 
-<div id="{{ id }}" class="elementselect clearafter supercooltools-elementsearch">
+<div id="{{ id }}" class="elementselect clearafter spicywebtools-elementsearch">
 	<div class="elements">
 		{% for element in elements %}
 			{% include "_elements/element" with { context: 'field' } %}
@@ -39,7 +39,7 @@
 		selectionLabel: "{{ selectionLabel|e('js') }}"
 	};
 
-	new SupercoolTools.ElementSearchInput(settings);
+	new SpicyWebTools.ElementSearchInput(settings);
 {% endset %}
 
 {% js js %}

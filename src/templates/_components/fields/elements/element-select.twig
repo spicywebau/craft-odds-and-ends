@@ -10,7 +10,7 @@
 {% set storageKey = (storageKey is defined and storageKey ? storageKey : null) -%}
 {% set viewMode = (viewMode is defined ? viewMode : 'list') %}
 
-<div id="{{ id }}" class="elementselect disabled supercooltools-disabledelements">
+<div id="{{ id }}" class="elementselect disabled spicywebtools-disabledelements">
 	<div class="elements">
 		{% for element in elements %}
 			{% include "_elements/element" with {

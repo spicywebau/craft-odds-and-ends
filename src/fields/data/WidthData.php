@@ -1,19 +1,18 @@
 <?php
 
-/**
- * Class WidthData
- *
- * @author    Supercool Ltd <naveed@supercooldesign.co.uk>
- * @copyright Copyright (c) 2016, Supercool Ltd.
- * @see       http://supercooldesign.co.uk
- */
-
-namespace supercool\tools\fields\data;
+namespace spicyweb\tools\fields\data;
 
 use craft\fields\data\SingleOptionFieldData;
 use craft\helpers\Json;
 
-
+/**
+ * Class WidthData
+ *
+ * @package spicyweb\tools\fields\data
+ * @author Spicy Web <plugins@spicyweb.com.au>
+ * @author Supercool Ltd <naveed@supercooldesign.co.uk>
+ * @since 2.0.0
+ */
 class WidthData extends SingleOptionFieldData
 {
 

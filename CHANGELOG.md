@@ -6,7 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## Unreleased
 
+> {note} The plugin’s package name has changed to `spicyweb/tools`. The plugin will need be updated to 3.0 from a terminal, by running `composer require spicyweb/tools` and then `composer remove supercool/tools`.
+
 ### Changed
+- Now maintained by Spicy Web
 - Now requires Craft 3.7.46 or later Craft 3 releases
 
 ### Fixed

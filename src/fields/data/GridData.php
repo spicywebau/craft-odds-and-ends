@@ -1,18 +1,17 @@
 <?php
 
-/**
- * Class GridData
- *
- * @author    Supercool Ltd <naveed@supercooldesign.co.uk>
- * @copyright Copyright (c) 2018, Supercool Ltd.
- * @see       http://supercooldesign.co.uk
- */
-
-namespace supercool\tools\fields\data;
+namespace spicyweb\tools\fields\data;
 
 use craft\helpers\Json;
 
-
+/**
+ * Class WidthData
+ *
+ * @package spicyweb\tools\fields\data
+ * @author Spicy Web <plugins@spicyweb.com.au>
+ * @author Supercool Ltd <naveed@supercooldesign.co.uk>
+ * @since 2.1.0
+ */
 class GridData
 {
 

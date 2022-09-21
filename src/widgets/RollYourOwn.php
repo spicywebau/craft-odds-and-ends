@@ -1,26 +1,20 @@
 <?php
 
-/**
- * SupercoolTools plugin for Craft CMS 3.x
- *
- * @link      http://supercooldesign.co.uk
- * @copyright Copyright (c) 2017 Supercool
- */
+namespace spicyweb\tools\widgets;
 
-namespace supercool\tools\widgets;
-
-use supercool\tools\Tools;
-use supercool\tools\assetbundles\tools\ToolsAsset;
+use spicyweb\tools\Tools;
+use spicyweb\tools\assetbundles\tools\ToolsAsset;
 
 use Craft;
 use craft\base\Widget;
 
 /**
- * SupercoolTools Roll Your Own Widget
+ * Roll Your Own Widget
  *
- * @author    Supercool
- * @package   SupercoolTools
- * @since     1.0.0
+ * @package spicyweb\tools\widgets
+ * @author Spicy Web <plugins@spicyweb.com.au>
+ * @author Supercool
+ * @since 2.0.0
  */
 class RollYourOwn extends Widget
 {

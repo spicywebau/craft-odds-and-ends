@@ -1,8 +1,8 @@
 <?php
 
-namespace supercool\tools\controllers;
+namespace spicyweb\tools\controllers;
 
-use supercool\tools\Tools as ToolsPlugin;
+use spicyweb\tools\Tools as ToolsPlugin;
 
 use Craft;
 use craft\web\Controller;
@@ -13,6 +13,14 @@ use craft\elements\Asset;
 use craft\helpers\Db;
 use craft\helpers\FileHelper;
 
+/**
+ * Class ToolsController
+ *
+ * @package spicyweb\tools\controllers
+ * @author Spicy Web <plugins@spicyweb.com.au>
+ * @author Supercool
+ * @since 2.0.0
+ */
 class ToolsController extends Controller
 {
 

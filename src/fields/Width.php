@@ -1,18 +1,10 @@
 <?php
-/**
- * SupercoolTools plugin for Craft CMS 3.x
- *
- * SupercoolTools
- *
- * @link      http://supercooldesign.co.uk
- * @copyright Copyright (c) 2017 Supercool
- */
 
-namespace supercool\tools\fields;
+namespace spicyweb\tools\fields;
 
-use supercool\tools\Tools as ToolsPlugin;
-use supercool\tools\assetbundles\tools\ToolsAsset;
-use supercool\tools\fields\data\WidthData;
+use spicyweb\tools\Tools as ToolsPlugin;
+use spicyweb\tools\assetbundles\tools\ToolsAsset;
+use spicyweb\tools\fields\data\WidthData;
 
 use Craft;
 use craft\base\ElementInterface;
@@ -26,9 +18,10 @@ use craft\helpers\ArrayHelper;
 /**
  * Width Field
  *
- * @author    Supercool
- * @package   SupercoolTools
- * @since     1.0.0
+ * @package spicyweb\tools\fields
+ * @author Spicy Web <plugins@spicyweb.com.au>
+ * @author Supercool
+ * @since 2.0.0
  */
 class Width extends Dropdown
 {

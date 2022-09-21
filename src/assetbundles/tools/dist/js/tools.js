@@ -1,15 +1,16 @@
 /**
- * @author    Josh Angell <josh@supercooldesign.co.uk>
+ * @author Spicy Web <plugins@spicyweb.com.au>
+ * @author Josh Angell <josh@supercooldesign.co.uk>
+ * @copyright Copyright (c) 2022, Spicy Web
  * @copyright Copyright (c) 2016, Supercool Ltd
- * @see       http://plugins.supercooldesign.co.uk
  */
 
 (function($){
 
 
-if (typeof SupercoolTools == 'undefined')
+if (typeof SpicyWebTools == 'undefined')
 {
-	SupercoolTools = {}
+	SpicyWebTools = {}
 }
 
 
@@ -17,7 +18,7 @@ if (typeof SupercoolTools == 'undefined')
  * Make all links in instructions open in a new window - useful for fields
  * where only markdown is supported
  */
-SupercoolTools.TargetBlankInstructionLinks = Garnish.Base.extend(
+SpicyWebTools.TargetBlankInstructionLinks = Garnish.Base.extend(
 {
 	init: function()
 	{
@@ -37,7 +38,7 @@ SupercoolTools.TargetBlankInstructionLinks = Garnish.Base.extend(
 /**
  * Search elements like Tags - forked from `Craft.TagSelectInput`
  */
-SupercoolTools.ElementSearchInput = Craft.BaseElementSelectInput.extend(
+SpicyWebTools.ElementSearchInput = Craft.BaseElementSelectInput.extend(
 {
 	searchTimeout: null,
 	searchMenu: null,
@@ -194,7 +195,7 @@ SupercoolTools.ElementSearchInput = Craft.BaseElementSelectInput.extend(
 
 				if (textStatus == 'success')
 				{
-					var $menu = $('<div class="menu supercooltools-elementsearch__menu"/>').appendTo(Garnish.$bod);
+					var $menu = $('<div class="menu spicywebtools-elementsearch__menu"/>').appendTo(Garnish.$bod);
 
 					// Loop each source defined in our settings and see if we got anything back from it
 					for (var i = 0; i < this.settings.sources.length; i++) {

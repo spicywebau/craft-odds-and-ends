@@ -1,15 +1,6 @@
 <?php
 
-/**
- * SupercoolTools plugin for Craft CMS 3.x
- *
- * SupercoolTools
- *
- * @link      http://supercooldesign.co.uk
- * @copyright Copyright (c) 2017 Supercool
- */
-
-namespace supercool\tools\fields;
+namespace spicyweb\tools\fields;
 
 use Craft;
 use craft\base\Element;
@@ -17,15 +8,16 @@ use craft\base\ElementInterface;
 use craft\base\Field;
 use craft\base\PreviewableFieldInterface;
 use craft\helpers\Json;
-use supercool\tools\fields\data\GridData;
+use spicyweb\tools\fields\data\GridData;
 use yii\db\Schema;
 
 /**
  * Grid Field
  *
- * @author    Supercool
- * @package   SupercoolTools
- * @since     1.0.0
+ * @package spicyweb\tools\fields
+ * @author Spicy Web <plugins@spicyweb.com.au>
+ * @author Supercool
+ * @since 2.1.0
  */
 class Grid extends Field implements PreviewableFieldInterface
 {

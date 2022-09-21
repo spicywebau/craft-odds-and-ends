@@ -10,7 +10,7 @@
 
 {% from "_includes/forms" import text %}
 
-<div id="{{ id }}" class="categoriesfield clearafter supercooltools-elementsearch">
+<div id="{{ id }}" class="categoriesfield clearafter spicywebtools-elementsearch">
 	<ul class="elements structure">
 		{% nav category in elements %}
 			<li id="{{ id }}-category-{{ category.id }}">
@@ -50,7 +50,7 @@
 		selectionLabel: "{{ selectionLabel|e('js') }}"
 	};
 
-	new SupercoolTools.ElementSearchInput(settings);
+	new SpicyWebTools.ElementSearchInput(settings);
 {% endset %}
 
 {% js js %}
