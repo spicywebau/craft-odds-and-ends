@@ -103,6 +103,8 @@ class ToolsController extends Controller
 					}
 				}
 
+			} elseif ($sources === '*') {
+				$sections = Craft::$app->getSections()->getAllSections();
 			}
 
 			$criteria = Entry::find();
@@ -151,7 +153,7 @@ class ToolsController extends Controller
 				}
 				else
 				{
-					$sourceKey = "section:".$element->section->id;
+					$sourceKey = "section:".$element->section->uid;
 				}
 
 				$return[$sourceKey][] = array(
@@ -163,7 +165,7 @@ class ToolsController extends Controller
 			}
 			else if ($elementType == "Category")
 			{
-				$sourceKey = "group:".$element->group->id;
+				$sourceKey = "group:".$element->group->uid;
 				$return[$sourceKey][] = array(
 					'id'          => $element->id,
 					'title'       => $element->title,

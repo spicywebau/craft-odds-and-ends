@@ -221,7 +221,7 @@ SpicyWebTools.ElementSearchInput = Craft.BaseElementSelectInput.extend(
 					// to see if there were no results returned
 					if ( $menu.children().length == 0 )
 					{
-						$('<p>'+Craft.t('No results')+' &hellip;</p>').appendTo($menu);
+						$('<p>'+Craft.t('tools', 'No results')+' &hellip;</p>').appendTo($menu);
 					}
 
 					// Highlight first match
@@ -260,7 +260,7 @@ SpicyWebTools.ElementSearchInput = Craft.BaseElementSelectInput.extend(
 			var $element = $('<div class="element removable" data-id="'+elementId+'" data-editable/>').appendTo(this.$elementsContainer),
 				$input = $('<input type="hidden" name="'+this.settings.name+'[]" value="'+elementId+'"/>').appendTo($element)
 
-			$('<a class="delete icon" title="'+Craft.t('Remove')+'"></a>').appendTo($element);
+			$('<a class="delete icon" title="'+Craft.t('tools', 'Remove')+'"></a>').appendTo($element);
 			$('<div class="label"><span class="status '+status+'"></span><span class="title">'+title+'</span></div>').appendTo($element);
 
 			var margin = -($element.outerWidth()+10);
