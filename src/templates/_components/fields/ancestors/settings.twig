@@ -1,6 +1,6 @@
 {% import "_includes/forms" as forms %}
 
-{{ targetLocaleField }}
+{{ targetLocaleField|raw }}
 
 {% if field['allowLimit'] %}
 	{{ forms.textField({
