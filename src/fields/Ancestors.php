@@ -99,7 +99,7 @@ class Ancestors extends Entries
      */
     protected function inputSources(ElementInterface $element = null)
     {
-        $sources = array('section:'.$element->section->id);
+        $sources = array('section:'.$element->section->uid);
 
         return $sources;
     }
