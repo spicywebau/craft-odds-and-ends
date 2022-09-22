@@ -12,6 +12,7 @@ use craft\elements\Category;
 use craft\elements\Asset;
 use craft\helpers\Db;
 use craft\helpers\FileHelper;
+use craft\models\Section;
 
 /**
  * Class ToolsController
@@ -85,14 +86,14 @@ class ToolsController extends Controller
 					{
 						case 'singles':
 						{
-							$sections = array_merge($sections, craft()->sections->getSectionsByType(SectionType::Single));
+							$sections = array_merge($sections, Craft::$app->getSections()->getSectionsByType(Section::TYPE_SINGLE));
 							break;
 						}
 						default:
 						{
-							if (preg_match('/^section:(\d+)$/', $source, $matches))
+							if (preg_match('/^section:(.+)$/', $source, $matches))
 							{
-								$section = craft()->sections->getSectionById($matches[1]);
+								$section = Craft::$app->getSections()->getSectionByUid($matches[1]);
 
 								if ($section)
 								{
@@ -147,7 +148,7 @@ class ToolsController extends Controller
 				{
 					$sourceKey = "*";
 				}
-				else if ($element->section->type == SectionType::Single)
+				else if ($element->section->type == Section::TYPE_SINGLE)
 				{
 					$sourceKey = "singles";
 				}

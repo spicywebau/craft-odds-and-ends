@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Fixed a bug where Roll Your Own widgets were always displaying 'Roll Your Own' as the title, instead of the user-specified title
 - Fixed a JavaScript error that could occur with Entries (Search) and Categories (Search) fields
 - Fixed a bug where Entries (Search) and Categories (Search) fields could fail to return results
+- Fixed an error that occurred with the Entries (Search) field if single sections were one of the sources set for the field
 - Fixed an error that occurred when loading Ancestors field settings
 
 ## 2.2.3 - 2022-05-24
