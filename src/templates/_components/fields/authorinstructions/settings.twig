@@ -1,14 +1,14 @@
 {% import "_includes/forms" as forms %}
 
 {{
-	forms.textareaField({
-		label: 'Author Instructions' | t,
-		instructions: 'Enter some instructions for the author here' | t,
-		name: 'authorInstructions',
-		id: 'authorInstructions',
-		value: field['authorInstructions'],
-		rows: 8,
-		required: true,
-		errors: field.getErrors('authorInstructions'),
-	})
+    forms.textareaField({
+        label: 'Author Instructions' | t,
+        instructions: 'Enter some instructions for the author here' | t,
+        name: 'authorInstructions',
+        id: 'authorInstructions',
+        value: field['authorInstructions'],
+        rows: 8,
+        required: true,
+        errors: field.getErrors('authorInstructions'),
+    })
 }}

@@ -1,19 +1,19 @@
 {% import "_includes/forms" as forms %}
 
 {{ forms.textField({
-	label: "Title"|t,
-	id: 'title',
-	name: 'title',
-	value: widget.getTitle(),
-	required: true,
-	errors: widget.getErrors('title')
+    label: "Title"|t,
+    id: 'title',
+    name: 'title',
+    value: widget.getTitle(),
+    required: true,
+    errors: widget.getErrors('title')
 }) }}
 
 {{ forms.textField({
-	label: "Template"|t,
-	id: 'template',
-	name: 'template',
-	value: widget['template'],
-	required: true,
-	errors: widget.getErrors('template')
+    label: "Template"|t,
+    id: 'template',
+    name: 'template',
+    value: widget['template'],
+    required: true,
+    errors: widget.getErrors('template')
 }) }}

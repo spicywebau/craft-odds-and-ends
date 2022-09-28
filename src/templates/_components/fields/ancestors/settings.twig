@@ -3,23 +3,23 @@
 {{ targetLocaleField|raw }}
 
 {% if field['allowLimit'] %}
-	{{ forms.textField({
-		label: "Limit"|t,
-		instructions: "Limit the number of selectable ancestors.",
-		id: 'limit',
-		name: 'limit',
-		value: field['limit'],
-		size: 2,
-		errors: field.getErrors('limit')
-	}) }}
+    {{ forms.textField({
+        label: "Limit"|t,
+        instructions: "Limit the number of selectable ancestors.",
+        id: 'limit',
+        name: 'limit',
+        value: field['limit'],
+        size: 2,
+        errors: field.getErrors('limit')
+    }) }}
 {% endif %}
 
 {{ forms.textField({
-	label: "Selection Label"|t,
-	instructions: "Enter the text you want to appear on the ancestors selection input.",
-	id: 'selectionLabel',
-	name: 'selectionLabel',
-	value: field['selectionLabel'],
-	size: 25,
-	errors: field.getErrors('selectionLabel')
+    label: "Selection Label"|t,
+    instructions: "Enter the text you want to appear on the ancestors selection input.",
+    id: 'selectionLabel',
+    name: 'selectionLabel',
+    value: field['selectionLabel'],
+    size: 25,
+    errors: field.getErrors('selectionLabel')
 }) }}

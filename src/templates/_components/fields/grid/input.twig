@@ -19,23 +19,23 @@
 {# NOTE: This is the only data that needs to be sent to the backend (left and right values) #}
 
 {{ forms.hidden({
-	label: 'left',
-	name: name ~ '[left]',
-	id: name ~ '-left',
-	value: value.left
+    label: 'left',
+    name: name ~ '[left]',
+    id: name ~ '-left',
+    value: value.left
 }) }}
 
 {{ forms.hidden({
-	label: 'right',
-	name: name ~ '[right]',
-	id: name ~ '-right',
-	value: value.right
+    label: 'right',
+    name: name ~ '[right]',
+    id: name ~ '-right',
+    value: value.right
 }) }}
 
 {% if value.maxColumnSpan %}
-	<span class="">This block has a minimum width of {{value.minColumnSpan}} columns, and a maximum width of {{value.maxColumnSpan}} columns<span>
+    <span class="">This block has a minimum width of {{value.minColumnSpan}} columns, and a maximum width of {{value.maxColumnSpan}} columns<span>
 {% else %}
-	<span class="">This block has a minimum width of {{value.minColumnSpan}} columns<span>
+    <span class="">This block has a minimum width of {{value.minColumnSpan}} columns<span>
 {% endif %}
 
 <div id="{{ name }}-slider"></div>
@@ -45,59 +45,59 @@
 
 {% set sliderFieldJS %}
 
-	var sliderErrorCatch = 0;
-	setupSlider("{{namespaceId}}", {{ value.left }}, {{ value.right }}, {{ value.minColumnSpan}}, {{value.maxColumnSpan ?? value.totalColumns}}, {{ value.totalColumns }});
+    var sliderErrorCatch = 0;
+    setupSlider("{{namespaceId}}", {{ value.left }}, {{ value.right }}, {{ value.minColumnSpan}}, {{value.maxColumnSpan ?? value.totalColumns}}, {{ value.totalColumns }});
 
-	function setupSlider(sld, ll, rr, min, max, total) {
-		var slider = document.getElementById(sld + "-slider");
-		noUiSlider.create(slider, {
-			start: [ll, rr],
-			connect: true,
-			margin: min,
-			limit: max,
-			step: 1,
-			behaviour: "drag",
-			tooltips: false,
-			range: {
-				'min': 0,
-				'max': total
-			},
-			pips: {
-				mode: 'steps',
-				density: 100
-			}
-		});
-		slider.noUiSlider.on('update', function(values, handle) {
-			ll = parseInt(values[0]);
-			rr = parseInt(values[1]);
-			width = rr - ll;
+    function setupSlider(sld, ll, rr, min, max, total) {
+        var slider = document.getElementById(sld + "-slider");
+        noUiSlider.create(slider, {
+            start: [ll, rr],
+            connect: true,
+            margin: min,
+            limit: max,
+            step: 1,
+            behaviour: "drag",
+            tooltips: false,
+            range: {
+                'min': 0,
+                'max': total
+            },
+            pips: {
+                mode: 'steps',
+                density: 100
+            }
+        });
+        slider.noUiSlider.on('update', function(values, handle) {
+            ll = parseInt(values[0]);
+            rr = parseInt(values[1]);
+            width = rr - ll;
 
-			if (width == max || width == min) {
-				slider.classList.add('is-at-limit')
-			}
-			else {
-				slider.classList.remove('is-at-limit')
-			}
+            if (width == max || width == min) {
+                slider.classList.add('is-at-limit')
+            }
+            else {
+                slider.classList.remove('is-at-limit')
+            }
 
-			var draggable = slider.querySelector('.noUi-draggable')
-			draggable.innerHTML = '-' + width + '-';
-		});
-		slider.noUiSlider.on('end', function(values, handle) {
-			ll = parseInt(values[0]);
-			rr = parseInt(values[1]);
-			width = rr - ll;
-			$('#' + sld + '-left').val( ll );
-			$('#' + sld + '-right').val( rr );
-			$('#' + sld + '-leftStored').val( ll );
-			$('#' + sld + '-rightStored').val( rr );
+            var draggable = slider.querySelector('.noUi-draggable')
+            draggable.innerHTML = '-' + width + '-';
+        });
+        slider.noUiSlider.on('end', function(values, handle) {
+            ll = parseInt(values[0]);
+            rr = parseInt(values[1]);
+            width = rr - ll;
+            $('#' + sld + '-left').val( ll );
+            $('#' + sld + '-right').val( rr );
+            $('#' + sld + '-leftStored').val( ll );
+            $('#' + sld + '-rightStored').val( rr );
 
-			var draggable = slider.querySelector('.noUi-draggable')
-			draggable.innerHTML = '-' + width + '-';
-		});
-		// Settings classes on handles
-		var origins = slider.getElementsByClassName('noUi-handle');
-		origins[0].className += origins[0].className ? ' grid__firstHandle' : 'grid__firstHandle';
-		origins[1].className += origins[1].className ? ' grid__secondHandle' : 'grid__secondHandle';
-	}
+            var draggable = slider.querySelector('.noUi-draggable')
+            draggable.innerHTML = '-' + width + '-';
+        });
+        // Settings classes on handles
+        var origins = slider.getElementsByClassName('noUi-handle');
+        origins[0].className += origins[0].className ? ' grid__firstHandle' : 'grid__firstHandle';
+        origins[1].className += origins[1].className ? ' grid__secondHandle' : 'grid__secondHandle';
+    }
 {% endset %}
 {% js sliderFieldJS %}

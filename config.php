@@ -1,5 +1,5 @@
 <?php
 
 return array(
-	'openInstructionLinksInNewWindow' => true,
+    'openInstructionLinksInNewWindow' => true,
 );
