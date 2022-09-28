@@ -93,7 +93,7 @@ class Ancestors extends Entries
      */
     protected function inputSources(ElementInterface $element = null)
     {
-        $sources = array('section:' . $element->section->uid);
+        $sources = ['section:' . $element->section->uid];
 
         return $sources;
     }
@@ -110,14 +110,14 @@ class Ancestors extends Entries
         $ids = $this->ourElement->getAncestors()->ids();
 
         if (count($ids)) {
-            return array(
+            return [
                 'id' => $ids,
-            );
+            ];
         }
 
         // If there is a parent id param then its a new child entry
         // $parentId = Craft::$app->getRequest()->getParam('parentId');
-        // $ids = array();
+        // $ids = [];
         // if ($parentId)
         // {
         //     $parent = craft()->elements->getElementById($parentId);
@@ -127,9 +127,9 @@ class Ancestors extends Entries
         //     $criteria->ancestorOf = $parent->id;
         //     $criteria->locale     = $parent->locale;
 
-        //     return array(
+        //     return [
         //         'id' => array_merge($ids, $criteria->ids())
-        //     );
+        //     ];
         // }
 
         return [];

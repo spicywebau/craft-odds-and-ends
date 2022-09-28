@@ -61,9 +61,9 @@ class WidthData extends SingleOptionFieldData
 
     public function setData($options, $value)
     {
-        $widthOptions = array();
-        $leftOptions = array();
-        $rightOptions = array();
+        $widthOptions = [];
+        $leftOptions = [];
+        $rightOptions = [];
 
         $width = "";
         $left = "";

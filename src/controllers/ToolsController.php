@@ -60,7 +60,7 @@ class ToolsController extends Controller
         $request = Craft::$app->getRequest();
 
         $search = $request->getRequiredBodyParam('search');
-        $excludeIds = $request->getRequiredBodyParam('excludeIds', array());
+        $excludeIds = $request->getRequiredBodyParam('excludeIds', []);
 
         // // Get the post data
         $elementType = $request->getRequiredBodyParam('elementType');
@@ -70,7 +70,7 @@ class ToolsController extends Controller
         if ($elementType == "Entry") {
 
             // Fangle the sections out of the sources
-            $sections = array();
+            $sections = [];
             if (is_array($sources)) {
                 foreach ($sources as $source) {
                     switch ($source) {
@@ -85,7 +85,7 @@ class ToolsController extends Controller
                                 $section = Craft::$app->getSections()->getSectionByUid($matches[1]);
 
                                 if ($section) {
-                                    $sections = array_merge($sections, array($section));
+                                    $sections = array_merge($sections, [$section]);
                                 }
                             }
                         }
@@ -105,7 +105,7 @@ class ToolsController extends Controller
         }
 
         // Add and exclude ids
-        $notIds = array('and');
+        $notIds = ['and'];
 
         foreach ($excludeIds as $id) {
             $notIds[] = 'not ' . $id;
@@ -118,8 +118,8 @@ class ToolsController extends Controller
         $criteria->limit = 20;
         $elements = $criteria->all();
 
-        $return = array();
-        $exactMatches = array();
+        $return = [];
+        $exactMatches = [];
         $exactMatch = false;
 
         $normalizedSearch = $search;
@@ -134,20 +134,20 @@ class ToolsController extends Controller
                     $sourceKey = "section:" . $element->section->uid;
                 }
 
-                $return[$sourceKey][] = array(
+                $return[$sourceKey][] = [
                     'id' => $element->id,
                     'title' => $element->title,
                     'status' => $element->status,
                     'sourceName' => $element->section->name,
-                );
+                ];
             } elseif ($elementType == "Category") {
                 $sourceKey = "group:" . $element->group->uid;
-                $return[$sourceKey][] = array(
+                $return[$sourceKey][] = [
                     'id' => $element->id,
                     'title' => $element->title,
                     'status' => $element->status,
                     'sourceName' => $element->group->name,
-                );
+                ];
             }
 
             $normalizedTitle = $element->title;

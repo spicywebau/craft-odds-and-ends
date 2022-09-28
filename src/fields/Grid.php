@@ -142,11 +142,11 @@ class Grid extends Field implements PreviewableFieldInterface
         $namespacedId = Craft::$app->getView()->namespaceInputId($id);
 
 
-        return Craft::$app->getView()->renderTemplate('tools/_components/fields/grid/input', array(
+        return Craft::$app->getView()->renderTemplate('tools/_components/fields/grid/input', [
             'name' => $this->handle,
             'value' => $value,
             'namespaceId' => $namespacedId,
-        ));
+        ]);
     }
 
 

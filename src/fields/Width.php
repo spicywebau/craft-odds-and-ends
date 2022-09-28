@@ -45,44 +45,44 @@ class Width extends Dropdown
 
         if (!$options) {
             // Give it a default row
-            $options = array(array('label' => '', 'value' => ''));
+            $options = [['label' => '', 'value' => '']];
         }
 
-        return Craft::$app->getView()->renderTemplateMacro('_includes/forms', 'editableTableField', array(
-            array(
+        return Craft::$app->getView()->renderTemplateMacro('_includes/forms', 'editableTableField', [
+            [
                 'label' => $this->optionsSettingLabel(),
                 'instructions' => Craft::t('tools', 'Define the available options.'),
                 'id' => 'options',
                 'name' => 'options',
                 'addRowLabel' => Craft::t('tools', 'Add an option'),
-                'cols' => array(
-                    'widthValue' => array(
+                'cols' => [
+                    'widthValue' => [
                         'heading' => Craft::t('tools', 'Width Value'),
                         'type' => 'singleline',
                         'class' => 'code',
-                    ),
-                    'widthDefault' => array(
+                    ],
+                    'widthDefault' => [
                         'heading' => Craft::t('tools', 'Width Default?'),
                         'type' => 'checkbox',
                         'class' => 'thin',
-                    ),
+                    ],
 
-                    'leftValue' => array(
+                    'leftValue' => [
                         'heading' => Craft::t('tools', 'Left Value'),
                         'type' => 'singleline',
                         'class' => 'code',
-                    ),
+                    ],
 
-                    'rightValue' => array(
+                    'rightValue' => [
                         'heading' => Craft::t('tools', 'Right Value'),
                         'type' => 'singleline',
                         'class' => 'code',
-                    ),
+                    ],
 
-                ),
+                ],
                 'rows' => $options,
-            ),
-        ));
+            ],
+        ]);
     }
 
 
@@ -104,11 +104,11 @@ class Width extends Dropdown
         $namespacedId = Craft::$app->getView()->namespaceInputId($id);
 
 
-        return Craft::$app->getView()->renderTemplate('tools/_components/fields/width/input', array(
+        return Craft::$app->getView()->renderTemplate('tools/_components/fields/width/input', [
             'name' => $this->handle,
             'value' => $value,
             'namespaceId' => $namespacedId,
-        ));
+        ]);
     }
 
 
