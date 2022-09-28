@@ -2,16 +2,9 @@
 
 namespace spicyweb\tools\fields;
 
-use spicyweb\tools\Tools as ToolsPlugin;
-use spicyweb\tools\assetbundles\tools\ToolsAsset;
-
 use Craft;
 use craft\base\ElementInterface;
 use craft\fields\Number;
-use craft\helpers\Db;
-use yii\db\Schema;
-use craft\helpers\Json;
-use craft\helpers\Template;
 use craft\i18n\Locale;
 
 /**
@@ -138,9 +131,7 @@ class DisabledNumber extends Number
             'name' => $this->handle,
             'value' => $value,
             'size' => $this->size,
-            'disabled' => true
+            'disabled' => true,
         ]);
-
     }
-
 }

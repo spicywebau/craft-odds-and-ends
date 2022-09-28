@@ -2,16 +2,10 @@
 
 namespace spicyweb\tools\fields;
 
-use spicyweb\tools\Tools as ToolsPlugin;
-use spicyweb\tools\assetbundles\tools\ToolsAsset;
-
 use Craft;
 use craft\base\ElementInterface;
 use craft\fields\PlainText;
-use craft\helpers\Db;
 use yii\db\Schema;
-use craft\helpers\Json;
-use craft\helpers\Template;
 
 /**
  * Disabled Plain Text Field
@@ -57,7 +51,7 @@ class DisabledPlainText extends PlainText
     {
         $rules = parent::rules();
         $rules = array_merge($rules, [
-            ['size', 'number']
+            ['size', 'number'],
         ]);
         
         return $rules;
@@ -111,7 +105,7 @@ class DisabledPlainText extends PlainText
     {
         return Craft::$app->getView()->renderTemplate('tools/_components/fields/disabledplaintext/settings',
             [
-                'field' => $this
+                'field' => $this,
             ]);
     }
 
@@ -132,9 +126,7 @@ class DisabledPlainText extends PlainText
                 'value' => $value,
                 'field' => $this,
                 'maxlength' => $this->size,
-                'disabled' => true
+                'disabled' => true,
             ]);
-
     }
-
 }

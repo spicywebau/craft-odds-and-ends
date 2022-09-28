@@ -2,16 +2,13 @@
 
 namespace spicyweb\tools\fields;
 
-use spicyweb\tools\Tools as ToolsPlugin;
-use spicyweb\tools\assetbundles\tools\ToolsAsset;
-
 use Craft;
+
 use craft\base\ElementInterface;
 use craft\base\Field;
-use craft\helpers\Db;
-use yii\db\Schema;
-use craft\helpers\Json;
 use craft\helpers\Template;
+use spicyweb\tools\assetbundles\tools\ToolsAsset;
+use yii\db\Schema;
 
 /**
  * AuthorInstructions Field
@@ -136,12 +133,10 @@ class AuthorInstructions extends Field
         return Craft::$app->getView()->renderTemplate(
             'tools/_components/fields/authorinstructions/input',
             [
-                'name'     => $name,
-                'value'    => $value,
-                'authorInstructions' => $this->authorInstructions
+                'name' => $name,
+                'value' => $value,
+                'authorInstructions' => $this->authorInstructions,
             ]
         );
-
     }
-
 }

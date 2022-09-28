@@ -2,15 +2,8 @@
 
 namespace spicyweb\tools\fields;
 
-use spicyweb\tools\Tools as ToolsPlugin;
-use spicyweb\tools\assetbundles\tools\ToolsAsset;
-
 use Craft;
-use craft\base\ElementInterface;
 use craft\fields\Categories;
-use craft\helpers\Db;
-use yii\db\Schema;
-use craft\helpers\Template;
 
 /**
  * Disabled Categories Field
@@ -39,7 +32,7 @@ class DisabledCategories extends Categories
         return Craft::t('tools', 'Categories (Disabled)');
     }
 
-     // Public Methods
+    // Public Methods
     // =========================================================================
 
     /**
@@ -50,6 +43,4 @@ class DisabledCategories extends Categories
         parent::init();
         $this->inputTemplate = 'tools/_components/fields/disabledcategories/input';
     }
-
-
 }

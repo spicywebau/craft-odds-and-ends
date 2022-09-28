@@ -2,16 +2,10 @@
 
 namespace spicyweb\tools\fields;
 
-use spicyweb\tools\Tools as ToolsPlugin;
-use spicyweb\tools\assetbundles\tools\ToolsAsset;
-
 use Craft;
 use craft\base\ElementInterface;
 use craft\fields\Lightswitch;
-use craft\helpers\Db;
 use yii\db\Schema;
-use craft\helpers\Json;
-use craft\helpers\Template;
 
 /**
  * Disabled Lightswitch Field
@@ -133,12 +127,10 @@ class DisabledLightswitch extends Lightswitch
         return Craft::$app->getView()->renderTemplate('_includes/forms/lightswitch',
             [
                 'id' => $id,
-                'labelId' => $id.'-label',
+                'labelId' => $id . '-label',
                 'name' => $this->handle,
                 'on' => (bool)$value,
-                'disabled' => true
+                'disabled' => true,
             ]);
-
     }
-
 }

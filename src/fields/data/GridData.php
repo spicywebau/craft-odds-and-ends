@@ -2,8 +2,6 @@
 
 namespace spicyweb\tools\fields\data;
 
-use craft\helpers\Json;
-
 /**
  * Class WidthData
  *
@@ -14,7 +12,6 @@ use craft\helpers\Json;
  */
 class GridData
 {
-
     public $totalColumns;
     public $left;
     public $right;
@@ -49,5 +46,4 @@ class GridData
     {
         return $this->left . ',' . $this->right;
     }
-
 }

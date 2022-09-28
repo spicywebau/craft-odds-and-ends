@@ -2,18 +2,13 @@
 
 namespace spicyweb\tools\fields;
 
-use spicyweb\tools\Tools as ToolsPlugin;
-use spicyweb\tools\assetbundles\tools\ToolsAsset;
-use spicyweb\tools\fields\data\WidthData;
-
 use Craft;
+
 use craft\base\ElementInterface;
 use craft\fields\Dropdown;
-use craft\helpers\Db;
-use yii\db\Schema;
 use craft\helpers\Json;
-use craft\helpers\Template;
-use craft\helpers\ArrayHelper;
+use spicyweb\tools\fields\data\WidthData;
+use yii\db\Schema;
 
 /**
  * Width Field
@@ -25,7 +20,6 @@ use craft\helpers\ArrayHelper;
  */
 class Width extends Dropdown
 {
-
     // Static Methods
     // =========================================================================
 
@@ -47,49 +41,47 @@ class Width extends Dropdown
      */
     public function getSettingsHtml()
     {
-
         $options = $this->translatedOptions();
 
-        if (!$options)
-        {
+        if (!$options) {
             // Give it a default row
             $options = array(array('label' => '', 'value' => ''));
         }
 
         return Craft::$app->getView()->renderTemplateMacro('_includes/forms', 'editableTableField', array(
             array(
-                'label'        => $this->optionsSettingLabel(),
+                'label' => $this->optionsSettingLabel(),
                 'instructions' => Craft::t('tools', 'Define the available options.'),
-                'id'           => 'options',
-                'name'         => 'options',
-                'addRowLabel'  => Craft::t('tools', 'Add an option'),
-                'cols'         => array(
+                'id' => 'options',
+                'name' => 'options',
+                'addRowLabel' => Craft::t('tools', 'Add an option'),
+                'cols' => array(
                     'widthValue' => array(
-                        'heading'      => Craft::t('tools', 'Width Value'),
-                        'type'         => 'singleline',
-                        'class'        => 'code'
+                        'heading' => Craft::t('tools', 'Width Value'),
+                        'type' => 'singleline',
+                        'class' => 'code',
                     ),
                     'widthDefault' => array(
-                        'heading'      => Craft::t('tools', 'Width Default?'),
-                        'type'         => 'checkbox',
-                        'class'        => 'thin'
+                        'heading' => Craft::t('tools', 'Width Default?'),
+                        'type' => 'checkbox',
+                        'class' => 'thin',
                     ),
 
                     'leftValue' => array(
-                        'heading'      => Craft::t('tools', 'Left Value'),
-                        'type'         => 'singleline',
-                        'class'        => 'code'
+                        'heading' => Craft::t('tools', 'Left Value'),
+                        'type' => 'singleline',
+                        'class' => 'code',
                     ),
 
                     'rightValue' => array(
-                        'heading'      => Craft::t('tools', 'Right Value'),
-                        'type'         => 'singleline',
-                        'class'        => 'code'
-                    )
+                        'heading' => Craft::t('tools', 'Right Value'),
+                        'type' => 'singleline',
+                        'class' => 'code',
+                    ),
 
                 ),
-                'rows' => $options
-            )
+                'rows' => $options,
+            ),
         ));
     }
 
@@ -99,8 +91,7 @@ class Width extends Dropdown
      */
     public function getInputHtml($value, ElementInterface $element = null): string
     {
-
-        if( $value == null ) {
+        if ($value == null) {
             $options = $this->translatedOptions();
             $data = new WidthData();
             $value = $data->setData($options, $value);
@@ -113,18 +104,17 @@ class Width extends Dropdown
         $namespacedId = Craft::$app->getView()->namespaceInputId($id);
 
 
-        return Craft::$app->getView()->renderTemplate( 'tools/_components/fields/width/input', array(
+        return Craft::$app->getView()->renderTemplate('tools/_components/fields/width/input', array(
             'name' => $this->handle,
             'value' => $value,
-            'namespaceId' => $namespacedId
+            'namespaceId' => $namespacedId,
         ));
-
     }
 
 
     public function normalizeValue($value, ElementInterface $element = null)
     {
-        if($value instanceof WidthData) {
+        if ($value instanceof WidthData) {
             return $value;
         }
 
@@ -173,7 +163,6 @@ class Width extends Dropdown
         $hasDuplicateRightValues = false;
 
         foreach ($this->options as &$option) {
-
             $widthValue = (string)$option['widthValue'];
             if (isset($widthValues[$widthValue])) {
                 $hasDuplicateWidthValues = true;
@@ -188,8 +177,6 @@ class Width extends Dropdown
             if (isset($rightValues[$rightValue])) {
                 $hasDuplicateRightValues = true;
             }
-
-
         }
 
         if ($hasDuplicateWidthValues) {
@@ -198,7 +185,6 @@ class Width extends Dropdown
 
         if ($hasDuplicateLeftValues) {
             $this->addError('options', Craft::t('app', 'All left values must be unique.'));
-
         }
 
         if ($hasDuplicateRightValues) {
@@ -233,5 +219,4 @@ class Width extends Dropdown
 
         return $translatedOptions;
     }
-
 }

@@ -2,16 +2,9 @@
 
 namespace spicyweb\tools\fields;
 
-use spicyweb\tools\Tools as ToolsPlugin;
-use spicyweb\tools\assetbundles\tools\ToolsAsset;
-
 use Craft;
 use craft\base\ElementInterface;
 use craft\fields\Dropdown;
-use craft\helpers\Db;
-use yii\db\Schema;
-use craft\helpers\Json;
-use craft\helpers\Template;
 
 /**
  * Disabled Dropdown Field
@@ -23,7 +16,6 @@ use craft\helpers\Template;
  */
 class DisabledDropdown extends Dropdown
 {
-
     // Static Methods
     // =========================================================================
 
@@ -71,8 +63,7 @@ class DisabledDropdown extends Dropdown
                 'value' => $value,
                 'options' => $options,
                 'disabled' => true,
-                'class' => 'disabled'
+                'class' => 'disabled',
             ]);
     }
-
 }

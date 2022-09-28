@@ -2,16 +2,10 @@
 
 namespace spicyweb\tools\fields;
 
-use spicyweb\tools\Tools as ToolsPlugin;
-use spicyweb\tools\assetbundles\tools\ToolsAsset;
-
 use Craft;
 use craft\base\ElementInterface;
-use craft\fields\Categories;
 use craft\fields\BaseRelationField;
-use craft\helpers\Db;
-use yii\db\Schema;
-use craft\helpers\Template;
+use craft\fields\Categories;
 
 /**
  * Categories Multiple Groups Field
@@ -40,7 +34,7 @@ class CategoriesMultipleGroups extends Categories
         return Craft::t('tools', 'Categories (Multiple Groups)');
     }
 
-     // Public Methods
+    // Public Methods
     // =========================================================================
 
     /**
@@ -52,13 +46,11 @@ class CategoriesMultipleGroups extends Categories
         $this->allowMultipleSources = true;
     }
 
-     /**
-     * @inheritdoc
-     */
+    /**
+    * @inheritdoc
+    */
     public function inputHtml($value, ElementInterface $element = null): string
     {
         return BaseRelationField::inputHtml($value, $element);
     }
-
-
 }

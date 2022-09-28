@@ -15,7 +15,6 @@ use craft\helpers\Json;
  */
 class WidthData extends SingleOptionFieldData
 {
-
     public $width;
     public $left;
     public $right;
@@ -63,11 +62,11 @@ class WidthData extends SingleOptionFieldData
     public function setData($options, $value)
     {
         $widthOptions = array();
-        $leftOptions  = array();
+        $leftOptions = array();
         $rightOptions = array();
 
         $width = "";
-        $left  = "";
+        $left = "";
         $right = "";
 
         $firstPointer = 0;
@@ -77,24 +76,20 @@ class WidthData extends SingleOptionFieldData
 
         $total = count($options);
 
-        foreach ($options as $option)
-        {
+        foreach ($options as $option) {
             $widthOptions[] = $option['widthValue'];
-            $leftOptions[]  = $option['leftValue'];
+            $leftOptions[] = $option['leftValue'];
             $rightOptions[] = $option['rightValue'];
 
-            if ( $option['widthDefault'] == 1 )
-            {
+            if ($option['widthDefault'] == 1) {
                 $width = $option['widthValue'];
             }
 
-            if ( array_key_exists('leftDefault', $option) && $option['leftDefault'] == 1 )
-            {
+            if (array_key_exists('leftDefault', $option) && $option['leftDefault'] == 1) {
                 $left = $option['leftValue'];
             }
 
-            if ( array_key_exists('leftDefault', $option) && $option['rightDefault'] == 1 )
-            {
+            if (array_key_exists('leftDefault', $option) && $option['rightDefault'] == 1) {
                 $right = $option['rightValue'];
             }
         }
@@ -103,20 +98,20 @@ class WidthData extends SingleOptionFieldData
         $leftKey = array_search($left, $leftOptions);
         $rightKey = array_search($right, $rightOptions);
 
-        if ( $leftKey !== false ) {
+        if ($leftKey !== false) {
             $leftKey = $leftKey + 1;
 
             $firstPointer = $leftKey - $total;
             $secondPointer = $leftKey;
         }
 
-        if ( $widthKey !== false ) {
+        if ($widthKey !== false) {
             $widthKey = $widthKey + 1;
 
             $thirdPointer = $leftKey + $widthKey;
         }
 
-        if ( $rightKey !== false ) {
+        if ($rightKey !== false) {
             $rightKey = $rightKey + 1;
 
             $fourthPointer = ($leftKey + $widthKey) + $rightKey;
@@ -124,15 +119,13 @@ class WidthData extends SingleOptionFieldData
 
 
 
-        if ( $value )
-        {
-            if ( is_string($value) )
-            {
+        if ($value) {
+            if (is_string($value)) {
                 $value = Json::decode($value);
             }
 
             $width = $value['width'];
-            $left  = $value['left'];
+            $left = $value['left'];
             $right = $value['right'];
 
             $firstPointer = $value['firstPointer'] ?? 0;
@@ -141,8 +134,8 @@ class WidthData extends SingleOptionFieldData
             $fourthPointer = $value['fourthPointer'] ?? 0;
         }
 
-        return new self( $widthOptions, $leftOptions, $rightOptions, $width, $left, $right,
-            $firstPointer, $secondPointer, $thirdPointer, $fourthPointer );
+        return new self($widthOptions, $leftOptions, $rightOptions, $width, $left, $right,
+            $firstPointer, $secondPointer, $thirdPointer, $fourthPointer);
     }
 
     /**
@@ -157,5 +150,4 @@ class WidthData extends SingleOptionFieldData
     {
         $this->width ? 1 : 0;
     }
-
 }

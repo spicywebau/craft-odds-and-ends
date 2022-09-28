@@ -2,7 +2,6 @@
 
 namespace spicyweb\tools\assetbundles\tools;
 
-use Craft;
 use craft\web\AssetBundle;
 use craft\web\assets\cp\CpAsset;
 

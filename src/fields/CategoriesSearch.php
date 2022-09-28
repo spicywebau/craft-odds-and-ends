@@ -2,15 +2,11 @@
 
 namespace spicyweb\tools\fields;
 
-use spicyweb\tools\Tools as ToolsPlugin;
-use spicyweb\tools\assetbundles\tools\ToolsAsset;
-
 use Craft;
+
 use craft\base\ElementInterface;
 use craft\fields\Categories;
-use craft\helpers\Db;
-use yii\db\Schema;
-use craft\helpers\Template;
+use spicyweb\tools\assetbundles\tools\ToolsAsset;
 
 /**
  * Categories Search Field
@@ -39,7 +35,7 @@ class CategoriesSearch extends Categories
         return Craft::t('tools', 'Categories (Search)');
     }
 
-     // Public Methods
+    // Public Methods
     // =========================================================================
 
     /**

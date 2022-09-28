@@ -36,5 +36,20 @@
         "hasCpSection": false,
         "changelogUrl": "https://raw.githubusercontent.com/spicywebau/tools/master/CHANGELOG.md",
         "class": "spicyweb\\tools\\Tools"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "craftcms/ecs": "dev-main"
+    },
+    "config": {
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true,
+            "craftcms/plugin-installer": true
+        }
+    },
+    "scripts": {
+        "check-cs": "ecs check --ansi",
+        "fix-cs": "ecs check --ansi --fix"
     }
 }

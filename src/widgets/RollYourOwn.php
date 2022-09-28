@@ -2,9 +2,6 @@
 
 namespace spicyweb\tools\widgets;
 
-use spicyweb\tools\Tools;
-use spicyweb\tools\assetbundles\tools\ToolsAsset;
-
 use Craft;
 use craft\base\Widget;
 
@@ -18,7 +15,6 @@ use craft\base\Widget;
  */
 class RollYourOwn extends Widget
 {
-
     // Public Properties
     // =========================================================================
 
@@ -86,7 +82,7 @@ class RollYourOwn extends Widget
         return Craft::$app->getView()->renderTemplate(
             'tools/_components/widgets/rollyourown/settings',
             [
-                'widget' => $this
+                'widget' => $this,
             ]
         );
     }
@@ -107,7 +103,7 @@ class RollYourOwn extends Widget
      *                      to be selectable in the first place, use {@link isSelectable()}.)
      */
     public function getBodyHtml()
-    {   
+    {
         $oldMode = Craft::$app->getView()->getTemplateMode();
         Craft::$app->getView()->setTemplateMode('site');
 

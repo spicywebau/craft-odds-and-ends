@@ -2,17 +2,11 @@
 
 namespace spicyweb\tools\fields;
 
-use spicyweb\tools\Tools as ToolsPlugin;
-use spicyweb\tools\assetbundles\tools\ToolsAsset;
-
 use Craft;
 use craft\base\ElementInterface;
-use craft\fields\Entries;
-use craft\helpers\Db;
-use yii\db\Schema;
-use craft\helpers\Json;
-use craft\helpers\Template;
 use craft\elements\Entry;
+use craft\fields\Entries;
+use craft\helpers\Template;
 
 /**
  * Ancestors Field
@@ -65,15 +59,15 @@ class Ancestors extends Entries
     public function getSettingsHtml()
     {
         return Craft::$app->getView()->renderTemplate($this->settingsTemplate, [
-            'targetLocaleField'    => $this->getTargetSiteFieldHtml(),
+            'targetLocaleField' => $this->getTargetSiteFieldHtml(),
             'field' => $this,
         ]);
     }
 
 
-     /**
-     * @inheritdoc
-     */
+    /**
+    * @inheritdoc
+    */
     public function getInputHtml($value, ElementInterface $element = null): string
     {
         /** @var Element $element */
@@ -99,7 +93,7 @@ class Ancestors extends Entries
      */
     protected function inputSources(ElementInterface $element = null)
     {
-        $sources = array('section:'.$element->section->uid);
+        $sources = array('section:' . $element->section->uid);
 
         return $sources;
     }
@@ -115,10 +109,9 @@ class Ancestors extends Entries
         // Return the current elements ancestors, if there are any
         $ids = $this->ourElement->getAncestors()->ids();
 
-        if (count($ids))
-        {
+        if (count($ids)) {
             return array(
-                'id' => $ids
+                'id' => $ids,
             );
         }
 
@@ -141,5 +134,4 @@ class Ancestors extends Entries
 
         return [];
     }
-
 }
