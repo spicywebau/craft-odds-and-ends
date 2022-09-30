@@ -89,7 +89,7 @@ class Width extends Dropdown
     /**
      * @inheritdoc
      */
-    public function getInputHtml(mixed $value, ?\craft\base\ElementInterface $element = null): string
+    public function getInputHtml(mixed $value, ?ElementInterface $element = null): string
     {
         if ($value == null) {
             $options = $this->translatedOptions();
@@ -112,7 +112,7 @@ class Width extends Dropdown
     }
 
 
-    public function normalizeValue(mixed $value, ?\craft\base\ElementInterface $element = null): mixed
+    public function normalizeValue(mixed $value, ?ElementInterface $element = null): mixed
     {
         if ($value instanceof WidthData) {
             return $value;
@@ -127,7 +127,7 @@ class Width extends Dropdown
     /**
      * Value we are going to save into the database
      */
-    public function serializeValue(mixed $value, ?\craft\base\ElementInterface $element = null): mixed
+    public function serializeValue(mixed $value, ?ElementInterface $element = null): mixed
     {
         $value = Json::encode($value);
         return $value;

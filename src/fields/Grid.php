@@ -47,7 +47,7 @@ class Grid extends Field implements PreviewableFieldInterface
     /**
      * @var int The maximum number of columns for the left->right to span
      */
-    public int $maxColumnSpan;
+    public ?int $maxColumnSpan = null;
 
 
     // Static Methods
