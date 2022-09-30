@@ -68,7 +68,7 @@ class Ancestors extends Entries
     /**
     * @inheritdoc
     */
-    public function getInputHtml(mixed $value, ?\craft\base\ElementInterface $element = null): string
+    public function getInputHtml(mixed $value, ?ElementInterface $element = null): string
     {
         /** @var Element $element */
         // if ($element !== null && $element->hasEagerLoadedElements($this->handle)) {
@@ -91,7 +91,7 @@ class Ancestors extends Entries
      *
      * @return array|string
      */
-    protected function inputSources(ElementInterface $element = null)
+    protected function inputSources(?ElementInterface $element = null)
     {
         $sources = ['section:' . $element->section->uid];
 

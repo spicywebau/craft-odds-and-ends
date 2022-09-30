@@ -3,6 +3,7 @@
 namespace spicyweb\tools;
 
 use Craft;
+use craft\base\Model;
 use craft\base\Plugin;
 use craft\events\PluginEvent;
 use craft\events\RegisterComponentTypesEvent;
@@ -24,6 +25,7 @@ use spicyweb\tools\fields\DisabledPlainText as DisabledPlainTextField;
 use spicyweb\tools\fields\EntriesSearch as EntriesSearchField;
 use spicyweb\tools\fields\Grid as GridField;
 use spicyweb\tools\fields\Width as WidthField;
+use spicyweb\tools\models\Settings;
 use spicyweb\tools\widgets\RollYourOwn as RollYourOwnWidget;
 
 use yii\base\Event;
@@ -47,7 +49,7 @@ class Tools extends Plugin
      *
      * @var Tools
      */
-    public static $plugin;
+    public static ?Tools $plugin = null;
 
     // Public Methods
     // =========================================================================
@@ -63,7 +65,7 @@ class Tools extends Plugin
      * you do not need to load it in your init() method.
      *
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
         self::$plugin = $this;
@@ -132,8 +134,8 @@ class Tools extends Plugin
 
     // Protected Methods
     // =========================================================================
-    protected function createSettingsModel(): ?\craft\base\Model
+    protected function createSettingsModel(): ?Model
     {
-        return new \spicyweb\tools\models\Settings();
+        return new Settings();
     }
 }

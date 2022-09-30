@@ -11,6 +11,7 @@ use craft\helpers\Db;
 use craft\helpers\FileHelper;
 use craft\models\Section;
 use craft\web\Controller;
+use yii\web\Response;
 
 /**
  * Class ToolsController
@@ -27,7 +28,7 @@ class ToolsController extends Controller
     /**
      * Downloads a file and cleans up old temporary assets
      */
-    public function actionDownloadFile()
+    public function actionDownloadFile(): Response
     {
         // Sort out the file we want to download
         $id = Craft::$app->getRequest()->getParam('id');
@@ -52,7 +53,7 @@ class ToolsController extends Controller
     /**
      * Fork of tags/searchForTags adjusted to cope with any element
      */
-    public function actionSearchForElements()
+    public function actionSearchForElements(): Response
     {
         $this->requirePostRequest();
         $this->requireAcceptsJson();

@@ -23,7 +23,7 @@ class DisabledNumber extends Number
     /**
      * @var int|float|null The default value for new elements
      */
-    public int|float|null $defaultValue;
+    public int|float|null $defaultValue = null;
 
     /**
      * @var int|float The minimum allowed number
@@ -33,7 +33,7 @@ class DisabledNumber extends Number
     /**
      * @var int|float|null The maximum allowed number
      */
-    public int|float|null $max;
+    public int|float|null $max = null;
 
     /**
      * @var int The number of digits allowed after the decimal point
@@ -43,7 +43,7 @@ class DisabledNumber extends Number
     /**
      * @var int|null The size of the field
      */
-    public ?int $size;
+    public ?int $size = null;
 
 
     // Static Methods
@@ -83,7 +83,7 @@ class DisabledNumber extends Number
      *
      * @return mixed The prepared field value
      */
-    public function normalizeValue(mixed $value, ?\craft\base\ElementInterface $element = null): mixed
+    public function normalizeValue(mixed $value, ?ElementInterface $element = null): mixed
     {
         if ($value == null && $this->defaultValue !== null) {
             $value = $this->defaultValue;
@@ -115,7 +115,7 @@ class DisabledNumber extends Number
      *
      * @return string The input HTML.
      */
-    public function getInputHtml(mixed $value, ?\craft\base\ElementInterface $element = null): string
+    public function getInputHtml(mixed $value, ?ElementInterface $element = null): string
     {
         // If decimals is 0 (or null, empty for whatever reason), don't run this
         if ($value !== null && $this->decimals) {

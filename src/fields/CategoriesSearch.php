@@ -50,7 +50,7 @@ class CategoriesSearch extends Categories
     /**
      * @inheritdoc
      */
-    protected function inputHtml(mixed $value, ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element = null): string
     {
         Craft::$app->getView()->registerAssetBundle(ToolsAsset::class);
         return parent::inputHtml($value, $element);

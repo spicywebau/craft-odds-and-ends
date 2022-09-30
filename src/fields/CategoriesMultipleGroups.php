@@ -49,7 +49,7 @@ class CategoriesMultipleGroups extends Categories
     /**
     * @inheritdoc
     */
-    public function inputHtml(mixed $value, ElementInterface $element = null): string
+    public function inputHtml(mixed $value, ?ElementInterface $element = null): string
     {
         return BaseRelationField::inputHtml($value, $element);
     }

@@ -27,7 +27,7 @@ class AuthorInstructions extends Field
      *
      * @var string
      */
-    public $authorInstructions;
+    public ?string $authorInstructions = null;
 
     // Static Methods
     // =========================================================================
@@ -60,9 +60,9 @@ class AuthorInstructions extends Field
     }
 
     /**
-     * Returns the column type that this field should get within the content table.
+     * @inheritdoc
      */
-    public function getContentColumnType(): array|string
+    public function getContentColumnType(): string
     {
         return Schema::TYPE_TEXT;
     }
@@ -75,7 +75,7 @@ class AuthorInstructions extends Field
      *
      * @return mixed The prepared field value
      */
-    public function normalizeValue(mixed $value, ?\craft\base\ElementInterface $element = null): mixed
+    public function normalizeValue(mixed $value, ?ElementInterface $element = null): mixed
     {
         return $value;
     }
@@ -89,7 +89,7 @@ class AuthorInstructions extends Field
      *
      * @return null|false `false` in the event that the method is sure that no elements are going to be found.
      */
-    public function serializeValue(mixed $value, ?\craft\base\ElementInterface $element = null): mixed
+    public function serializeValue(mixed $value, ?ElementInterface $element = null): mixed
     {
         return parent::serializeValue($value, $element);
     }
@@ -122,7 +122,7 @@ class AuthorInstructions extends Field
      *
      * @return string The input HTML.
      */
-    public function getInputHtml(mixed $value, ?\craft\base\ElementInterface $element = null): string
+    public function getInputHtml(mixed $value, ?ElementInterface $element = null): string
     {
         $name = $this->handle;
 

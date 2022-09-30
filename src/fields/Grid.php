@@ -27,27 +27,27 @@ class Grid extends Field implements PreviewableFieldInterface
     /**
      * @var int The default value for total columns
      */
-    public $totalColumns = 12;
+    public int $totalColumns = 12;
 
     /**
      * @var int The default value for left pointer
      */
-    public $leftDefault = 2;
+    public int $leftDefault = 2;
 
     /**
      * @var int The default value for right pointer
      */
-    public $rightDefault = 10;
+    public int $rightDefault = 10;
 
     /**
      * @var int The minimum number of columns for the left->right to span
      */
-    public $minColumnSpan = 1;
+    public int $minColumnSpan = 1;
 
     /**
      * @var int The maximum number of columns for the left->right to span
      */
-    public $maxColumnSpan;
+    public int $maxColumnSpan;
 
 
     // Static Methods
@@ -133,7 +133,7 @@ class Grid extends Field implements PreviewableFieldInterface
     /**
      * @inheritdoc
      */
-    public function getInputHtml(mixed $value, ?\craft\base\ElementInterface $element = null): string
+    public function getInputHtml(mixed $value, ?ElementInterface $element = null): string
     {
         // Come up with an ID value for 'foo'
         $id = Craft::$app->getView()->formatInputId($this->handle);
@@ -153,7 +153,7 @@ class Grid extends Field implements PreviewableFieldInterface
     /**
      * @inheritDoc
      */
-    public function normalizeValue(mixed $value, ?\craft\base\ElementInterface $element = null): mixed
+    public function normalizeValue(mixed $value, ?ElementInterface $element = null): mixed
     {
         if (!$value) {
             $value = new GridData(
@@ -193,7 +193,7 @@ class Grid extends Field implements PreviewableFieldInterface
     /**
      * @inheritDoc
      */
-    public function serializeValue(mixed $value, ?\craft\base\ElementInterface $element = null): mixed
+    public function serializeValue(mixed $value, ?ElementInterface $element = null): mixed
     {
         $value = Json::encode($value);
         return $value;
@@ -202,7 +202,7 @@ class Grid extends Field implements PreviewableFieldInterface
     /**
      * @inheritdoc
      */
-    public function getContentColumnType(): array|string
+    public function getContentColumnType(): string
     {
         return Schema::TYPE_TEXT;
     }

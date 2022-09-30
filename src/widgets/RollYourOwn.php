@@ -21,9 +21,9 @@ class RollYourOwn extends Widget
     /**
      * @var string|null
      */
-    public $title;
+    public ?string $title = null;
 
-    public $template = "_dashboard";
+    public string $template = "_dashboard";
 
     // Static Methods
     // =========================================================================
@@ -43,7 +43,7 @@ class RollYourOwn extends Widget
      *
      * @return string|null The path to the widget’s SVG icon
      */
-    public static function iconPath()
+    public static function iconPath(): ?string
     {
         return null;
     }

@@ -21,9 +21,9 @@ class DisabledPlainText extends PlainText
     // =========================================================================
     
     /**
-     * @var $size
+     * @var int
      */
-    public $size = 20;
+    public int $size = 20;
 
 
     // Static Methods
@@ -59,9 +59,9 @@ class DisabledPlainText extends PlainText
 
 
     /**
-     * Returns the column type that this field should get within the content table.
+     * @inheritdoc
      */
-    public function getContentColumnType(): array|string
+    public function getContentColumnType(): string
     {
         return Schema::TYPE_TEXT;
     }
@@ -74,7 +74,7 @@ class DisabledPlainText extends PlainText
      *
      * @return mixed The prepared field value
      */
-    public function normalizeValue(mixed $value, ?\craft\base\ElementInterface $element = null): mixed
+    public function normalizeValue(mixed $value, ?ElementInterface $element = null): mixed
     {
         return $value;
     }
@@ -88,7 +88,7 @@ class DisabledPlainText extends PlainText
      *
      * @return null|false `false` in the event that the method is sure that no elements are going to be found.
      */
-    public function serializeValue(mixed $value, ?\craft\base\ElementInterface $element = null): mixed
+    public function serializeValue(mixed $value, ?ElementInterface $element = null): mixed
     {
         return parent::serializeValue($value, $element);
     }
@@ -118,7 +118,7 @@ class DisabledPlainText extends PlainText
      *
      * @return string The input HTML.
      */
-    public function getInputHtml(mixed $value, ?\craft\base\ElementInterface $element = null): string
+    public function getInputHtml(mixed $value, ?ElementInterface $element = null): string
     {
         return Craft::$app->getView()->renderTemplate('_includes/forms/text',
             [
