@@ -53,7 +53,7 @@ class RollYourOwn extends Widget
      *
      * @return int|null The widget’s maximum colspan, if it has one
      */
-    public static function maxColspan()
+    public static function maxColspan(): ?int
     {
         return null;
     }
@@ -66,7 +66,7 @@ class RollYourOwn extends Widget
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         $rules = parent::rules();
         return $rules;
@@ -77,7 +77,7 @@ class RollYourOwn extends Widget
      *
      * @return string|null
      */
-    public function getSettingsHtml()
+    public function getSettingsHtml(): ?string
     {
         return Craft::$app->getView()->renderTemplate(
             'tools/_components/widgets/rollyourown/settings',
@@ -90,7 +90,7 @@ class RollYourOwn extends Widget
     /**
      * @inheritdoc
      */
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title ? Craft::t('site', $this->title) : static::displayName();
     }
@@ -102,7 +102,7 @@ class RollYourOwn extends Widget
      *                      should not be visible. (If you don’t want the widget
      *                      to be selectable in the first place, use {@link isSelectable()}.)
      */
-    public function getBodyHtml()
+    public function getBodyHtml(): ?string
     {
         $oldMode = Craft::$app->getView()->getTemplateMode();
         Craft::$app->getView()->setTemplateMode('site');

@@ -31,7 +31,7 @@ class EntriesSearch extends Entries
      *
      * @var string
      */
-    protected $inputTemplate = 'tools/_components/fields/entriessearch/input';
+    protected string $inputTemplate = 'tools/_components/fields/entriessearch/input';
 
 
     /**
@@ -47,7 +47,7 @@ class EntriesSearch extends Entries
     /**
      * @inheritdoc
      */
-    protected function inputHtml($value, ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ElementInterface $element = null): string
     {
         Craft::$app->getView()->registerAssetBundle(ToolsAsset::class);
         return parent::inputHtml($value, $element);

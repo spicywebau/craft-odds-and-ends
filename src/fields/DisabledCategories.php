@@ -38,7 +38,7 @@ class DisabledCategories extends Categories
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
         $this->inputTemplate = 'tools/_components/fields/disabledcategories/input';

@@ -23,27 +23,27 @@ class DisabledNumber extends Number
     /**
      * @var int|float|null The default value for new elements
      */
-    public $defaultValue;
+    public int|float|null $defaultValue;
 
     /**
      * @var int|float The minimum allowed number
      */
-    public $min = 0;
+    public int|float|null $min = 0;
 
     /**
      * @var int|float|null The maximum allowed number
      */
-    public $max;
+    public int|float|null $max;
 
     /**
      * @var int The number of digits allowed after the decimal point
      */
-    public $decimals = 0;
+    public int $decimals = 0;
 
     /**
      * @var int|null The size of the field
      */
-    public $size;
+    public ?int $size;
 
 
     // Static Methods
@@ -68,7 +68,7 @@ class DisabledNumber extends Number
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         $rules = parent::rules();
         return $rules;
@@ -83,7 +83,7 @@ class DisabledNumber extends Number
      *
      * @return mixed The prepared field value
      */
-    public function normalizeValue($value, ElementInterface $element = null)
+    public function normalizeValue(mixed $value, ?\craft\base\ElementInterface $element = null): mixed
     {
         if ($value == null && $this->defaultValue !== null) {
             $value = $this->defaultValue;
@@ -101,7 +101,7 @@ class DisabledNumber extends Number
      *
      * @return string|null
      */
-    public function getSettingsHtml()
+    public function getSettingsHtml(): ?string
     {
         return parent::getSettingsHtml();
     }
@@ -115,7 +115,7 @@ class DisabledNumber extends Number
      *
      * @return string The input HTML.
      */
-    public function getInputHtml($value, ElementInterface $element = null): string
+    public function getInputHtml(mixed $value, ?\craft\base\ElementInterface $element = null): string
     {
         // If decimals is 0 (or null, empty for whatever reason), don't run this
         if ($value !== null && $this->decimals) {

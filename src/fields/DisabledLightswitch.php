@@ -23,7 +23,7 @@ class DisabledLightswitch extends Lightswitch
     /**
      * @var bool Whether the lightswitch should be enabled by default
      */
-    public $default = false;
+    public bool $default = false;
 
 
     // Static Methods
@@ -47,7 +47,7 @@ class DisabledLightswitch extends Lightswitch
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         $rules = parent::rules();
         return $rules;
@@ -56,7 +56,7 @@ class DisabledLightswitch extends Lightswitch
     /**
      * Returns the column type that this field should get within the content table.
      */
-    public function getContentColumnType(): string
+    public function getContentColumnType(): array|string
     {
         return Schema::TYPE_BOOLEAN;
     }
@@ -69,7 +69,7 @@ class DisabledLightswitch extends Lightswitch
      *
      * @return mixed The prepared field value
      */
-    public function normalizeValue($value, ElementInterface $element = null)
+    public function normalizeValue(mixed $value, ?\craft\base\ElementInterface $element = null): mixed
     {
         // If this is a new entry, look for a default option
         if ($value === null) {
@@ -88,7 +88,7 @@ class DisabledLightswitch extends Lightswitch
      *
      * @return null|false `false` in the event that the method is sure that no elements are going to be found.
      */
-    public function serializeValue($value, ElementInterface $element = null)
+    public function serializeValue(mixed $value, ?\craft\base\ElementInterface $element = null): mixed
     {
         return parent::serializeValue($value, $element);
     }
@@ -101,7 +101,7 @@ class DisabledLightswitch extends Lightswitch
      *
      * @return string|null
      */
-    public function getSettingsHtml()
+    public function getSettingsHtml(): ?string
     {
         return parent::getSettingsHtml();
     }
@@ -115,7 +115,7 @@ class DisabledLightswitch extends Lightswitch
      *
      * @return string The input HTML.
      */
-    public function getInputHtml($value, ElementInterface $element = null): string
+    public function getInputHtml(mixed $value, ?\craft\base\ElementInterface $element = null): string
     {
         // If this is a new entry, look for a default option
         if ($this->isFresh($element)) {

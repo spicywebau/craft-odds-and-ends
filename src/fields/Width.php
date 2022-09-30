@@ -39,7 +39,7 @@ class Width extends Dropdown
     /**
      * @inheritdoc
      */
-    public function getSettingsHtml()
+    public function getSettingsHtml(): ?string
     {
         $options = $this->translatedOptions();
 
@@ -89,7 +89,7 @@ class Width extends Dropdown
     /**
      * @inheritdoc
      */
-    public function getInputHtml($value, ElementInterface $element = null): string
+    public function getInputHtml(mixed $value, ?\craft\base\ElementInterface $element = null): string
     {
         if ($value == null) {
             $options = $this->translatedOptions();
@@ -112,7 +112,7 @@ class Width extends Dropdown
     }
 
 
-    public function normalizeValue($value, ElementInterface $element = null)
+    public function normalizeValue(mixed $value, ?\craft\base\ElementInterface $element = null): mixed
     {
         if ($value instanceof WidthData) {
             return $value;
@@ -127,7 +127,7 @@ class Width extends Dropdown
     /**
      * Value we are going to save into the database
      */
-    public function serializeValue($value, ElementInterface $element = null)
+    public function serializeValue(mixed $value, ?\craft\base\ElementInterface $element = null): mixed
     {
         $value = Json::encode($value);
         return $value;
@@ -136,7 +136,7 @@ class Width extends Dropdown
     /**
      * @inheritdoc
      */
-    public function getContentColumnType(): string
+    public function getContentColumnType(): array|string
     {
         return Schema::TYPE_TEXT;
     }
@@ -153,7 +153,7 @@ class Width extends Dropdown
     /**
      * Override crafts option validation for our custom setup
      */
-    public function validateOptions()
+    public function validateOptions(): void
     {
         $widthValues = [];
         $leftValues = [];

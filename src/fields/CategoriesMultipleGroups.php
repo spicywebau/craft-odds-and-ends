@@ -40,7 +40,7 @@ class CategoriesMultipleGroups extends Categories
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
         $this->allowMultipleSources = true;
@@ -49,7 +49,7 @@ class CategoriesMultipleGroups extends Categories
     /**
     * @inheritdoc
     */
-    public function inputHtml($value, ElementInterface $element = null): string
+    public function inputHtml(mixed $value, ElementInterface $element = null): string
     {
         return BaseRelationField::inputHtml($value, $element);
     }

@@ -66,7 +66,7 @@ class Grid extends Field implements PreviewableFieldInterface
     /**
      * @inheritDoc
      */
-    public function rules()
+    public function rules(): array
     {
         $rules = parent::rules();
         $rules[] = [
@@ -121,7 +121,7 @@ class Grid extends Field implements PreviewableFieldInterface
     /**
      * @inheritdoc
      */
-    public function getSettingsHtml()
+    public function getSettingsHtml(): ?string
     {
         return Craft::$app->getView()->renderTemplate('tools/_components/fields/grid/settings',
             [
@@ -133,7 +133,7 @@ class Grid extends Field implements PreviewableFieldInterface
     /**
      * @inheritdoc
      */
-    public function getInputHtml($value, ElementInterface $element = null): string
+    public function getInputHtml(mixed $value, ?\craft\base\ElementInterface $element = null): string
     {
         // Come up with an ID value for 'foo'
         $id = Craft::$app->getView()->formatInputId($this->handle);
@@ -153,7 +153,7 @@ class Grid extends Field implements PreviewableFieldInterface
     /**
      * @inheritDoc
      */
-    public function normalizeValue($value, ElementInterface $element = null)
+    public function normalizeValue(mixed $value, ?\craft\base\ElementInterface $element = null): mixed
     {
         if (!$value) {
             $value = new GridData(
@@ -193,7 +193,7 @@ class Grid extends Field implements PreviewableFieldInterface
     /**
      * @inheritDoc
      */
-    public function serializeValue($value, ElementInterface $element = null)
+    public function serializeValue(mixed $value, ?\craft\base\ElementInterface $element = null): mixed
     {
         $value = Json::encode($value);
         return $value;
@@ -202,7 +202,7 @@ class Grid extends Field implements PreviewableFieldInterface
     /**
      * @inheritdoc
      */
-    public function getContentColumnType(): string
+    public function getContentColumnType(): array|string
     {
         return Schema::TYPE_TEXT;
     }

@@ -21,21 +21,21 @@ class Ancestors extends Entries
     // Properties
     // =========================================================================
 
-    public $allowMultipleSources = false;
+    public bool $allowMultipleSources = false;
 
     /**
      * Template to use for field rendering
      *
      * @var string
      */
-    protected $inputTemplate = 'tools/_components/fields/ancestors/input';
+    protected string $inputTemplate = 'tools/_components/fields/ancestors/input';
 
     /**
      * Template to use for field settings
      *
      * @var string
      */
-    protected $settingsTemplate = 'tools/_components/fields/ancestors/settings';
+    protected string $settingsTemplate = 'tools/_components/fields/ancestors/settings';
 
     private $ourElement;
 
@@ -56,7 +56,7 @@ class Ancestors extends Entries
     /**
      * @inheritdoc
      */
-    public function getSettingsHtml()
+    public function getSettingsHtml(): ?string
     {
         return Craft::$app->getView()->renderTemplate($this->settingsTemplate, [
             'targetLocaleField' => $this->getTargetSiteFieldHtml(),
@@ -68,7 +68,7 @@ class Ancestors extends Entries
     /**
     * @inheritdoc
     */
-    public function getInputHtml($value, ElementInterface $element = null): string
+    public function getInputHtml(mixed $value, ?\craft\base\ElementInterface $element = null): string
     {
         /** @var Element $element */
         // if ($element !== null && $element->hasEagerLoadedElements($this->handle)) {

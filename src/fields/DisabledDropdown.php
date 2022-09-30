@@ -35,7 +35,7 @@ class DisabledDropdown extends Dropdown
     /**
      * @inheritdoc
      */
-    public function normalizeValue($value, ElementInterface $element = null)
+    public function normalizeValue(mixed $value, ?\craft\base\ElementInterface $element = null): mixed
     {
         if ($value == null) {
             $value = $this->defaultValue();
@@ -48,7 +48,7 @@ class DisabledDropdown extends Dropdown
     /**
      * @inheritdoc
      */
-    public function getInputHtml($value, ElementInterface $element = null): string
+    public function getInputHtml(mixed $value, ?\craft\base\ElementInterface $element = null): string
     {
         $options = $this->translatedOptions();
 

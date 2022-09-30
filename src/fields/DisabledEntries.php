@@ -28,7 +28,7 @@ class DisabledEntries extends Entries
      *
      * @var string
      */
-    protected $inputTemplate = 'tools/_components/fields/elements/element-select';
+    protected string $inputTemplate = 'tools/_components/fields/elements/element-select';
 
 
     /**

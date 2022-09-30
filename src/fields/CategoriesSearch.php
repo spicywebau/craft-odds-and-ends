@@ -41,7 +41,7 @@ class CategoriesSearch extends Categories
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
         $this->inputTemplate = 'tools/_components/fields/categoriessearch/input';
@@ -50,7 +50,7 @@ class CategoriesSearch extends Categories
     /**
      * @inheritdoc
      */
-    protected function inputHtml($value, ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ElementInterface $element = null): string
     {
         Craft::$app->getView()->registerAssetBundle(ToolsAsset::class);
         return parent::inputHtml($value, $element);

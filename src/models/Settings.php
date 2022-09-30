@@ -17,7 +17,7 @@ class Settings extends Model
     public $leftDefault = 0;
     public $rightDefault = 0;
 
-    public function rules()
+    public function rules(): array
     {
         return [
             [['leftDefault', 'rightDefault'], 'required'],

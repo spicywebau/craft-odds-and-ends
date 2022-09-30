@@ -47,7 +47,7 @@ class DisabledPlainText extends PlainText
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         $rules = parent::rules();
         $rules = array_merge($rules, [
@@ -61,7 +61,7 @@ class DisabledPlainText extends PlainText
     /**
      * Returns the column type that this field should get within the content table.
      */
-    public function getContentColumnType(): string
+    public function getContentColumnType(): array|string
     {
         return Schema::TYPE_TEXT;
     }
@@ -74,7 +74,7 @@ class DisabledPlainText extends PlainText
      *
      * @return mixed The prepared field value
      */
-    public function normalizeValue($value, ElementInterface $element = null)
+    public function normalizeValue(mixed $value, ?\craft\base\ElementInterface $element = null): mixed
     {
         return $value;
     }
@@ -88,7 +88,7 @@ class DisabledPlainText extends PlainText
      *
      * @return null|false `false` in the event that the method is sure that no elements are going to be found.
      */
-    public function serializeValue($value, ElementInterface $element = null)
+    public function serializeValue(mixed $value, ?\craft\base\ElementInterface $element = null): mixed
     {
         return parent::serializeValue($value, $element);
     }
@@ -101,7 +101,7 @@ class DisabledPlainText extends PlainText
      *
      * @return string|null
      */
-    public function getSettingsHtml()
+    public function getSettingsHtml(): ?string
     {
         return Craft::$app->getView()->renderTemplate('tools/_components/fields/disabledplaintext/settings',
             [
@@ -118,7 +118,7 @@ class DisabledPlainText extends PlainText
      *
      * @return string The input HTML.
      */
-    public function getInputHtml($value, ElementInterface $element = null): string
+    public function getInputHtml(mixed $value, ?\craft\base\ElementInterface $element = null): string
     {
         return Craft::$app->getView()->renderTemplate('_includes/forms/text',
             [

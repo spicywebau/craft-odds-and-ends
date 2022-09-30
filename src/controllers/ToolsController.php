@@ -22,7 +22,7 @@ use craft\web\Controller;
  */
 class ToolsController extends Controller
 {
-    protected $allowAnonymous = true;
+    protected array|int|bool $allowAnonymous = true;
 
     /**
      * Downloads a file and cleans up old temporary assets
@@ -43,7 +43,7 @@ class ToolsController extends Controller
 
             // Send it to the browser
             $response = Craft::$app->getResponse()->sendFile($localCopy, $asset->filename, []);
-            FileHelper::removeFile($localCopy);
+            FileHelper::unlink($localCopy);
             return $response;
         }
     }
