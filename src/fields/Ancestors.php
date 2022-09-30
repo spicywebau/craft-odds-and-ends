@@ -56,6 +56,14 @@ class Ancestors extends Entries
     /**
      * @inheritdoc
      */
+    public static function defaultSelectionLabel(): string
+    {
+        return Craft::t('tools', 'Add an ancestor');
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function getSettingsHtml(): ?string
     {
         return Craft::$app->getView()->renderTemplate($this->settingsTemplate, [

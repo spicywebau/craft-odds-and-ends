@@ -1,25 +1,40 @@
 {% import "_includes/forms" as forms %}
+{% set typeValue = 'ancestors'|t('tools') %}
 
 {{ targetLocaleField|raw }}
 
 {% if field['allowLimit'] %}
     {{ forms.textField({
-        label: "Limit"|t,
-        instructions: "Limit the number of selectable ancestors.",
-        id: 'limit',
-        name: 'limit',
-        value: field['limit'],
+        label: 'Min Relations'|t('app'),
+        instructions: 'The minimum number of {type} that may be selected.'|t('app', {
+            type: typeValue,
+        }),
+        id: 'min-relations',
+        name: 'minRelations',
+        value: field.minRelations,
         size: 2,
-        errors: field.getErrors('limit')
+        errors: field.getErrors('minRelations'),
+    }) }}
+
+    {{ forms.textField({
+        label: 'Max Relations'|t('app'),
+        instructions: 'The maximum number of {type} that may be selected.'|t('app', {
+            type: typeValue,
+        }),
+        id: 'max-relations',
+        name: 'maxRelations',
+        value: field.maxRelations,
+        size: 2,
+        errors: field.getErrors('maxRelations'),
     }) }}
 {% endif %}
 
 {{ forms.textField({
-    label: "Selection Label"|t,
-    instructions: "Enter the text you want to appear on the ancestors selection input.",
+    label: 'Selection Label'|t('app'),
+    instructions: 'Enter the text you want to appear on the {type} selection input.'|t('app', { type: typeValue }),
     id: 'selectionLabel',
     name: 'selectionLabel',
-    value: field['selectionLabel'],
-    size: 25,
+    value: field.selectionLabel,
+    placeholder: field.defaultSelectionLabel(),
     errors: field.getErrors('selectionLabel')
 }) }}
