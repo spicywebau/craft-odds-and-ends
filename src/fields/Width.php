@@ -6,6 +6,7 @@ use Craft;
 
 use craft\base\ElementInterface;
 use craft\fields\Dropdown;
+use craft\helpers\Cp;
 use craft\helpers\Json;
 use spicyweb\tools\fields\data\WidthData;
 use yii\db\Schema;
@@ -48,40 +49,38 @@ class Width extends Dropdown
             $options = [['label' => '', 'value' => '']];
         }
 
-        return Craft::$app->getView()->renderTemplateMacro('_includes/forms', 'editableTableField', [
-            [
-                'label' => $this->optionsSettingLabel(),
-                'instructions' => Craft::t('tools', 'Define the available options.'),
-                'id' => 'options',
-                'name' => 'options',
-                'addRowLabel' => Craft::t('tools', 'Add an option'),
-                'cols' => [
-                    'widthValue' => [
-                        'heading' => Craft::t('tools', 'Width Value'),
-                        'type' => 'singleline',
-                        'class' => 'code',
-                    ],
-                    'widthDefault' => [
-                        'heading' => Craft::t('tools', 'Width Default?'),
-                        'type' => 'checkbox',
-                        'class' => 'thin',
-                    ],
-
-                    'leftValue' => [
-                        'heading' => Craft::t('tools', 'Left Value'),
-                        'type' => 'singleline',
-                        'class' => 'code',
-                    ],
-
-                    'rightValue' => [
-                        'heading' => Craft::t('tools', 'Right Value'),
-                        'type' => 'singleline',
-                        'class' => 'code',
-                    ],
-
+        return Cp::editableTableFieldHtml([
+            'label' => $this->optionsSettingLabel(),
+            'instructions' => Craft::t('tools', 'Define the available options.'),
+            'id' => 'options',
+            'name' => 'options',
+            'addRowLabel' => Craft::t('tools', 'Add an option'),
+            'cols' => [
+                'widthValue' => [
+                    'heading' => Craft::t('tools', 'Width Value'),
+                    'type' => 'singleline',
+                    'class' => 'code',
                 ],
-                'rows' => $options,
+                'widthDefault' => [
+                    'heading' => Craft::t('tools', 'Width Default?'),
+                    'type' => 'checkbox',
+                    'class' => 'thin',
+                ],
+
+                'leftValue' => [
+                    'heading' => Craft::t('tools', 'Left Value'),
+                    'type' => 'singleline',
+                    'class' => 'code',
+                ],
+
+                'rightValue' => [
+                    'heading' => Craft::t('tools', 'Right Value'),
+                    'type' => 'singleline',
+                    'class' => 'code',
+                ],
+
             ],
+            'rows' => $options,
         ]);
     }
 
