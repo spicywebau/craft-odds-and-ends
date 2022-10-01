@@ -15,23 +15,18 @@ use craft\base\Widget;
  */
 class RollYourOwn extends Widget
 {
-    // Public Properties
-    // =========================================================================
-
     /**
      * @var string|null
      */
     public ?string $title = null;
 
+    /**
+     * @var string
+     */
     public string $template = "_dashboard";
 
-    // Static Methods
-    // =========================================================================
-
     /**
-     * Returns the display name of this class.
-     *
-     * @return string The display name of this class.
+     * @inheritdoc
      */
     public static function displayName(): string
     {
@@ -39,9 +34,7 @@ class RollYourOwn extends Widget
     }
 
     /**
-     * Returns the path to the widget’s SVG icon.
-     *
-     * @return string|null The path to the widget’s SVG icon
+     * @inheritdoc
      */
     public static function iconPath(): ?string
     {
@@ -49,22 +42,15 @@ class RollYourOwn extends Widget
     }
 
     /**
-     * Returns the widget’s maximum colspan.
-     *
-     * @return int|null The widget’s maximum colspan, if it has one
+     * @inheritdoc
      */
     public static function maxColspan(): ?int
     {
         return null;
     }
 
-    // Public Methods
-    // =========================================================================
-
     /**
-     * Returns the validation rules for attributes.
-     *
-     * @return array
+     * @inheritdoc
      */
     public function rules(): array
     {
@@ -73,9 +59,7 @@ class RollYourOwn extends Widget
     }
 
     /**
-     * Returns the component’s settings HTML.
-     *
-     * @return string|null
+     * @inheritdoc
      */
     public function getSettingsHtml(): ?string
     {
@@ -96,11 +80,7 @@ class RollYourOwn extends Widget
     }
 
     /**
-     * Returns the widget's body HTML.
-     *
-     * @return string|false The widget’s body HTML, or `false` if the widget
-     *                      should not be visible. (If you don’t want the widget
-     *                      to be selectable in the first place, use {@link isSelectable()}.)
+     * @inheritdoc
      */
     public function getBodyHtml(): ?string
     {

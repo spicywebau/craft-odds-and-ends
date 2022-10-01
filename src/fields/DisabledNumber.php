@@ -17,71 +17,16 @@ use craft\i18n\Locale;
  */
 class DisabledNumber extends Number
 {
-    // Public Properties
-    // =========================================================================
-
     /**
-     * @var int|float|null The default value for new elements
-     */
-    public int|float|null $defaultValue = null;
-
-    /**
-     * @var int|float The minimum allowed number
-     */
-    public int|float|null $min = 0;
-
-    /**
-     * @var int|float|null The maximum allowed number
-     */
-    public int|float|null $max = null;
-
-    /**
-     * @var int The number of digits allowed after the decimal point
-     */
-    public int $decimals = 0;
-
-    /**
-     * @var int|null The size of the field
-     */
-    public ?int $size = null;
-
-
-    // Static Methods
-    // =========================================================================
-
-    /**
-     * Returns the display name of this class.
-     *
-     * @return string The display name of this class.
+     * @inheritdoc
      */
     public static function displayName(): string
     {
         return Craft::t('tools', 'Number (Disabled)');
     }
 
-    // Public Methods
-    // =========================================================================
-
-
     /**
-     * Returns the validation rules for attributes.
-     *
-     * @return array
-     */
-    public function rules(): array
-    {
-        $rules = parent::rules();
-        return $rules;
-    }
-
-
-    /**
-     * Normalizes the field’s value for use.
-     *
-     * @param mixed                 $value   The raw field value
-     * @param ElementInterface|null $element The element the field is associated with, if there is one
-     *
-     * @return mixed The prepared field value
+     * @inheritdoc
      */
     public function normalizeValue(mixed $value, ?ElementInterface $element = null): mixed
     {
@@ -91,29 +36,9 @@ class DisabledNumber extends Number
         
         return parent::normalizeValue($value, $element);
     }
-    
 
     /**
-     * Returns the component’s settings HTML.
-     *
-     * The same principles also apply if you’re including your JavaScript code with
-     * [[\craft\web\View::registerJs()]].
-     *
-     * @return string|null
-     */
-    public function getSettingsHtml(): ?string
-    {
-        return parent::getSettingsHtml();
-    }
-
-    /**
-     * Returns the field’s input HTML.
-     *
-     * @param mixed                 $value           The field’s value. This will either be the [[normalizeValue() normalized value]],
-     *                                               raw POST data (i.e. if there was a validation error), or null
-     * @param ElementInterface|null $element         The element the field is associated with, if there is one
-     *
-     * @return string The input HTML.
+     * @inheritdoc
      */
     protected function inputHtml(mixed $value, ?ElementInterface $element = null): string
     {

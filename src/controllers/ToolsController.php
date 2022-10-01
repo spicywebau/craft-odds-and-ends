@@ -48,7 +48,6 @@ class ToolsController extends Controller
             return $response;
         }
     }
-    
 
     /**
      * Fork of tags/searchForTags adjusted to cope with any element

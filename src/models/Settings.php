@@ -14,14 +14,23 @@ use craft\base\Model;
  */
 class Settings extends Model
 {
+    /**
+     * @var int
+     */
     public int $leftDefault = 0;
+
+    /**
+     * @var int
+     */
     public int $rightDefault = 0;
 
+    /**
+     * @inheritdoc
+     */
     public function rules(): array
     {
         return [
             [['leftDefault', 'rightDefault'], 'required'],
-            // ...
         ];
     }
 }

@@ -19,25 +19,13 @@ use spicyweb\tools\assetbundles\tools\ToolsAsset;
  */
 class EntriesSearch extends Entries
 {
-    // Public Properties
-    // =========================================================================
-
-
-    // Static Methods
-    // =========================================================================
-
     /**
-     * Template to use for field rendering
-     *
-     * @var string
+     * @inheritdoc
      */
     protected string $inputTemplate = 'tools/_components/fields/entriessearch/input';
 
-
     /**
-     * Returns the display name of this class.
-     *
-     * @return string The display name of this class.
+     * @inheritdoc
      */
     public static function displayName(): string
     {
