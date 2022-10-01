@@ -15,11 +15,8 @@ use craft\web\assets\cp\CpAsset;
  */
 class ToolsAsset extends AssetBundle
 {
-    // Public Methods
-    // =========================================================================
-
     /**
-     * Initializes the bundle.
+     * @inheritdoc
      */
     public function init()
     {

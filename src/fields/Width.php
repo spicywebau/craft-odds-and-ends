@@ -20,21 +20,13 @@ use yii\db\Schema;
  */
 class Width extends Dropdown
 {
-    // Static Methods
-    // =========================================================================
-
     /**
-     * Returns the display name of this class.
-     *
-     * @return string The display name of this class.
+     * @inheritdoc
      */
     public static function displayName(): string
     {
         return Craft::t('tools', 'Width');
     }
-
-    // Public Methods
-    // =========================================================================
 
     /**
      * @inheritdoc
@@ -85,7 +77,6 @@ class Width extends Dropdown
         ]);
     }
 
-
     /**
      * @inheritdoc
      */
@@ -111,7 +102,9 @@ class Width extends Dropdown
         ]);
     }
 
-
+    /**
+     * @inheritdoc
+     */
     public function normalizeValue($value, ElementInterface $element = null)
     {
         if ($value instanceof WidthData) {
@@ -125,7 +118,7 @@ class Width extends Dropdown
     }
 
     /**
-     * Value we are going to save into the database
+     * @inheritdoc
      */
     public function serializeValue($value, ElementInterface $element = null)
     {
@@ -149,9 +142,8 @@ class Width extends Dropdown
         return [];
     }
 
-
     /**
-     * Override crafts option validation for our custom setup
+     * @inheritdoc
      */
     public function validateOptions()
     {

@@ -16,21 +16,13 @@ use craft\fields\Dropdown;
  */
 class DisabledDropdown extends Dropdown
 {
-    // Static Methods
-    // =========================================================================
-
     /**
-     * Returns the display name of this class.
-     *
-     * @return string The display name of this class.
+     * @inheritdoc
      */
     public static function displayName(): string
     {
         return Craft::t('tools', 'Dropdown (Disabled)');
     }
-
-    // Public Methods
-    // =========================================================================
 
     /**
      * @inheritdoc

@@ -15,25 +15,13 @@ use craft\fields\Categories;
  */
 class DisabledCategories extends Categories
 {
-    // Public Properties
-    // =========================================================================
-
-
-    // Static Methods
-    // =========================================================================
-
     /**
-     * Returns the display name of this class.
-     *
-     * @return string The display name of this class.
+     * @inheritdoc
      */
     public static function displayName(): string
     {
         return Craft::t('tools', 'Categories (Disabled)');
     }
-
-    // Public Methods
-    // =========================================================================
 
     /**
      * @inheritdoc

@@ -21,9 +21,6 @@ use yii\db\Schema;
  */
 class Grid extends Field implements PreviewableFieldInterface
 {
-    // Properties
-    // =========================================================================
-
     /**
      * @var int The default value for total columns
      */
@@ -49,14 +46,8 @@ class Grid extends Field implements PreviewableFieldInterface
      */
     public $maxColumnSpan;
 
-
-    // Static Methods
-    // =========================================================================
-
     /**
-     * Returns the display name of this class.
-     *
-     * @return string The display name of this class.
+     * @inheritdoc
      */
     public static function displayName(): string
     {
@@ -64,7 +55,7 @@ class Grid extends Field implements PreviewableFieldInterface
     }
 
     /**
-     * @inheritDoc
+     * @inheritdoc
      */
     public function rules()
     {
@@ -115,9 +106,6 @@ class Grid extends Field implements PreviewableFieldInterface
         return $rules;
     }
 
-    // Public Methods
-    // =========================================================================
-
     /**
      * @inheritdoc
      */
@@ -128,7 +116,6 @@ class Grid extends Field implements PreviewableFieldInterface
                 'field' => $this,
             ]);
     }
-
 
     /**
      * @inheritdoc
@@ -151,7 +138,7 @@ class Grid extends Field implements PreviewableFieldInterface
 
 
     /**
-     * @inheritDoc
+     * @inheritdoc
      */
     public function normalizeValue($value, ElementInterface $element = null)
     {
@@ -191,7 +178,7 @@ class Grid extends Field implements PreviewableFieldInterface
     }
 
     /**
-     * @inheritDoc
+     * @inheritdoc
      */
     public function serializeValue($value, ElementInterface $element = null)
     {

@@ -16,25 +16,13 @@ use craft\helpers\Template;
  */
 class DisabledEntries extends Entries
 {
-    // Public Properties
-    // =========================================================================
-
-
-    // Static Methods
-    // =========================================================================
-
     /**
-     * Template to use for field rendering
-     *
-     * @var string
+     * @inheritdoc
      */
     protected $inputTemplate = 'tools/_components/fields/elements/element-select';
 
-
     /**
-     * Returns the display name of this class.
-     *
-     * @return string The display name of this class.
+     * @inheritdoc
      */
     public static function displayName(): string
     {

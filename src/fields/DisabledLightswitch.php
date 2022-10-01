@@ -17,44 +17,16 @@ use yii\db\Schema;
  */
 class DisabledLightswitch extends Lightswitch
 {
-    // Public Properties
-    // =========================================================================
-
     /**
-     * @var bool Whether the lightswitch should be enabled by default
-     */
-    public $default = false;
-
-
-    // Static Methods
-    // =========================================================================
-
-    /**
-     * Returns the display name of this class.
-     *
-     * @return string The display name of this class.
+     * @inheritdoc
      */
     public static function displayName(): string
     {
         return Craft::t('tools', 'Lightswitch (Disabled)');
     }
 
-    // Public Methods
-    // =========================================================================
-
     /**
-     * Returns the validation rules for attributes.
-     *
-     * @return array
-     */
-    public function rules()
-    {
-        $rules = parent::rules();
-        return $rules;
-    }
-
-    /**
-     * Returns the column type that this field should get within the content table.
+     * @inheritdoc
      */
     public function getContentColumnType(): string
     {
@@ -62,12 +34,7 @@ class DisabledLightswitch extends Lightswitch
     }
 
     /**
-     * Normalizes the field’s value for use.
-     *
-     * @param mixed                 $value   The raw field value
-     * @param ElementInterface|null $element The element the field is associated with, if there is one
-     *
-     * @return mixed The prepared field value
+     * @inheritdoc
      */
     public function normalizeValue($value, ElementInterface $element = null)
     {
@@ -80,40 +47,7 @@ class DisabledLightswitch extends Lightswitch
     }
 
     /**
-     * Modifies an element query.
-     *
-     * @param ElementQueryInterface $query The element query
-     * @param mixed                 $value The value that was set on this field’s corresponding [[ElementCriteriaModel]] param,
-     *                                     if any.
-     *
-     * @return null|false `false` in the event that the method is sure that no elements are going to be found.
-     */
-    public function serializeValue($value, ElementInterface $element = null)
-    {
-        return parent::serializeValue($value, $element);
-    }
-
-    /**
-     * Returns the component’s settings HTML.
-     *
-     * The same principles also apply if you’re including your JavaScript code with
-     * [[\craft\web\View::registerJs()]].
-     *
-     * @return string|null
-     */
-    public function getSettingsHtml()
-    {
-        return parent::getSettingsHtml();
-    }
-
-    /**
-     * Returns the field’s input HTML.
-     *
-     * @param mixed                 $value           The field’s value. This will either be the [[normalizeValue() normalized value]],
-     *                                               raw POST data (i.e. if there was a validation error), or null
-     * @param ElementInterface|null $element         The element the field is associated with, if there is one
-     *
-     * @return string The input HTML.
+     * @inheritdoc
      */
     public function getInputHtml($value, ElementInterface $element = null): string
     {
