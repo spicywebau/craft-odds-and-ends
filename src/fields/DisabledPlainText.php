@@ -33,9 +33,9 @@ class DisabledPlainText extends PlainText
     /**
      * @inheritdoc
      */
-    public function rules(): array
+    protected function defineRules(): array
     {
-        $rules = parent::rules();
+        $rules = parent::defineRules();
         $rules = array_merge($rules, [
             ['size', 'number'],
         ]);
