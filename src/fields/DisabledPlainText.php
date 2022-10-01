@@ -118,7 +118,7 @@ class DisabledPlainText extends PlainText
      *
      * @return string The input HTML.
      */
-    public function getInputHtml(mixed $value, ?ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element = null): string
     {
         return Craft::$app->getView()->renderTemplate('_includes/forms/text',
             [

@@ -88,7 +88,7 @@ class Width extends Dropdown
     /**
      * @inheritdoc
      */
-    public function getInputHtml(mixed $value, ?ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element = null): string
     {
         if ($value == null) {
             $options = $this->translatedOptions();

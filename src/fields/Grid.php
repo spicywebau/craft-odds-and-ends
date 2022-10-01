@@ -133,7 +133,7 @@ class Grid extends Field implements PreviewableFieldInterface
     /**
      * @inheritdoc
      */
-    public function getInputHtml(mixed $value, ?ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element = null): string
     {
         // Come up with an ID value for 'foo'
         $id = Craft::$app->getView()->formatInputId($this->handle);

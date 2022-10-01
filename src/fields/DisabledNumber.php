@@ -115,7 +115,7 @@ class DisabledNumber extends Number
      *
      * @return string The input HTML.
      */
-    public function getInputHtml(mixed $value, ?ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element = null): string
     {
         // If decimals is 0 (or null, empty for whatever reason), don't run this
         if ($value !== null && $this->decimals) {

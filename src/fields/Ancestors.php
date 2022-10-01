@@ -76,7 +76,7 @@ class Ancestors extends Entries
     /**
     * @inheritdoc
     */
-    public function getInputHtml(mixed $value, ?ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element = null): string
     {
         /** @var Element $element */
         // if ($element !== null && $element->hasEagerLoadedElements($this->handle)) {

@@ -122,7 +122,7 @@ class AuthorInstructions extends Field
      *
      * @return string The input HTML.
      */
-    public function getInputHtml(mixed $value, ?ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element = null): string
     {
         $name = $this->handle;
 

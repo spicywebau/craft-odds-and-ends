@@ -115,7 +115,7 @@ class DisabledLightswitch extends Lightswitch
      *
      * @return string The input HTML.
      */
-    public function getInputHtml(mixed $value, ?ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element = null): string
     {
         // If this is a new entry, look for a default option
         if ($this->isFresh($element)) {
