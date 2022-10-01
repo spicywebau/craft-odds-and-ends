@@ -99,7 +99,7 @@ class Ancestors extends Entries
      *
      * @return array|string
      */
-    protected function inputSources(?ElementInterface $element = null)
+    public function getInputSources(?ElementInterface $element = null): array|string|null
     {
         $sources = ['section:' . $element->section->uid];
 
@@ -111,7 +111,7 @@ class Ancestors extends Entries
      *
      * @return array
      */
-    protected function inputSelectionCriteria(): array
+    public function getInputSelectionCriteria(): array
     {
 
         // Return the current elements ancestors, if there are any
