@@ -36,31 +36,6 @@ class RollYourOwn extends Widget
     /**
      * @inheritdoc
      */
-    public static function iconPath(): ?string
-    {
-        return null;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public static function maxColspan(): ?int
-    {
-        return null;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function rules(): array
-    {
-        $rules = parent::rules();
-        return $rules;
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function getSettingsHtml(): ?string
     {
         return Craft::$app->getView()->renderTemplate(
