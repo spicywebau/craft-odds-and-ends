@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ### Changed
 - Now maintained by Spicy Web
-- Now requires Craft 3.7.46 or later Craft 3 releases
+- Now requires Craft 3.7.55.3 or later Craft 3 releases
 
 ### Fixed
 - Fixed an error that occurred when creating a width field on Craft 3.7.46 or later Craft 3 releases
