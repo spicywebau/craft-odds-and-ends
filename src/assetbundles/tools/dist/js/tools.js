@@ -8,9 +8,9 @@
 (function($){
 
 
-if (typeof SpicyWebTools == 'undefined')
+if (typeof OddsAndEnds == 'undefined')
 {
-    SpicyWebTools = {}
+    OddsAndEnds = {}
 }
 
 
@@ -18,7 +18,7 @@ if (typeof SpicyWebTools == 'undefined')
  * Make all links in instructions open in a new window - useful for fields
  * where only markdown is supported
  */
-SpicyWebTools.TargetBlankInstructionLinks = Garnish.Base.extend(
+OddsAndEnds.TargetBlankInstructionLinks = Garnish.Base.extend(
 {
     init: function()
     {
@@ -38,7 +38,7 @@ SpicyWebTools.TargetBlankInstructionLinks = Garnish.Base.extend(
 /**
  * Search elements like Tags - forked from `Craft.TagSelectInput`
  */
-SpicyWebTools.ElementSearchInput = Craft.BaseElementSelectInput.extend(
+OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
 {
     searchTimeout: null,
     searchMenu: null,
@@ -195,7 +195,7 @@ SpicyWebTools.ElementSearchInput = Craft.BaseElementSelectInput.extend(
 
                 if (textStatus == 'success')
                 {
-                    var $menu = $('<div class="menu spicywebtools-elementsearch__menu"/>').appendTo(Garnish.$bod);
+                    var $menu = $('<div class="menu oddsandends-elementsearch__menu"/>').appendTo(Garnish.$bod);
 
                     // Loop each source defined in our settings and see if we got anything back from it
                     for (var i = 0; i < this.settings.sources.length; i++) {

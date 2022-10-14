@@ -1,29 +1,29 @@
 /**
  * Entries fieldtype with inline search
  */
-.spicywebtools-elementsearch .add { position: relative; z-index: 1; display: inline-block; width: 12em; }
+.oddsandends-elementsearch .add { position: relative; z-index: 1; display: inline-block; width: 12em; }
 
-body.ltr .spicywebtools-elementsearch .add .text { padding-right: 30px; }
-body.rtl .spicywebtools-elementsearch .add .text { padding-left: 30px; }
+body.ltr .oddsandends-elementsearch .add .text { padding-right: 30px; }
+body.rtl .oddsandends-elementsearch .add .text { padding-left: 30px; }
 
-.spicywebtools-elementsearch .add .spinner { position: absolute; top: 0; }
-body.ltr .spicywebtools-elementsearch .add .spinner { right: 5px; }
-body.rtl .spicywebtools-elementsearch .add .spinner { left: 5px; }
+.oddsandends-elementsearch .add .spinner { position: absolute; top: 0; }
+body.ltr .oddsandends-elementsearch .add .spinner { right: 5px; }
+body.rtl .oddsandends-elementsearch .add .spinner { left: 5px; }
 
-body.ltr .spicywebtools-elementsearch__menu ul li a { padding-left: 32px; }
-body.rtl .spicywebtools-elementsearch__menu ul li a { padding-right: 32px; }
+body.ltr .oddsandends-elementsearch__menu ul li a { padding-left: 32px; }
+body.rtl .oddsandends-elementsearch__menu ul li a { padding-right: 32px; }
 
-body.ltr .spicywebtools-elementsearch__menu ul li a .status { float: left; }
-body.rtl .spicywebtools-elementsearch__menu ul li a .status { float: right; }
-body.ltr .spicywebtools-elementsearch__menu ul li a .status { margin: 3px 0 0 -18px ; }
-body.rtl .spicywebtools-elementsearch__menu ul li a .status { margin: 3px -18px 0 0 ; }
+body.ltr .oddsandends-elementsearch__menu ul li a .status { float: left; }
+body.rtl .oddsandends-elementsearch__menu ul li a .status { float: right; }
+body.ltr .oddsandends-elementsearch__menu ul li a .status { margin: 3px 0 0 -18px ; }
+body.rtl .oddsandends-elementsearch__menu ul li a .status { margin: 3px -18px 0 0 ; }
 
 
 /**
  * Hide delete icons in disabled fields
  */
-.spicywebtools-disabledcategories .delete,
-.spicywebtools-disabledelements .delete {
+.oddsandends-disabledcategories .delete,
+.oddsandends-disabledelements .delete {
   display: none;
 }
 
@@ -31,14 +31,14 @@ body.rtl .spicywebtools-elementsearch__menu ul li a .status { margin: 3px -18px 
 /**
  * Freshdesk bits
  */
-#spicywebtools-freshdesk .spinner {
+#oddsandends-freshdesk .spinner {
   position: absolute;
   top: 50%;
   left: 50%;
   margin-top: -10px;
   margin-left: -10px;
 }
-#spicywebtools-freshdesk iframe { position: relative; }
+#oddsandends-freshdesk iframe { position: relative; }
 
 iframe.zEWidget-launcher {
   display: none !important;
@@ -47,7 +47,7 @@ iframe.zEWidget-launcher {
 /**
  * Styling Author Instruction field
  */
-.spicywebtools__author-instructions {
+.oddsandends__author-instructions {
     background-color: #f1f1f1;
     border-left: 4px solid #FF5500;
     padding: 15px;

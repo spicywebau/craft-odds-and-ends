@@ -1,6 +1,6 @@
 <?php
 
-namespace spicyweb\tools\fields;
+namespace spicyweb\oddsandends\fields;
 
 use Craft;
 use craft\base\Element;
@@ -8,13 +8,13 @@ use craft\base\ElementInterface;
 use craft\base\Field;
 use craft\base\PreviewableFieldInterface;
 use craft\helpers\Json;
-use spicyweb\tools\fields\data\GridData;
+use spicyweb\oddsandends\fields\data\GridData;
 use yii\db\Schema;
 
 /**
  * Grid Field
  *
- * @package spicyweb\tools\fields
+ * @package spicyweb\oddsandends\fields
  * @author Spicy Web <plugins@spicyweb.com.au>
  * @author Supercool
  * @since 2.1.0

@@ -1,6 +1,6 @@
 <?php
 
-namespace spicyweb\tools\fields;
+namespace spicyweb\oddsandends\fields;
 
 use Craft;
 use craft\fields\Categories;
@@ -8,7 +8,7 @@ use craft\fields\Categories;
 /**
  * Disabled Categories Field
  *
- * @package spicyweb\tools\fields
+ * @package spicyweb\oddsandends\fields
  * @author Spicy Web <plugins@spicyweb.com.au>
  * @author Supercool
  * @since 2.0.0

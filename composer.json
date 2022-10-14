@@ -1,5 +1,5 @@
 {
-    "name": "spicyweb/tools",
+    "name": "spicyweb/craft-odds-and-ends",
     "description": "A collection of useful things for Craft websites",
     "type": "craft-plugin",
     "version": "2.2.3",
@@ -10,8 +10,8 @@
         "craft-plugin"
     ],
     "support": {
-        "docs": "https://github.com/spicywebau/tools/blob/master/README.md",
-        "issues": "https://github.com/spicywebau/tools/issues"
+        "docs": "https://github.com/spicywebau/craft-odds-and-ends/blob/master/README.md",
+        "issues": "https://github.com/spicywebau/craft-odds-and-ends/issues"
     },
     "license": "MIT",
     "authors": [
@@ -25,17 +25,17 @@
     },
     "autoload": {
         "psr-4": {
-          "spicyweb\\tools\\": "src/"
+          "spicyweb\\oddsandends\\": "src/"
         }
     },
     "extra": {
-        "name": "Tools",
+        "name": "Odds & Ends",
         "handle": "tools",
         "schemaVersion": "3.0.0",
         "hasCpSettings": false,
         "hasCpSection": false,
-        "changelogUrl": "https://raw.githubusercontent.com/spicywebau/tools/master/CHANGELOG.md",
-        "class": "spicyweb\\tools\\Tools"
+        "changelogUrl": "https://raw.githubusercontent.com/spicywebau/craft-odds-and-ends/master/CHANGELOG.md",
+        "class": "spicyweb\\oddsandends\\Tools"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

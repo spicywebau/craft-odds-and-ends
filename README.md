@@ -1,3 +1,9 @@
+<img src="src/icon.svg" width="100">
+
+# Odds & Ends
+
+A collection of useful tools for Craft CMS websites.
+
 ## Field types
 
 ### Width

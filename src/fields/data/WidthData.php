@@ -1,6 +1,6 @@
 <?php
 
-namespace spicyweb\tools\fields\data;
+namespace spicyweb\oddsandends\fields\data;
 
 use craft\fields\data\SingleOptionFieldData;
 use craft\helpers\Json;
@@ -8,7 +8,7 @@ use craft\helpers\Json;
 /**
  * Class WidthData
  *
- * @package spicyweb\tools\fields\data
+ * @package spicyweb\oddsandends\fields\data
  * @author Spicy Web <plugins@spicyweb.com.au>
  * @author Supercool Ltd <naveed@supercooldesign.co.uk>
  * @since 2.0.0

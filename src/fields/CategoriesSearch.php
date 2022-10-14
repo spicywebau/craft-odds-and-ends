@@ -1,17 +1,17 @@
 <?php
 
-namespace spicyweb\tools\fields;
+namespace spicyweb\oddsandends\fields;
 
 use Craft;
 
 use craft\base\ElementInterface;
 use craft\fields\Categories;
-use spicyweb\tools\assetbundles\tools\ToolsAsset;
+use spicyweb\oddsandends\assetbundles\tools\ToolsAsset;
 
 /**
  * Categories Search Field
  *
- * @package spicyweb\tools\fields
+ * @package spicyweb\oddsandends\fields
  * @author Spicy Web <plugins@spicyweb.com.au>
  * @author Supercool
  * @since 2.0.0

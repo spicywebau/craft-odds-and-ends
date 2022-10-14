@@ -10,7 +10,7 @@
 
 {% from "_includes/forms" import text %}
 
-<div id="{{ id }}" class="elementselect clearafter spicywebtools-elementsearch">
+<div id="{{ id }}" class="elementselect clearafter oddsandends-elementsearch">
     <div class="elements">
         {% for element in elements %}
             {% include "_elements/element" with { context: 'field' } %}
@@ -39,7 +39,7 @@
         selectionLabel: "{{ selectionLabel|e('js') }}"
     };
 
-    new SpicyWebTools.ElementSearchInput(settings);
+    new OddsAndEnds.ElementSearchInput(settings);
 {% endset %}
 
 {% js js %}

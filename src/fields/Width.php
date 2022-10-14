@@ -1,19 +1,19 @@
 <?php
 
-namespace spicyweb\tools\fields;
+namespace spicyweb\oddsandends\fields;
 
 use Craft;
 
 use craft\base\ElementInterface;
 use craft\fields\Dropdown;
 use craft\helpers\Json;
-use spicyweb\tools\fields\data\WidthData;
+use spicyweb\oddsandends\fields\data\WidthData;
 use yii\db\Schema;
 
 /**
  * Width Field
  *
- * @package spicyweb\tools\fields
+ * @package spicyweb\oddsandends\fields
  * @author Spicy Web <plugins@spicyweb.com.au>
  * @author Supercool
  * @since 2.0.0
