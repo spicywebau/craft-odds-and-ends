@@ -9,13 +9,13 @@ A collection of useful tools for Craft CMS websites.
 ### Width
 This lets you define the width of a block as well as left and right padding. This field simply outputs three sets of classes which can be defined when setting the field up.
 
-![width Field Settings](https://raw.githubusercontent.com/supercool/Tools/master/screenshots/width-settings.png)
-![width Field](https://raw.githubusercontent.com/supercool/Tools/master/screenshots/width-field.png)
+![Width Field Settings](docs/assets/width-settings.png)
+![Width Field](docs/assets/width-field.png)
 
 ### Author Instructions
 This lets you output markdown instead of a field, which is useful when you have a Matrix block that doesn’t have any fields.
 
-![Author Instructions Example](https://raw.githubusercontent.com/supercool/Tools/master/screenshots/author-instructions-example.png)
+![Author Instructions Example](docs/assets/author-instructions-example.png)
 
 ### Categories (multiple groups)
 A Categories input that lets you select multiple Category groups.
