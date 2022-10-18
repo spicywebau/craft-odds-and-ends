@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## 3.0.1 - 2022-10-19
 
 ### Fixed
 - Fixed an error that occurred when attempting inline editing of entries selected for an Entries (Search) field, and categories selected for a Categories (Search) field
