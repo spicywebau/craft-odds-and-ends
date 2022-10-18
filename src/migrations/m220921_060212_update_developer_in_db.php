@@ -20,7 +20,7 @@ class m220921_060212_update_developer_in_db extends Migration
     {
         // Update field types
         $projectConfig = Craft::$app->getProjectConfig();
-        $newClassPrefix = preg_replace('/Plugin$/', '', Tools::class);
+        $newClassPrefix = preg_replace('/Tools$/', '', Tools::class);
         $oldClassPrefix = preg_replace('/^spicyweb\\\\oddsandends/', 'supercool\\tools', $newClassPrefix);
 
         foreach ($projectConfig->get('fields') ?? [] as $uid => $field) {
