@@ -61,11 +61,11 @@ The `id` parameter is required and must be a valid asset ID.
 
 Usage:
 ```
-<a href="{{ actionUrl('tools/tools/download-file', { id: 10974 }) }}">Download</a>
+<a href="{{ actionUrl('tools/tools/download-file', { id: entry.assetField.one().id }) }}">Download</a>
 ```
 
 ---
 
-*Created by [Supercool](http://www.supercooldesign.co.uk/)*
+*Created by [Supercool](https://supercooldesign.co.uk)*
 <br>
 *Maintained by [Spicy Web](https://spicyweb.com.au)*
