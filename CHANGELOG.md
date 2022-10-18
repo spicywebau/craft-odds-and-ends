@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+
+### Added
+- Added support for Craft 4 (requires Craft 4.2.1 or later)
+
+### Removed
+- Removed support for Craft 3
+
 ## 3.0.0 - 2022-10-18
 
 > {note} The plugin’s package name has changed to `spicyweb/craft-odds-and-ends`. The plugin will need be updated to 3.0 from a terminal, by running `composer require spicyweb/craft-odds-and-ends` and then `composer remove supercool/tools`.
