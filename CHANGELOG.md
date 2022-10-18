@@ -12,9 +12,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Removed
 - Removed support for Craft 3
 
+## 3.0.1 - 2022-10-19
+
+### Fixed
+- Fixed an error that occurred when attempting inline editing of entries selected for an Entries (Search) field, and categories selected for a Categories (Search) field
+
 ## 3.0.0 - 2022-10-18
 
-> {note} The plugin’s package name has changed to `spicyweb/craft-odds-and-ends`. The plugin will need be updated to 3.0 from a terminal, by running `composer require spicyweb/craft-odds-and-ends` and then `composer remove supercool/tools`.
+> {note} The plugin’s package name has changed to `spicyweb/craft-odds-and-ends`. If you’re updating with Composer, you will need to run `composer require spicyweb/craft-odds-and-ends` and then `composer remove supercool/tools`.
 
 ### Changed
 - Name changed from 'Tools' to 'Odds & Ends'
