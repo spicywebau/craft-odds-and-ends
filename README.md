@@ -38,15 +38,12 @@ The following field types are currently supported:
 - PlainText
 - Dropdown
 
-
 ## Widgets
 
 ### Roll Your Own
 A simple widget that lets you assign a template to load from your site templates folder. Go nuts.
 
-
 ## Config variables
-
 
 ### `openInstructionLinksInNewWindow`
 
@@ -57,11 +54,18 @@ Set this to true to force all instruction links to open in new a window/tab.
 ## Miscellaneous
 
 ### Download File
-A controller action that will force download a file.
 
-The `id` parameter is required and must be a valid Asset id.
+A controller action that will download an asset file.
+
+The `id` parameter is required and must be a valid asset ID.
 
 Usage:
 ```
-<a href="{{ actionUrl('supercoolTools/downloadFile', { id : file.id }) }}">Download</a>
+<a href="{{ actionUrl('tools/tools/download-file', { id: 10974 }) }}">Download</a>
 ```
+
+---
+
+*Created by [Supercool](http://www.supercooldesign.co.uk/)*
+<br>
+*Maintained by [Spicy Web](https://spicyweb.com.au)*
