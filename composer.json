@@ -1,8 +1,8 @@
 {
     "name": "spicyweb/craft-odds-and-ends",
-    "description": "A collection of useful things for Craft websites",
+    "description": "A collection of useful tools for Craft CMS websites",
     "type": "craft-plugin",
-    "version": "2.2.3",
+    "version": "3.0.0",
     "keywords": [
         "craft",
         "cms",
