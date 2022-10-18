@@ -43,14 +43,6 @@ The following field types are currently supported:
 ### Roll Your Own
 A simple widget that lets you assign a template to load from your site templates folder. Go nuts.
 
-## Config variables
-
-### `openInstructionLinksInNewWindow`
-
-Default: `true`
-
-Set this to true to force all instruction links to open in new a window/tab.
-
 ## Miscellaneous
 
 ### Download File
