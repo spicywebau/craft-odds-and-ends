@@ -41,7 +41,7 @@
     var settings = {
         id : "{{ id | namespaceInputId   | e('js') }}",
         name : "{{ name | namespaceInputName | e('js') }}",
-        elementType: "Category",
+        elementType: "craft\\elements\\Category",
         sources : {{ sources|json_encode|raw }},
         criteria : {{ criteria|json_encode|raw }},
         sourceElementId : {{ sourceElementId ?: 'null' }},
