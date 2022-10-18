@@ -1,6 +1,6 @@
 <?php
 
-namespace spicyweb\tools\assetbundles\tools;
+namespace spicyweb\oddsandends\assetbundles\tools;
 
 use craft\web\AssetBundle;
 use craft\web\assets\cp\CpAsset;
@@ -8,7 +8,7 @@ use craft\web\assets\cp\CpAsset;
 /**
  * Class ToolsAsset
  *
- * @package spicyweb\tools\assetbundles\tools
+ * @package spicyweb\oddsandends\assetbundles\tools
  * @author Spicy Web <plugins@spicyweb.com.au>
  * @author Supercool
  * @since 2.0.0
@@ -21,7 +21,7 @@ class ToolsAsset extends AssetBundle
     public function init(): void
     {
         // define the path that your publishable resources live
-        $this->sourcePath = "@spicyweb/tools/assetbundles/tools/dist";
+        $this->sourcePath = "@spicyweb/oddsandends/assetbundles/tools/dist";
 
         // define the dependencies
         $this->depends = [

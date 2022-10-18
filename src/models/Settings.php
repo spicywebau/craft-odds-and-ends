@@ -1,13 +1,13 @@
 <?php
 
-namespace spicyweb\tools\models;
+namespace spicyweb\oddsandends\models;
 
 use craft\base\Model;
 
 /**
  * Class Settings
  *
- * @package spicyweb\tools\models
+ * @package spicyweb\oddsandends\models
  * @author Spicy Web <plugins@spicyweb.com.au>
  * @author Supercool
  * @since 2.1.4

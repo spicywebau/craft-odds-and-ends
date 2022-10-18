@@ -1,6 +1,6 @@
 <?php
 
-namespace spicyweb\tools\controllers;
+namespace spicyweb\oddsandends\controllers;
 
 use Craft;
 use craft\elements\Asset;
@@ -16,7 +16,7 @@ use yii\web\Response;
 /**
  * Class ToolsController
  *
- * @package spicyweb\tools\controllers
+ * @package spicyweb\oddsandends\controllers
  * @author Spicy Web <plugins@spicyweb.com.au>
  * @author Supercool
  * @since 2.0.0

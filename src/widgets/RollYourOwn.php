@@ -1,6 +1,6 @@
 <?php
 
-namespace spicyweb\tools\widgets;
+namespace spicyweb\oddsandends\widgets;
 
 use Craft;
 use craft\base\Widget;
@@ -8,7 +8,7 @@ use craft\base\Widget;
 /**
  * Roll Your Own Widget
  *
- * @package spicyweb\tools\widgets
+ * @package spicyweb\oddsandends\widgets
  * @author Spicy Web <plugins@spicyweb.com.au>
  * @author Supercool
  * @since 2.0.0
