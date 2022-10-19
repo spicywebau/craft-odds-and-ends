@@ -45,6 +45,11 @@ class Tools extends Plugin
     /**
      * @inheritdoc
      */
+    public string $minVersionRequired = '2.2.0';
+
+    /**
+     * @inheritdoc
+     */
     public function init(): void
     {
         parent::init();
