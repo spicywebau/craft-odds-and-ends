@@ -4,6 +4,7 @@ namespace spicyweb\oddsandends\controllers;
 
 use Craft;
 use craft\commerce\elements\Product;
+use craft\commerce\elements\Variant;
 use craft\elements\Asset;
 use craft\elements\Category;
 use craft\elements\Entry;
@@ -103,8 +104,8 @@ class ToolsController extends Controller
             // Start the criteria
             $criteria = Category::find();
         }
-        // Craft Commerce products
-        elseif ($elementType === Product::class) {
+        // Craft Commerce products/variants
+        elseif (in_array($elementType, [Product::class, Variant::class])) {
             $productTypesService = Craft::$app->getPlugins()
                 ->getPlugin('commerce')
                 ->getProductTypes();
@@ -123,8 +124,13 @@ class ToolsController extends Controller
                 $productTypes = $productTypesService->getAllProductTypes();
             }
 
-            $criteria = Product::find();
-            $criteria->type = $productTypes;
+            if ($elementType === Product::class) {
+                $criteria = Product::find();
+                $criteria->type = $productTypes;
+            } else {
+                $criteria = Variant::find();
+                $criteria->typeId = array_map(fn($type) => $type->id, $productTypes);
+            }
         }
 
         // Add and exclude ids
@@ -178,6 +184,14 @@ class ToolsController extends Controller
                     'title' => $element->title,
                     'status' => $element->status,
                     'sourceName' => $element->type->name,
+                ];
+            } elseif ($elementType === Variant::class) {
+                $sourceKey = is_array($sources) ? "productType:{$element->product->type->uid}" : "*";
+                $return[$sourceKey][] = [
+                    'id' => $element->id,
+                    'title' => "{$element->product->title}: $element->title",
+                    'status' => $element->status,
+                    'sourceName' => $element->product->type->name,
                 ];
             }
 

@@ -24,7 +24,7 @@ A Categories input that lets you select multiple Category groups.
 An Entries input that only shows the ancestors of the current Entry.
 
 ### Search Fields
-Like the Tags input, but for Entries and Categories (without the auto-creation feature).
+Like the Tags input, but for entries and categories (without the auto-creation feature). If Craft Commerce is installed, search fields for products and variants are also available.
 
 ### Disabled Fields
 The same as regular fields, but disabled. Useful for situations where you want to integrate with a third party API and store that information in a field but don’t want the user to change it.

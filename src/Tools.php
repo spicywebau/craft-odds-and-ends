@@ -23,6 +23,7 @@ use spicyweb\oddsandends\fields\DisabledPlainText as DisabledPlainTextField;
 use spicyweb\oddsandends\fields\EntriesSearch as EntriesSearchField;
 use spicyweb\oddsandends\fields\Grid as GridField;
 use spicyweb\oddsandends\fields\ProductsSearch as ProductsSearchField;
+use spicyweb\oddsandends\fields\VariantsSearch as VariantsSearchField;
 use spicyweb\oddsandends\fields\Width as WidthField;
 use spicyweb\oddsandends\models\Settings;
 use spicyweb\oddsandends\widgets\RollYourOwn as RollYourOwnWidget;
@@ -78,6 +79,7 @@ class Tools extends Plugin
                 $pluginsService = Craft::$app->getPlugins();
                 if ($pluginsService->isPluginInstalled('commerce') && $pluginsService->isPluginEnabled('commerce')) {
                     $event->types[] = ProductsSearchField::class;
+                    $event->types[] = VariantsSearchField::class;
                 }
             }
         );

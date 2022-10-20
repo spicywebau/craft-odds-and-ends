@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ### Added
 - Added `spicyweb\oddsandends\fields\ProductsSearch` - Commerce Products (Search) field type
+- Added `spicyweb\oddsandends\fields\VariantsSearch` - Commerce Variants (Search) field type
 
 ## 4.0.0 - 2022-10-19
 
