@@ -66,8 +66,7 @@ class ToolsController extends Controller
         $sources = $request->getRequiredBodyParam('sources');
 
         // Deal with Entries
-        if ($elementType == "Entry") {
-
+        if ($elementType === Entry::class) {
             // Fangle the sections out of the sources
             $sections = [];
             if (is_array($sources)) {
@@ -98,7 +97,7 @@ class ToolsController extends Controller
             $criteria->section = $sections;
         }
         // Deal with Categories
-        elseif ($elementType == "Category") {
+        elseif ($elementType === Category::class) {
             // Start the criteria
             $criteria = Category::find();
         }
@@ -124,7 +123,7 @@ class ToolsController extends Controller
         $normalizedSearch = $search;
 
         foreach ($elements as $element) {
-            if ($elementType == "Entry") {
+            if ($elementType === Entry::class) {
                 if (!is_array($sources)) {
                     $sourceKey = "*";
                 } elseif ($element->section->type == Section::TYPE_SINGLE) {
@@ -139,7 +138,7 @@ class ToolsController extends Controller
                     'status' => $element->status,
                     'sourceName' => $element->section->name,
                 ];
-            } elseif ($elementType == "Category") {
+            } elseif ($elementType === Category::class) {
                 $sourceKey = "group:" . $element->group->uid;
                 $return[$sourceKey][] = [
                     'id' => $element->id,

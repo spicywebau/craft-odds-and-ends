@@ -255,7 +255,7 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
             status = $option.data('status'),
             title = $option.text();
 
-        if (this.settings.elementType == 'Entry')
+        if (this.settings.elementType == 'craft\\elements\\Entry')
         {
             var $element = $('<div class="element removable" data-id="'+elementId+'" data-editable/>').appendTo(this.$elementsContainer),
                 $input = $('<input type="hidden" name="'+this.settings.name+'[]" value="'+elementId+'"/>').appendTo($element)
@@ -274,7 +274,7 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
 
             this.addElements($element);
         }
-        else if (this.settings.elementType == 'Category')
+        else if (this.settings.elementType == 'craft\\elements\\Category')
         {
             var selectedCategoryIds = this.getSelectedElementIds();
 
@@ -321,14 +321,14 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
     removeElement: function($element)
     {
 
-        if (this.settings.elementType == 'Entry')
+        if (this.settings.elementType == 'craft\\elements\\Entry')
         {
             this.removeElements($element);
             this.animateElementAway($element, function() {
                 $element.remove();
             });
         }
-        else if (this.settings.elementType == 'Category')
+        else if (this.settings.elementType == 'craft\\elements\\Category')
         {
             // Find any descendants this category might have
             var $allCategories = $element.add($element.parent().siblings('ul').find('.element'));
