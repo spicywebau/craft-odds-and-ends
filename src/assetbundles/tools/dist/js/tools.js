@@ -256,7 +256,7 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
             title = $option.text();
 
         if (
-            this.settings.elementType == 'Entry' ||
+            this.settings.elementType == 'craft\\elements\\Entry' ||
             this.settings.elementType == 'craft\\commerce\\elements\\Product' ||
             this.settings.elementType == 'craft\\commerce\\elements\\Variant'
         ) {
@@ -278,7 +278,7 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
 
             this.addElements($element);
         }
-        else if (this.settings.elementType == 'Category')
+        else if (this.settings.elementType == 'craft\\elements\\Category')
         {
             var selectedCategoryIds = this.getSelectedElementIds();
 
@@ -325,7 +325,7 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
     removeElement: function($element)
     {
         if (
-            this.settings.elementType == 'Entry' ||
+            this.settings.elementType == 'craft\\elements\\Entry' ||
             this.settings.elementType == 'craft\\commerce\\elements\\Product' ||
             this.settings.elementType == 'craft\\commerce\\elements\\Variant'
         ) {
@@ -334,7 +334,7 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
                 $element.remove();
             });
         }
-        else if (this.settings.elementType == 'Category')
+        else if (this.settings.elementType == 'craft\\elements\\Category')
         {
             // Find any descendants this category might have
             var $allCategories = $element.add($element.parent().siblings('ul').find('.element'));

@@ -23,6 +23,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Removed
 - Removed support for Craft 3
 
+## 3.0.2 - 2022-10-20
+
+### Fixed
+- Fixed an error that could occur when editing element search field contents
+- Fixed a bug where previously selected elements for element search fields couldn't be removed
+
 ## 3.0.1 - 2022-10-19
 
 ### Fixed
