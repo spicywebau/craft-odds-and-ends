@@ -260,11 +260,12 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
             this.settings.elementType == 'craft\\commerce\\elements\\Product' ||
             this.settings.elementType == 'craft\\commerce\\elements\\Variant'
         ) {
-            var $element = $('<div class="element removable" data-id="'+elementId+'" data-editable/>').appendTo(this.$elementsContainer),
+            var $element = $('<div class="element small removable hasstatus" data-id="'+elementId+'" data-editable/>').appendTo(this.$elementsContainer),
                 $input = $('<input type="hidden" name="'+this.settings.name+'[]" value="'+elementId+'"/>').appendTo($element)
 
             $('<a class="delete icon" title="'+Craft.t('tools', 'Remove')+'"></a>').appendTo($element);
-            $('<div class="label"><span class="status '+status+'"></span><span class="title">'+title+'</span></div>').appendTo($element);
+            $('<span class="status '+status+'"></span>').appendTo($element);
+            $('<div class="label"><span class="title">'+title+'</span></div>').appendTo($element);
 
             var margin = -($element.outerWidth()+10);
             this.$addElementInput.css('margin-'+Craft.left, margin+'px');

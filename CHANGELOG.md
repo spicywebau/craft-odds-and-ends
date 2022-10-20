@@ -12,6 +12,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Added `spicyweb\oddsandends\fields\ProductsSearch` - Commerce Products (Search) field type
 - Added `spicyweb\oddsandends\fields\VariantsSearch` - Commerce Variants (Search) field type
 
+### Fixed
+- Fixed some style issues with element search fields
+
 ## 4.0.0 - 2022-10-19
 
 ### Added
