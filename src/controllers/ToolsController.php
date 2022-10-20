@@ -3,8 +3,8 @@
 namespace spicyweb\oddsandends\controllers;
 
 use Craft;
+use craft\commerce\elements\Product;
 use craft\elements\Asset;
-
 use craft\elements\Category;
 use craft\elements\Entry;
 use craft\helpers\Db;
@@ -103,6 +103,29 @@ class ToolsController extends Controller
             // Start the criteria
             $criteria = Category::find();
         }
+        // Craft Commerce products
+        elseif ($elementType === Product::class) {
+            $productTypesService = Craft::$app->getPlugins()
+                ->getPlugin('commerce')
+                ->getProductTypes();
+            $productTypes = [];
+            if (is_array($sources)) {
+                foreach ($sources as $source) {
+                    if (preg_match('/^products:(.+)$/', $source, $matches)) {
+                        $productType = $productTypesService->getProductTypeByUid($matches[1]);
+
+                        if ($productType) {
+                            $productTypes[] = $productType;
+                        }
+                    }
+                }
+            } elseif ($sources === '*') {
+                $productTypes = $productTypesService->getAllProductTypes();
+            }
+
+            $criteria = Product::find();
+            $criteria->type = $productTypes;
+        }
 
         // Add and exclude ids
         $notIds = ['and'];
@@ -147,6 +170,14 @@ class ToolsController extends Controller
                     'title' => $element->title,
                     'status' => $element->status,
                     'sourceName' => $element->group->name,
+                ];
+            } elseif ($elementType === Product::class) {
+                $sourceKey = is_array($sources) ? "productType:{$element->type->uid}" : "*";
+                $return[$sourceKey][] = [
+                    'id' => $element->id,
+                    'title' => $element->title,
+                    'status' => $element->status,
+                    'sourceName' => $element->type->name,
                 ];
             }
 

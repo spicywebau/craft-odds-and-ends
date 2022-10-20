@@ -255,7 +255,7 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
             status = $option.data('status'),
             title = $option.text();
 
-        if (this.settings.elementType == 'Entry')
+        if (this.settings.elementType == 'Entry' || this.settings.elementType == 'craft\\commerce\\elements\\Product')
         {
             var $element = $('<div class="element removable" data-id="'+elementId+'" data-editable/>').appendTo(this.$elementsContainer),
                 $input = $('<input type="hidden" name="'+this.settings.name+'[]" value="'+elementId+'"/>').appendTo($element)
@@ -321,7 +321,7 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
     removeElement: function($element)
     {
 
-        if (this.settings.elementType == 'Entry')
+        if (this.settings.elementType == 'Entry' || this.settings.elementType == 'craft\\commerce\\elements\\Product')
         {
             this.removeElements($element);
             this.animateElementAway($element, function() {
