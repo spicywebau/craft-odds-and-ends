@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## Unreleased
 
 ### Added
+- Added `spicyweb\oddsandends\fields\DisabledProducts` - Commerce Products (Disabled) field type
+- Added `spicyweb\oddsandends\fields\DisabledVariants` - Commerce Variants (Disabled) field type
 - Added `spicyweb\oddsandends\fields\ProductsSearch` - Commerce Products (Search) field type
 - Added `spicyweb\oddsandends\fields\VariantsSearch` - Commerce Variants (Search) field type
 

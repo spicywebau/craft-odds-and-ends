@@ -37,6 +37,8 @@ The following field types are currently supported:
 - Number
 - PlainText
 - Dropdown
+- Commerce Products
+- Commerce Variants
 
 ## Widgets
 

@@ -14,7 +14,6 @@ use spicyweb\oddsandends\assetbundles\tools\ToolsAsset;
  *
  * @package spicyweb\oddsandends\fields
  * @author Spicy Web <plugins@spicyweb.com.au>
- * @author Supercool
  * @since 4.1.0
  */
 class ProductsSearch extends Products

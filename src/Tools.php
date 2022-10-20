@@ -20,6 +20,8 @@ use spicyweb\oddsandends\fields\DisabledEntries as DisabledEntriesField;
 use spicyweb\oddsandends\fields\DisabledLightswitch as DisabledLightswitchField;
 use spicyweb\oddsandends\fields\DisabledNumber as DisabledNumberField;
 use spicyweb\oddsandends\fields\DisabledPlainText as DisabledPlainTextField;
+use spicyweb\oddsandends\fields\DisabledProducts as DisabledProductsField;
+use spicyweb\oddsandends\fields\DisabledVariants as DisabledVariantsField;
 use spicyweb\oddsandends\fields\EntriesSearch as EntriesSearchField;
 use spicyweb\oddsandends\fields\Grid as GridField;
 use spicyweb\oddsandends\fields\ProductsSearch as ProductsSearchField;
@@ -78,6 +80,8 @@ class Tools extends Plugin
 
                 $pluginsService = Craft::$app->getPlugins();
                 if ($pluginsService->isPluginInstalled('commerce') && $pluginsService->isPluginEnabled('commerce')) {
+                    $event->types[] = DisabledProductsField::class;
+                    $event->types[] = DisabledVariantsField::class;
                     $event->types[] = ProductsSearchField::class;
                     $event->types[] = VariantsSearchField::class;
                 }
