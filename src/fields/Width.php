@@ -8,6 +8,7 @@ use craft\base\ElementInterface;
 use craft\fields\Dropdown;
 use craft\helpers\Cp;
 use craft\helpers\Json;
+use GraphQL\Type\Definition\Type;
 use spicyweb\oddsandends\fields\data\WidthData;
 use yii\db\Schema;
 
@@ -181,6 +182,22 @@ class Width extends Dropdown
         if ($hasDuplicateRightValues) {
             $this->addError('options', Craft::t('app', 'All right values must be unique.'));
         }
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getContentGqlMutationArgumentType(): Type|array
+    {
+        // Using the code from \craft\base\Field::getContentGqlMutationArgumentType() due to an error that was occurring
+        // with GraphQL queries.
+        // TODO: either extend something other than Dropdown, or figure out another way to avoid the error and let this
+        // field type support GraphQL mutations.
+        return [
+            'name' => $this->handle,
+            'type' => Type::string(),
+            'description' => $this->instructions,
+        ];
     }
 
     /**
