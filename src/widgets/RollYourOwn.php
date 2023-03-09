@@ -4,6 +4,8 @@ namespace spicyweb\oddsandends\widgets;
 
 use Craft;
 use craft\base\Widget;
+use craft\helpers\Html;
+use craft\web\twig\TemplateLoaderException;
 
 /**
  * Roll Your Own Widget
@@ -62,7 +64,23 @@ class RollYourOwn extends Widget
         $oldMode = Craft::$app->getView()->getTemplateMode();
         Craft::$app->getView()->setTemplateMode('site');
 
-        $output = Craft::$app->getView()->renderTemplate($this->template);
+        try {
+            $output = Craft::$app->getView()->renderTemplate($this->template);
+        } catch (TemplateLoaderException $e) {
+            // Borrowed from `\craft\fieldlayoutelements\Template::_error()`
+            // https://github.com/craftcms/cms/blob/4.4.0/src/fieldlayoutelements/Template.php#L107
+            $icon = Html::tag('span', '', [
+                'data' => [
+                    'icon' => 'alert',
+                ],
+            ]);
+            $content = Html::tag('p', $icon . ' ' . Html::encode($e->getMessage()), [
+                'class' => 'error',
+            ]);
+            $output = Html::tag('div', $content, [
+                'class' => 'pane',
+            ]);
+        }
 
         Craft::$app->getView()->setTemplateMode($oldMode);
 

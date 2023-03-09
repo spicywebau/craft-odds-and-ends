@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+
+### Fixed
+- Fixed an error that occurred if the Roll Your Own widget was set to use a nonexistent template
+
 ## 4.1.1 - 2022-11-30
 
 ### Fixed
