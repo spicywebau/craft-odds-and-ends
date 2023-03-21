@@ -64,36 +64,63 @@ class Tools extends Plugin
             Fields::className(),
             Fields::EVENT_REGISTER_FIELD_TYPES,
             function(RegisterComponentTypesEvent $event) {
-                $event->types[] = AuthorInstructionsField::class;
-                $event->types[] = DisabledLightswitchField::class;
-                $event->types[] = DisabledPlainTextField::class;
-                $event->types[] = DisabledNumberField::class;
-                $event->types[] = DisabledEntriesField::class;
-                $event->types[] = DisabledCategoriesField::class;
-                $event->types[] = DisabledDropdownField::class;
-                $event->types[] = EntriesSearchField::class;
-                $event->types[] = CategoriesSearchField::class;
-                $event->types[] = CategoriesMultipleGroupsField::class;
-                $event->types[] = WidthField::class;
-                $event->types[] = AncestorsField::class;
-                $event->types[] = GridField::class;
+                $enableNormalFields = [
+                    AuthorInstructionsField::class,
+                    DisabledLightswitchField::class,
+                    DisabledPlainTextField::class,
+                    DisabledNumberField::class,
+                    DisabledEntriesField::class,
+                    DisabledCategoriesField::class,
+                    DisabledDropdownField::class,
+                    EntriesSearchField::class,
+                    CategoriesSearchField::class,
+                    CategoriesMultipleGroupsField::class,
+                    WidthField::class,
+                    AncestorsField::class,
+                    GridField::class,
+                ];
+
+                $enableNormalFields = array_diff($enableNormalFields, $this->settings->disableNormalFields);
+                Craft::debug($this->name.' enable normal fields: ' . implode(', ', $enableNormalFields), __METHOD__);
+
+                foreach ($enableNormalFields as $field) {
+                    $event->types[] = $field;
+                }
 
                 $pluginsService = Craft::$app->getPlugins();
                 if ($pluginsService->isPluginInstalled('commerce') && $pluginsService->isPluginEnabled('commerce')) {
-                    $event->types[] = DisabledProductsField::class;
-                    $event->types[] = DisabledVariantsField::class;
-                    $event->types[] = ProductsSearchField::class;
-                    $event->types[] = VariantsSearchField::class;
+                    $enableCommerceFields = [
+                        DisabledProductsField::class,
+                        DisabledVariantsField::class,
+                        ProductsSearchField::class,
+                        VariantsSearchField::class,
+                    ];
+
+                    $enableCommerceFields = array_diff($enableCommerceFields, $this->settings->disableCommerceFields);
+                    Craft::debug($this->name.' enable commerce fields: ' . implode(', ', $enableCommerceFields), __METHOD__);
+
+                    foreach ($enableCommerceFields as $field) {
+                        $event->types[] = $field;
+                    }
                 }
             }
         );
 
-        // Register the Roll Your Own Widget
+        // Register widgets
         Event::on(
             Dashboard::className(),
             Dashboard::EVENT_REGISTER_WIDGET_TYPES,
             function(RegisterComponentTypesEvent $event) {
-                $event->types[] = RollYourOwnWidget::class;
+                $enableWidgets = [
+                    RollYourOwnWidget::class,
+                ];
+
+                $enableWidgets = array_diff($enableWidgets, $this->settings->disableWidgets);
+                Craft::debug($this->name.' enable widgets: ' . implode(', ', $enableWidgets), __METHOD__);
+
+                foreach ($enableWidgets as $widget) {
+                    $event->types[] = $widget;
+                }
             }
         );
 

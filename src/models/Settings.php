@@ -14,6 +14,10 @@ use craft\base\Model;
  */
 class Settings extends Model
 {
+    public array $disableNormalFields = [];
+    public array $disableCommerceFields = [];
+    public array $disableWidgets = [];
+
     /**
      * @var int
      */
