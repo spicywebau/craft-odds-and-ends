@@ -84,7 +84,7 @@ return [
 ```
 
 Multi environment config is supported. See [Craft's docs](https://craftcms.com/docs/4.x/config/#multi-environment-configs) for more info.
-See `config/tools.php` in this repo for an example that disables all fields and widgets.
+See `config/tools.php` in this repo for an example on how to disable any field and widget.
 
 ---
 
