@@ -20,29 +20,29 @@
 // use spicyweb\oddsandends\widgets\RollYourOwn;
 
 /*
- * This is an example of project specific configuration for Odds and Ends.
- * You can disable any of the Odds and Ends fields and widgets by adding them below.
+ * This is an example of project specific configuration for Odds & Ends.
+ * You can disable any of the Odds & Ends fields and widgets by adding them below if you don't use them.
  * Copy this file to your project's config directory and uncomment the fields and widgets you want to disable.
- * Remember to also uncomment the use statements above.
+ * Remember to also uncomment the corresponding use statements above.
  *
  * Multi environment config is possible, see:
  * https://craftcms.com/docs/4.x/extend/plugin-settings.html#overriding-setting-values
  * */
 return [
     'disableNormalFields' => [
+        // Ancestors::class,
         // AuthorInstructions::class,
-        // DisabledLightswitch::class,
-        // DisabledPlainText::class,
-        // DisabledNumber::class,
-        // DisabledEntries::class,
+        // CategoriesMultipleGroups::class,
+        // CategoriesSearch::class,
         // DisabledCategories::class,
         // DisabledDropdown::class,
+        // DisabledEntries::class,
+        // DisabledLightswitch::class,
+        // DisabledNumber::class,
+        // DisabledPlainText::class,
         // EntriesSearch::class,
-        // CategoriesSearch::class,
-        // CategoriesMultipleGroups::class,
-        // Width::class,
-        // Ancestors::class,
         // Grid::class,
+        // Width::class,
     ],
     'disableCommerceFields' => [
         // DisabledProducts::class,
