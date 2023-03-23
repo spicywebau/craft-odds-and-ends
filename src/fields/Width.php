@@ -203,7 +203,7 @@ class Width extends Dropdown
     /**
      * @inheritdoc
      */
-    protected function translatedOptions(bool $encode = false): array
+    protected function translatedOptions(bool $encode = false, mixed $value = null, ?ElementInterface $element = null): array
     {
         $translatedOptions = [];
 
