@@ -58,6 +58,34 @@ Usage:
 <a href="{{ actionUrl('tools/tools/download-file', { id: entry.assetField.one().id }) }}">Download</a>
 ```
 
+
+## Configuration
+
+By default, all normal field types and widgets are enabled. 
+The commerce field types are only enabled if Craft Commerce is installed and enabled.
+You can disable each field type and widget by adding the following to your project's `config/tools.php` file:
+
+```php
+use spicyweb\oddsandends\fields\AuthorInstructions;
+use spicyweb\oddsandends\fields\DisabledProducts;
+use spicyweb\oddsandends\widgets\RollYourOwn;
+
+return [
+    'disableNormalFields' => [
+        AuthorInstructions::class,
+    ],
+    'disableCommerceFields' => [
+        DisabledProducts::class,
+    ],
+    'disableWidgets' => [
+        RollYourOwn::class,
+    ],
+];
+```
+
+Multi environment config is supported. See [Craft's docs](https://craftcms.com/docs/4.x/config/#multi-environment-configs) for more info.
+See `config/tools.php` in this repo for an example on how to disable any field and widget.
+
 ---
 
 *Created by [Supercool](https://supercooldesign.co.uk)*
