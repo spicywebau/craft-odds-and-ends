@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## 4.2.0 - 2023-03-27
 
 ### Added
 - Added the ability to disable plugin components via the new `disableNormalFields`, `disableCommerceFields`, and `disableWidgets` plugin settings (thanks @kbergha)
