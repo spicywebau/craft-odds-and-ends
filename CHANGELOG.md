@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## Unreleased
 
+### Added
+- Added the ability to disable plugin components via the new `disableNormalFields`, `disableCommerceFields`, and `disableWidgets` plugin settings (thanks @kbergha)
+
 ### Changed
 - Odds & Ends now requires Craft 4.4.0 or later
 
