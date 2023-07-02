@@ -21,6 +21,7 @@ use spicyweb\oddsandends\fields\DisabledLightswitch as DisabledLightswitchField;
 use spicyweb\oddsandends\fields\DisabledNumber as DisabledNumberField;
 use spicyweb\oddsandends\fields\DisabledPlainText as DisabledPlainTextField;
 use spicyweb\oddsandends\fields\DisabledProducts as DisabledProductsField;
+use spicyweb\oddsandends\fields\DisabledUsers as DisabledUsersField;
 use spicyweb\oddsandends\fields\DisabledVariants as DisabledVariantsField;
 use spicyweb\oddsandends\fields\EntriesSearch as EntriesSearchField;
 use spicyweb\oddsandends\fields\Grid as GridField;
@@ -72,6 +73,7 @@ class Tools extends Plugin
                     DisabledEntriesField::class,
                     DisabledCategoriesField::class,
                     DisabledDropdownField::class,
+                    DisabledUsersField::class,
                     EntriesSearchField::class,
                     CategoriesSearchField::class,
                     CategoriesMultipleGroupsField::class,

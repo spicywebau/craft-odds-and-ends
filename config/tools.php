@@ -11,6 +11,7 @@
 // use spicyweb\oddsandends\fields\DisabledNumber;
 // use spicyweb\oddsandends\fields\DisabledPlainText;
 // use spicyweb\oddsandends\fields\DisabledProducts;
+// use spicyweb\oddsandends\fields\DisabledUsers;
 // use spicyweb\oddsandends\fields\DisabledVariants;
 // use spicyweb\oddsandends\fields\EntriesSearch;
 // use spicyweb\oddsandends\fields\Grid;
@@ -40,6 +41,7 @@ return [
         // DisabledLightswitch::class,
         // DisabledNumber::class,
         // DisabledPlainText::class,
+        // DisabledUsers::class,
         // EntriesSearch::class,
         // Grid::class,
         // Width::class,
