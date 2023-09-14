@@ -32,7 +32,7 @@
     "extra": {
         "name": "Odds & Ends",
         "handle": "tools",
-        "schemaVersion": "3.0.0",
+        "schemaVersion": "3.0.3",
         "hasCpSettings": false,
         "hasCpSection": false,
         "changelogUrl": "https://raw.githubusercontent.com/spicywebau/craft-odds-and-ends/master/CHANGELOG.md",

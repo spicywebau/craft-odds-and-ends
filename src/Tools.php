@@ -55,6 +55,11 @@ class Tools extends Plugin
     /**
      * @inheritdoc
      */
+    public string $schemaVersion = '3.0.3';
+
+    /**
+     * @inheritdoc
+     */
     public function init(): void
     {
         parent::init();
