@@ -55,7 +55,7 @@ class Tools extends Plugin
     /**
      * @inheritdoc
      */
-    public string $schemaVersion = '3.0.3';
+    public string $schemaVersion = '4.3.1';
 
     /**
      * @inheritdoc
