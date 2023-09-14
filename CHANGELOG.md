@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.0.3 - 2023-09-14
+
+### Fixed
+- Fixed a bug where fields from version 2.x wouldn't be migrated on projects that aren't using the project config (thanks @jamie-s-white)
+
 ## 3.0.2 - 2022-10-20
 
 ### Fixed
