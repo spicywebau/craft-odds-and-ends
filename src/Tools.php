@@ -50,7 +50,7 @@ class Tools extends Plugin
     /**
      * @inheritdoc
      */
-    public string $minVersionRequired = '2.2.0';
+    public string $minVersionRequired = '4.3.1';
 
     /**
      * @inheritdoc
