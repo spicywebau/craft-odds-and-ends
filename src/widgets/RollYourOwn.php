@@ -38,6 +38,14 @@ class RollYourOwn extends Widget
     /**
      * @inheritdoc
      */
+    public static function icon(): ?string
+    {
+        return '@spicyweb/oddsandends/icon.svg';
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function getSettingsHtml(): ?string
     {
         return Craft::$app->getView()->renderTemplate(

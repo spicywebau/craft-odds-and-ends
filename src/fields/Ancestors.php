@@ -26,17 +26,12 @@ class Ancestors extends Entries
     /**
      * @inheritdoc
      */
-    protected string $inputTemplate = 'tools/_components/fields/ancestors/input';
-
-    /**
-     * @inheritdoc
-     */
     protected string $settingsTemplate = 'tools/_components/fields/ancestors/settings';
 
     /**
-     * @var ElementInterface|null
+     * @var int[]
      */
-    private $ourElement;
+    private array $_ancestorIds;
 
     /**
      * @inheritdoc
@@ -68,12 +63,12 @@ class Ancestors extends Entries
     /**
     * @inheritdoc
     */
-    protected function inputHtml(mixed $value, ?ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element = null, bool $inline): string
     {
-        $this->ourElement = $element;
-        $variables = $this->inputTemplateVariables($value, $element);
-
-        return Craft::$app->getView()->renderTemplate($this->inputTemplate, $variables);
+        $this->_ancestorIds = $element->getAncestors()->ids();
+        return !empty($this->_ancestorIds)
+            ? parent::inputHtml($value, $element, $inline)
+            : '<span class="error">' . Craft::t('tools', 'No ancestors exist yet.') . '</span>';
     }
 
     /**
@@ -92,11 +87,9 @@ class Ancestors extends Entries
     public function getInputSelectionCriteria(): array
     {
         // Return the current element's ancestors, if there are any
-        $ids = $this->ourElement->getAncestors()->ids();
-
-        if (count($ids)) {
+        if (!empty($this->_ancestorIds)) {
             return [
-                'id' => $ids,
+                'id' => $this->_ancestorIds,
             ];
         }
 

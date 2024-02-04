@@ -56,7 +56,7 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
 
     init: function(settings)
     {
-        this.base($.extend({}, settings));
+        this._ignoreErrorIfAddElementBtn(() => this.base($.extend({}, settings)));
 
         this.$addElementContainer = this.$container.children('.add');
         this.$addElementInput = this.$addElementContainer.children('.text');
@@ -303,7 +303,7 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
 
                     this.$elementsContainer.replaceWith($newElementsContainer);
                     this.$elementsContainer = $newElementsContainer;
-                    this.resetElements();
+                    this._ignoreErrorIfAddElementBtn(() => this.resetElements());
 
                     var $element = this.getElementById(elementId);
                     var margin = -($element.outerWidth()+10);
@@ -329,7 +329,7 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
             this.settings.elementType == 'craft\\commerce\\elements\\Product' ||
             this.settings.elementType == 'craft\\commerce\\elements\\Variant'
         ) {
-            this.removeElements($element);
+            this._ignoreErrorIfAddElementBtn(() => this.removeElements($element));
             this.animateElementAway($element, function() {
                 $element.remove();
             });
@@ -340,7 +340,7 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
             var $allCategories = $element.add($element.parent().siblings('ul').find('.element'));
 
             // Remove our record of them all at once
-            this.removeElements($allCategories);
+            this._ignoreErrorIfAddElementBtn(() => this.removeElements($allCategories));
 
             // Animate them away one at a time
             for (var i = 0; i < $allCategories.length; i++)
@@ -395,8 +395,19 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
         {
             setTimeout(func, 100 * i);
         }
-    }
+    },
 
+    _ignoreErrorIfAddElementBtn: function(fn)
+    {
+        try {
+            fn();
+        } catch (err) {
+            if (err.message !== 'this.$addElementBtn is undefined') {
+                throw err;
+            }
+            // Else, we don't care because element search fields don't have add element buttons
+        }
+    },
 });
 
 })(jQuery);

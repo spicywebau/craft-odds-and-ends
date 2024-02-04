@@ -48,14 +48,6 @@ class AuthorInstructions extends Field
     /**
      * @inheritdoc
      */
-    public function getContentColumnType(): string
-    {
-        return Schema::TYPE_TEXT;
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function getSettingsHtml(): ?string
     {
         return Craft::$app->getView()->renderTemplate(
@@ -69,7 +61,7 @@ class AuthorInstructions extends Field
     /**
      * @inheritdoc
      */
-    protected function inputHtml(mixed $value, ?ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element = null, bool $inline = false): string
     {
         $name = $this->handle;
         Craft::$app->getView()->registerAssetBundle(ToolsAsset::class);

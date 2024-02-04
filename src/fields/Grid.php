@@ -120,7 +120,7 @@ class Grid extends Field implements PreviewableFieldInterface
     /**
      * @inheritdoc
      */
-    protected function inputHtml(mixed $value, ?ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element = null, bool $inline = false): string
     {
         // Come up with an ID value for 'foo'
         $id = Craft::$app->getView()->formatInputId($this->handle);
@@ -184,14 +184,6 @@ class Grid extends Field implements PreviewableFieldInterface
     {
         $value = Json::encode($value);
         return $value;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getContentColumnType(): string
-    {
-        return Schema::TYPE_TEXT;
     }
 
     /**

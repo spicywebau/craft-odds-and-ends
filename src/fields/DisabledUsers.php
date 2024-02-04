@@ -3,8 +3,8 @@
 namespace spicyweb\oddsandends\fields;
 
 use Craft;
+use craft\base\ElementInterface;
 use craft\fields\Users;
-use craft\helpers\Template;
 
 /**
  * Disabled Users Field
@@ -18,13 +18,16 @@ class DisabledUsers extends Users
     /**
      * @inheritdoc
      */
-    protected string $inputTemplate = 'tools/_components/fields/elements/element-select';
+    public static function displayName(): string
+    {
+        return Craft::t('tools', 'Users (Disabled)');
+    }
 
     /**
      * @inheritdoc
      */
-    public static function displayName(): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element, bool $inline): string
     {
-        return Craft::t('tools', 'Users (Disabled)');
+        return $this->getStaticHtml($value, $element);
     }
 }

@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+
+### Added
+- Added Craft 5 compatibility
+
+### Removed
+- Removed Craft 4 compatibility
+
 ## 4.3.1 - 2023-09-14
 
 ### Fixed

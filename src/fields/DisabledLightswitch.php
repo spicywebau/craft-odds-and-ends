@@ -28,14 +28,6 @@ class DisabledLightswitch extends Lightswitch
     /**
      * @inheritdoc
      */
-    public function getContentColumnType(): string
-    {
-        return Schema::TYPE_BOOLEAN;
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function normalizeValue(mixed $value, ?ElementInterface $element = null): mixed
     {
         // If this is a new entry, look for a default option
@@ -49,7 +41,7 @@ class DisabledLightswitch extends Lightswitch
     /**
      * @inheritdoc
      */
-    protected function inputHtml(mixed $value, ?ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element = null, bool $inline = false): string
     {
         // If this is a new entry, look for a default option
         if ($this->isFresh($element)) {

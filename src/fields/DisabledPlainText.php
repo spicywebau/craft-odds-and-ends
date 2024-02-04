@@ -46,14 +46,6 @@ class DisabledPlainText extends PlainText
     /**
      * @inheritdoc
      */
-    public function getContentColumnType(): string
-    {
-        return Schema::TYPE_TEXT;
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function getSettingsHtml(): ?string
     {
         return Craft::$app->getView()->renderTemplate('tools/_components/fields/disabledplaintext/settings',
@@ -65,7 +57,7 @@ class DisabledPlainText extends PlainText
     /**
      * @inheritdoc
      */
-    protected function inputHtml(mixed $value, ?ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element = null, bool $inline = false): string
     {
         return Craft::$app->getView()->renderTemplate('_includes/forms/text',
             [

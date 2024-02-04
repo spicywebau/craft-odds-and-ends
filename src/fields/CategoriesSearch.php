@@ -21,6 +21,11 @@ class CategoriesSearch extends Categories
     /**
      * @inheritdoc
      */
+    protected string $inputTemplate = 'tools/_components/fields/categoriessearch/input';
+
+    /**
+     * @inheritdoc
+     */
     public static function displayName(): string
     {
         return Craft::t('tools', 'Categories (Search)');
@@ -29,18 +34,9 @@ class CategoriesSearch extends Categories
     /**
      * @inheritdoc
      */
-    public function init(): void
-    {
-        parent::init();
-        $this->inputTemplate = 'tools/_components/fields/categoriessearch/input';
-    }
-
-    /**
-     * @inheritdoc
-     */
-    protected function inputHtml(mixed $value, ?ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element = null, bool $inline = false): string
     {
         Craft::$app->getView()->registerAssetBundle(ToolsAsset::class);
-        return parent::inputHtml($value, $element);
+        return parent::inputHtml($value, $element, $inline);
     }
 }

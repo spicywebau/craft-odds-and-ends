@@ -37,8 +37,8 @@ class CategoriesMultipleGroups extends Categories
     /**
     * @inheritdoc
     */
-    protected function inputHtml(mixed $value, ?ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element = null, bool $inline = false): string
     {
-        return BaseRelationField::inputHtml($value, $element);
+        return BaseRelationField::inputHtml($value, $element, $inline);
     }
 }

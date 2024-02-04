@@ -59,6 +59,7 @@ class ToolsController extends Controller
         $this->requireAcceptsJson();
 
         $request = Craft::$app->getRequest();
+        $entriesService = Craft::$app->getEntries();
 
         $search = $request->getRequiredBodyParam('search');
         $excludeIds = $request->getRequiredBodyParam('excludeIds', []);
@@ -76,13 +77,13 @@ class ToolsController extends Controller
                     switch ($source) {
                         case 'singles':
                         {
-                            $sections = array_merge($sections, Craft::$app->getSections()->getSectionsByType(Section::TYPE_SINGLE));
+                            $sections = array_merge($sections, $entriesService->getSectionsByType(Section::TYPE_SINGLE));
                             break;
                         }
                         default:
                         {
                             if (preg_match('/^section:(.+)$/', $source, $matches)) {
-                                $section = Craft::$app->getSections()->getSectionByUid($matches[1]);
+                                $section = $entriesService->getSectionByUid($matches[1]);
 
                                 if ($section) {
                                     $sections = array_merge($sections, [$section]);
@@ -92,7 +93,7 @@ class ToolsController extends Controller
                     }
                 }
             } elseif ($sources === '*') {
-                $sections = Craft::$app->getSections()->getAllSections();
+                $sections = $entriesService->getAllSections();
             }
 
             $criteria = Entry::find();

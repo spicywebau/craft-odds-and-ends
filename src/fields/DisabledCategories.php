@@ -3,6 +3,7 @@
 namespace spicyweb\oddsandends\fields;
 
 use Craft;
+use craft\base\ElementInterface;
 use craft\fields\Categories;
 
 /**
@@ -26,9 +27,8 @@ class DisabledCategories extends Categories
     /**
      * @inheritdoc
      */
-    public function init(): void
+    protected function inputHtml(mixed $value, ?ElementInterface $element, bool $inline): string
     {
-        parent::init();
-        $this->inputTemplate = 'tools/_components/fields/disabledcategories/input';
+        return $this->getStaticHtml($value, $element);
     }
 }

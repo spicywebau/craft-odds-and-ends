@@ -40,7 +40,7 @@ class DisabledDropdown extends Dropdown
     /**
      * @inheritdoc
      */
-    public function getInputHtml(mixed $value, ?ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element = null, bool $inline = false): string
     {
         $options = $this->translatedOptions();
 
@@ -56,6 +56,7 @@ class DisabledDropdown extends Dropdown
                 'options' => $options,
                 'disabled' => true,
                 'class' => 'disabled',
-            ]);
+            ]
+        );
     }
 }

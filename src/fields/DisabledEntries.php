@@ -3,8 +3,8 @@
 namespace spicyweb\oddsandends\fields;
 
 use Craft;
+use craft\base\ElementInterface;
 use craft\fields\Entries;
-use craft\helpers\Template;
 
 /**
  * Disabled Entries Field
@@ -19,13 +19,16 @@ class DisabledEntries extends Entries
     /**
      * @inheritdoc
      */
-    protected string $inputTemplate = 'tools/_components/fields/elements/element-select';
+    public static function displayName(): string
+    {
+        return Craft::t('tools', 'Entries (Disabled)');
+    }
 
     /**
      * @inheritdoc
      */
-    public static function displayName(): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element, bool $inline): string
     {
-        return Craft::t('tools', 'Entries (Disabled)');
+        return $this->getStaticHtml($value, $element);
     }
 }

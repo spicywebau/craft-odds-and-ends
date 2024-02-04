@@ -80,7 +80,7 @@ class Width extends Dropdown
     /**
      * @inheritdoc
      */
-    protected function inputHtml(mixed $value, ?ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element = null, bool $inline = false): string
     {
         if ($value == null) {
             $options = $this->translatedOptions();
@@ -124,14 +124,6 @@ class Width extends Dropdown
     {
         $value = Json::encode($value);
         return $value;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getContentColumnType(): string
-    {
-        return Schema::TYPE_TEXT;
     }
 
     /**
@@ -181,6 +173,18 @@ class Width extends Dropdown
 
         if ($hasDuplicateRightValues) {
             $this->addError('options', Craft::t('app', 'All right values must be unique.'));
+        }
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getStatus(ElementInterface $element): ?array
+    {
+        try {
+            return parent::getStatus($element);
+        } catch (\Throwable $e) {
+            return null;
         }
     }
 

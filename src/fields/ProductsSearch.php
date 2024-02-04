@@ -34,9 +34,9 @@ class ProductsSearch extends Products
     /**
      * @inheritdoc
      */
-    protected function inputHtml(mixed $value, ?ElementInterface $element = null): string
+    protected function inputHtml(mixed $value, ?ElementInterface $element = null, bool $inline = false): string
     {
         Craft::$app->getView()->registerAssetBundle(ToolsAsset::class);
-        return parent::inputHtml($value, $element);
+        return parent::inputHtml($value, $element, $inline);
     }
 }
