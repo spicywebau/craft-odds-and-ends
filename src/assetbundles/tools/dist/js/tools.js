@@ -402,7 +402,7 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
         try {
             fn();
         } catch (err) {
-            if (err.message !== 'this.$addElementBtn is undefined') {
+            if (!err.message.includes('this.$addElementBtn is undefined')) {
                 throw err;
             }
             // Else, we don't care because element search fields don't have add element buttons
