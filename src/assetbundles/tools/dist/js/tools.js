@@ -56,7 +56,7 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
 
     init: function(settings)
     {
-        this._ignoreErrorIfAddElementBtn(() => this.base($.extend({}, settings)));
+        this.base($.extend({}, settings));
 
         this.$addElementContainer = this.$container.children('.add');
         this.$addElementInput = this.$addElementContainer.children('.text');
@@ -122,9 +122,6 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
 
         this._initialized = true;
     },
-
-    // No "add" button
-    getAddElementsBtn: $.noop,
 
     getElements: function()
     {
@@ -211,7 +208,11 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
                             for (var n = 0; n < response.elements[sourceKey].length; n++)
                             {
                                 var $li = $('<li/>').appendTo($ul),
-                                        $a = $('<a />').appendTo($li).text(response.elements[sourceKey][n].title).data('id', response.elements[sourceKey][n].id).data('status', response.elements[sourceKey][n].status);
+                                    $a = $('<a />').appendTo($li)
+                                        .text(response.elements[sourceKey][n].title)
+                                        .data('id', response.elements[sourceKey][n].id)
+                                        .data('site-id', response.elements[sourceKey][n].siteId)
+                                        .data('status', response.elements[sourceKey][n].status);
                                 $('<span class="status '+response.elements[sourceKey][n].status+'"/>').prependTo($a);
                             }
                         }
@@ -248,73 +249,61 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
         }
     },
 
-    selectElement: function(option)
+    selectElement: async function(option)
     {
-        var $option = $(option),
-            elementId = $option.data('id'),
-            status = $option.data('status'),
-            title = $option.text();
+        const $option = $(option);
+        const elementId = $option.data('id');
+        const siteId = $option.data('site-id');
 
-        if (
-            this.settings.elementType == 'craft\\elements\\Entry' ||
-            this.settings.elementType == 'craft\\commerce\\elements\\Product' ||
-            this.settings.elementType == 'craft\\commerce\\elements\\Variant'
-        ) {
-            var $element = $('<div class="element small removable hasstatus" data-id="'+elementId+'" data-editable/>').appendTo(this.$elementsContainer),
-                $input = $('<input type="hidden" name="'+this.settings.name+'[]" value="'+elementId+'"/>').appendTo($element)
-
-            $('<a class="delete icon" title="'+Craft.t('tools', 'Remove')+'"></a>').appendTo($element);
-            $('<span class="status '+status+'"></span>').appendTo($element);
-            $('<div class="label"><span class="title">'+title+'</span></div>').appendTo($element);
-
-            var margin = -($element.outerWidth()+10);
-            this.$addElementInput.css('margin-'+Craft.left, margin+'px');
-
-            var animateCss = {};
-            animateCss['margin-'+Craft.left] = 0;
-            this.$addElementInput.velocity(animateCss, 'fast');
-
-            this.$elements = this.$elements.add($element);
-
-            this.addElements($element);
-        }
-        else if (this.settings.elementType == 'craft\\elements\\Category')
-        {
-            var selectedCategoryIds = this.getSelectedElementIds();
-
-            selectedCategoryIds.push(elementId);
-
-            var data = {
-                categoryIds:    selectedCategoryIds,
-                locale:         this.settings.locale,
-                id:             this.settings.id,
-                name:           this.settings.name,
-                limit:          this.settings.limit,
-                selectionLabel: this.settings.selectionLabel
-            };
-
-            Craft.postActionRequest('categories/input-html', data, $.proxy(function(response, textStatus)
+        // re-render the elements even if the view modes match, to be sure we have all the correct settings
+        const [inputUiType, inputUiSize] = (() => {
+            switch (this.settings.viewMode) {
+                case 'large':
+                    return ['chip', 'large'];
+                case 'cards':
+                    return ['card', null];
+                default:
+                    return ['chip', 'small'];
+            }
+        })();
+        const {data} = await Craft.sendActionRequest(
+            'POST',
+            'app/render-elements',
             {
+                data: {
+                    elements: [
+                        {
+                            type: this.settings.elementType,
+                            id: [elementId],
+                            siteId: siteId,
+                            instances: [
+                                {
+                                    context: 'field',
+                                    ui: inputUiType,
+                                    size: inputUiSize,
+                                    showActionMenu: this.settings.showActionMenu,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            }
+        );
 
-                if (textStatus == 'success')
-                {
-                    var $newInput = $(response.html),
-                            $newElementsContainer = $newInput.children('.elements');
+        const element = Craft.getElementInfo(data.elements[elementId][0]);
 
-                    this.$elementsContainer.replaceWith($newElementsContainer);
-                    this.$elementsContainer = $newElementsContainer;
-                    this._ignoreErrorIfAddElementBtn(() => this.resetElements());
+        if (this.settings.maintainHierarchy) {
+            await this.selectStructuredElements([element]);
+        } else {
+            const slotsLeft = !this.settings.limit || !!(this.settings.limit - this.$elements.length)
 
-                    var $element = this.getElementById(elementId);
-                    var margin = -($element.outerWidth()+10);
-                    this.$addElementInput.css('margin-'+Craft.left, margin+'px');
-
-                    var animateCss = {};
-                    animateCss['margin-'+Craft.left] = 0;
-                    this.$addElementInput.velocity(animateCss, 'fast');
-                }
-            }, this));
+            if (slotsLeft) {
+                await this.selectElements([element]);
+            }
         }
+
+        await Craft.appendHeadHtml(data.headHtml);
+        await Craft.appendBodyHtml(data.bodyHtml);
 
         this.killSearchMenu();
         this.$addElementInput.val('');
@@ -329,7 +318,7 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
             this.settings.elementType == 'craft\\commerce\\elements\\Product' ||
             this.settings.elementType == 'craft\\commerce\\elements\\Variant'
         ) {
-            this._ignoreErrorIfAddElementBtn(() => this.removeElements($element));
+            this.removeElements($element);
             this.animateElementAway($element, function() {
                 $element.remove();
             });
@@ -340,7 +329,7 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
             var $allCategories = $element.add($element.parent().siblings('ul').find('.element'));
 
             // Remove our record of them all at once
-            this._ignoreErrorIfAddElementBtn(() => this.removeElements($allCategories));
+            this.removeElements($allCategories);
 
             // Animate them away one at a time
             for (var i = 0; i < $allCategories.length; i++)
@@ -394,18 +383,6 @@ OddsAndEnds.ElementSearchInput = Craft.BaseElementSelectInput.extend(
         else
         {
             setTimeout(func, 100 * i);
-        }
-    },
-
-    _ignoreErrorIfAddElementBtn: function(fn)
-    {
-        try {
-            fn();
-        } catch (err) {
-            if (!err.message.includes('this.$addElementBtn is undefined')) {
-                throw err;
-            }
-            // Else, we don't care because element search fields don't have add element buttons
         }
     },
 });

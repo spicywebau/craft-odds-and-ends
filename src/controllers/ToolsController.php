@@ -168,6 +168,7 @@ class ToolsController extends Controller
                     'title' => $element->title,
                     'status' => $element->status,
                     'sourceName' => $element->section->name,
+                    'siteId' => $element->siteId,
                 ];
             } elseif ($elementType === Category::class) {
                 $sourceKey = "group:" . $element->group->uid;
@@ -176,6 +177,7 @@ class ToolsController extends Controller
                     'title' => $element->title,
                     'status' => $element->status,
                     'sourceName' => $element->group->name,
+                    'siteId' => $element->siteId,
                 ];
             } elseif ($elementType === Product::class) {
                 $sourceKey = is_array($sources) ? "productType:{$element->type->uid}" : "*";
@@ -184,6 +186,7 @@ class ToolsController extends Controller
                     'title' => $element->title,
                     'status' => $element->status,
                     'sourceName' => $element->type->name,
+                    'siteId' => $element->siteId,
                 ];
             } elseif ($elementType === Variant::class) {
                 $sourceKey = is_array($sources) ? "productType:{$element->product->type->uid}" : "*";
@@ -192,6 +195,7 @@ class ToolsController extends Controller
                     'title' => "{$element->product->title}: $element->title",
                     'status' => $element->status,
                     'sourceName' => $element->product->type->name,
+                    'siteId' => $element->siteId,
                 ];
             }
 
