@@ -4,12 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## 5.0.0-beta.1 - 2024-03-30
-
-### Fixed
-- Fixed a JavaScript error that could occur on element editor pages
-
-## 5.0.0-alpha.1 - 2024-02-04
+## 5.0.0 - 2024-05-01
 
 ### Added
 - Added Craft 5 compatibility

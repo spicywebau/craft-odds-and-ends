@@ -2,7 +2,7 @@
     "name": "spicyweb/craft-odds-and-ends",
     "description": "A collection of useful tools for Craft CMS websites",
     "type": "craft-plugin",
-    "version": "5.0.0-beta.1",
+    "version": "5.0.0",
     "keywords": [
         "craft",
         "cms",
@@ -10,7 +10,7 @@
         "craft-plugin"
     ],
     "support": {
-        "docs": "https://github.com/spicywebau/craft-odds-and-ends/blob/5.0.0-beta.1/README.md",
+        "docs": "https://github.com/spicywebau/craft-odds-and-ends/blob/5.0.0/README.md",
         "issues": "https://github.com/spicywebau/craft-odds-and-ends/issues"
     },
     "license": "MIT",
