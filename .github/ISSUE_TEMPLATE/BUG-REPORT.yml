@@ -1,0 +1,43 @@
+name: Bug Report
+description: Let us know about a problem with Odds & Ends
+labels:
+  - "bug report"
+  - "bug report status: new"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report! Please check to make sure your bug hasn't already been reported before proceeding. Please also make sure you correctly follow all instructions when filling out this form. Failure to do so may result in your bug report being closed as invalid.
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Bug Description
+      description: Details of the bug you've encountered.
+    validations:
+      required: true
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Instructions that can be followed to reliably reproduce the bug.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behaviour
+    attributes:
+      label: Expected behaviour
+      description: What should be expected to happen instead of the buggy behaviour.
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Odds & Ends version
+      description: Enter the exact Odds & Ends version number you are using.
+    validations:
+      required: true
+  - type: input
+    id: craft-cms-version
+    attributes:
+      label: Craft CMS version
+      description: Enter the exact Craft CMS version number you are using.
+    validations:
+      required: true
