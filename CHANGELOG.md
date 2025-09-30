@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## Unreleased
 
+### Changed
+- Odds & Ends now requires Craft CMS 5.8.0 or later
+
 ### Fixed
 - Fixed a bug where search fields weren't working on Craft 5.8
 
