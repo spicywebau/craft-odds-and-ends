@@ -11,7 +11,7 @@
 {% endset %}
 
 {# Hacky stuff to replace the add element button with a search input #}
-{% set splitOnAddBtn = elementSelect|split('<div class="flex flex-nowrap">') %}
+{% set splitOnAddBtn = elementSelect|split('<div class="flex">') %}
 {{ splitOnAddBtn[0]|raw }}
 {% if splitOnAddBtn|length > 1 %}
     {% set splitAfterAddBtn = splitOnAddBtn[1]|split('<div class="spinner hidden"></div>', 2) %}
