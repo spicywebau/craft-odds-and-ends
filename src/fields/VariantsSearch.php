@@ -15,6 +15,7 @@ use spicyweb\oddsandends\assetbundles\tools\ToolsAsset;
  * @package spicyweb\oddsandends\fields
  * @author Spicy Web <plugins@spicyweb.com.au>
  * @since 4.1.0
+ * @deprecated in 5.1.0; use \craft\commerce\fields\Variants with showSearchInput = true instead
  */
 class VariantsSearch extends Variants
 {

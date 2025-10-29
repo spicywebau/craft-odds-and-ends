@@ -6,8 +6,21 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## Unreleased
 
+### Added
+- Added `spicyweb\oddsandends\console\controllers\ConvertController`
+- Added the `tools/convert/categories-search` command
+- Added the `tools/convert/entries-search` command
+- Added the `tools/convert/products-search` command
+- Added the `tools/convert/variants-search` command
+
 ### Changed
 - Odds & Ends now requires Craft CMS 5.8.0 or later
+
+### Deprecated
+- Deprecated `spicyweb\oddsandends\fields\CategoriesSearch`
+- Deprecated `spicyweb\oddsandends\fields\EntriesSearch`
+- Deprecated `spicyweb\oddsandends\fields\ProductsSearch`
+- Deprecated `spicyweb\oddsandends\fields\VariantsSearch`
 
 ### Fixed
 - Fixed a bug where search fields weren't working on Craft 5.8

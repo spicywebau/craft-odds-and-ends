@@ -16,6 +16,7 @@ use spicyweb\oddsandends\assetbundles\tools\ToolsAsset;
  * @author Spicy Web <plugins@spicyweb.com.au>
  * @author Supercool
  * @since 2.0.0
+ * @deprecated in 5.1.0; use \craft\fields\Entries with showSearchInput = true instead
  */
 class EntriesSearch extends Entries
 {
