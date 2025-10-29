@@ -1,14 +1,13 @@
 {% from "_includes/forms" import text %}
 
-{% set elementSelect %}
-    {% include '_includes/forms/elementSelect' with {
-        class: [
-            'clearafter',
-            'oddsandends-elementsearch',
-        ],
-        jsClass: 'OddsAndEnds.ElementSearchInput',
-    } %}
-{% endset %}
+{% set elementSelect = include('_includes/forms/elementSelect', {
+    class: [
+        'clearafter',
+        'oddsandends-elementsearch',
+    ],
+    jsClass: 'OddsAndEnds.ElementSearchInput',
+    searchCriteria: null,
+}) %}
 
 {# Hacky stuff to replace the add element button with a search input #}
 {% set splitOnAddBtn = elementSelect|split('<div class="flex">') %}
