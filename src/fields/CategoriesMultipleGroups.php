@@ -28,6 +28,15 @@ class CategoriesMultipleGroups extends Categories
     /**
      * @inheritdoc
      */
+    public function __construct(array $config = [])
+    {
+        $this->allowMultipleSources = true;
+        parent::__construct($config);
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function init(): void
     {
         parent::init();

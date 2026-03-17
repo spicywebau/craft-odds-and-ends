@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+
+### Fixed
+- Fixed a bug where Categories (Multiple Groups) fields weren't having their sources setting saved
+
 ## 5.1.0 - 2025-10-30
 
 ### Added
