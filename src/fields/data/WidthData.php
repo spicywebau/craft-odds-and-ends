@@ -28,17 +28,29 @@ class WidthData extends SingleOptionFieldData
     public $leftOptions;
     public $rightOptions;
 
-    public function __construct($widthOptions = null,
-                                $leftOptions = null,
-                                $rightOptions = null,
-                                $width = null,
-                                $left = null,
-                                $right = null,
-                                $firstPointer = null,
-                                $secondPointer = null,
-                                $thirdPointer = null,
-                                $fourthPointer = null)
-    {
+    public function __construct(
+        $widthOptions = null,
+        $leftOptions = null,
+        $rightOptions = null,
+        $width = null,
+        $left = null,
+        $right = null,
+        $firstPointer = null,
+        $secondPointer = null,
+        $thirdPointer = null,
+        $fourthPointer = null
+    ) {
+        // Initialise the inherited OptionData properties (label/value/selected/valid).
+        // Without this, Craft >=4.6's Dropdown::getStaticHtml() throws
+        // "Typed property OptionData::$valid must not be accessed before
+        // initialization" when rendering this field read-only (e.g. entry revisions).
+        parent::__construct(
+            $width !== null ? (string) $width : null,
+            $width,
+            true,
+            true,
+        );
+
         $this->widthOptions = $widthOptions;
         $this->leftOptions = $leftOptions;
         $this->rightOptions = $rightOptions;
@@ -134,8 +146,18 @@ class WidthData extends SingleOptionFieldData
             $fourthPointer = $value['fourthPointer'] ?? 0;
         }
 
-        return new self($widthOptions, $leftOptions, $rightOptions, $width, $left, $right,
-            $firstPointer, $secondPointer, $thirdPointer, $fourthPointer);
+        return new self(
+            $widthOptions,
+            $leftOptions,
+            $rightOptions,
+            $width,
+            $left,
+            $right,
+            $firstPointer,
+            $secondPointer,
+            $thirdPointer,
+            $fourthPointer
+        );
     }
 
     /**
