@@ -7,6 +7,7 @@ use Craft;
 use craft\base\ElementInterface;
 use craft\fields\Dropdown;
 use craft\helpers\Cp;
+use craft\helpers\Html;
 use craft\helpers\Json;
 use GraphQL\Type\Definition\Type;
 use spicyweb\oddsandends\fields\data\WidthData;
@@ -100,6 +101,17 @@ class Width extends Dropdown
             'value' => $value,
             'namespaceId' => $namespacedId,
         ]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getStaticHtml(mixed $value, ?ElementInterface $element = null): string
+    {
+        // Width's input is a bespoke slider, not a real <select>, so Dropdown::getStaticHtml()
+        // (which assumes label/value options) can't render it. Fall back to the same
+        // disabled-input approach craft\base\Field::getStaticHtml() uses by default.
+        return Html::disableInputs(fn() => $this->getInputHtml($value, $element)) ?? '';
     }
 
     /**
