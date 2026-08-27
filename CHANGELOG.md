@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.1.3 - 2026-08-26 (Supercool fork)
+
+### Fixed
+- Fixed `Width::getStaticHtml()` throwing "Array to string conversion" when rendering entry revisions, by overriding it instead of inheriting Dropdown's incompatible implementation
+
+## 5.1.2 - 2026-08-25 (Supercool fork)
+
+### Fixed
+- Fixed uninitialized `OptionData` properties in `WidthData` causing a crash when rendering entry revisions on Craft >=4.6
+
 ## 5.1.1 - 2026-03-17
 
 ### Fixed
